@@ -12,23 +12,28 @@ class Basket extends Model
     protected $guarded = [];
 
 
+    public function company()
+    {
+    return $this->hasOne(Company::class, 'order_id', 'order_id');
+    }
+
     public function plaidoirie()
     {
-        return $this->belongsTo(Plaidoirie::class, 'plaideType', 'code');
+        return $this->belongsTo(OptionPrice::class, 'plaideType', 'code');
     }
 
     public function impression()
     {
-        return $this->belongsTo(TypeImpression::class, 'printType', 'code');
+        return $this->belongsTo(OptionPrice::class, 'printType', 'code');
     }
 
     public function reliure()
     {
-        return $this->belongsTo(TypeReliure::class, 'reliureType', 'code');
+        return $this->belongsTo(OptionPrice::class, 'reliureType', 'code');
     }
 
     public function zoneGeo()
     {
-        return $this->belongsTo(ZoneGeo::class, 'cityCode', 'code');
+        return $this->belongsTo(OptionPrice::class, 'cityCode', 'code');
     }
 }

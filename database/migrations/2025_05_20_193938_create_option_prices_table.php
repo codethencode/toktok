@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('option_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('categorie')->unique();
+            $table->string('code')->unique();
             $table->string('categorie');
             $table->string('label');
             $table->text('description')->nullable();

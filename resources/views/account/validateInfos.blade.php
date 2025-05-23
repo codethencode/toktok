@@ -31,8 +31,8 @@
                         {{ $company->adresse }}<br>
                         {{ $company->code_postal }} {{ $company->ville }}
                         <br><br>
-                        {{ $company->email }}<br>
-                        {{ $company->telephone }}
+                        Email : {{ $company->email }}<br>
+                        Téléphone : {{ $company->telephone }}
                     </div>
                     </div>
 
@@ -53,8 +53,8 @@
                         {{ $tribunal->adresse }}<br>
                         {{ $tribunal->code_postal }} {{ $tribunal->ville }}
                         <br><br>
-                        {{ $tribunal->email }}<br>
-                        {{ $tribunal->telephone }}
+                        Email : {{ $tribunal->email }}<br>
+                        Téléphone : {{ $tribunal->telephone }}
                     </div>
                 </div>
             </div>

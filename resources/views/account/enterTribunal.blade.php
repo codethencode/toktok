@@ -76,14 +76,14 @@
             </div>
 
             <div class="mt-4">
-                <x-input-label for="email" :value="__('Email*')" />
-                <x-text-input placeholder="Email" id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email', $tribunal->email ?? '')" required autocomplete="Email" />
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input placeholder="Email" id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email', $tribunal->email ?? '')" autocomplete="Email" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="tel" :value="__('Téléphone*')" />
-                <x-text-input placeholder="Téléphone" id="tel" class="block mt-1 w-full" type="text" name="tel" :value="old('tel', $tribunal->telephone ?? '')" required autocomplete="Téléphone" />
+                <x-input-label for="tel" :value="__('Téléphone')" />
+                <x-text-input placeholder="Téléphone" id="tel" class="block mt-1 w-full" type="text" name="tel" :value="old('tel', $tribunal->telephone ?? '')"  autocomplete="Téléphone" />
                 <x-input-error :messages="$errors->get('tel')" class="mt-2" />
             </div>
 

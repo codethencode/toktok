@@ -21,8 +21,11 @@
 
                             <hr class="border-1 mt-6 mb-0 border-gray-200">
 
+
+                          
+
                             <button class="w-full mt-4 mb-3 bg-pink-200 text-sm text-black p-3 rounded-lg" onclick="submitForm()">
-                                {{ $baseFeeDesc }} <span class="font-bold">{{ $baseFeePrice }} € HT soit {{ $baseFeePrice*1.2 }} € TTC</span></button>
+                                {{ $optionsExtra[0]->description }} <span class="font-bold">{{ $optionsExtra[0]->price }} € HT soit {{ $optionsExtra[0]->price*1.2 }} € TTC</span></button>
 
                             <!-- Ville -->
                             {{--                        <div class="mb-4">--}}
@@ -121,7 +124,7 @@
                             <div class="mb-4">
                                 <label class="block text-lg font-medium text-gray-700 pb-2">Choix de la Juridiction</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    <template x-for="option in juridictionOptions" :key="option.id" x-init="resetPrice()">
+                                    <template x-for="option in juridictionOptions" :key="option.id" x-init="resetPrices()">
                                         <div @click="selectJuridiction(option)" :class="{'selected': selectedJuridiction && selectedJuridiction.id === option.id}" class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer flex justify-between items-center">
                                             <div class="relative min-h-48">
                                                 <h2 class="text-md font-bold" x-text="option.title"></h2>
@@ -145,11 +148,11 @@
                                               {
                                               if($zone_geo['price']==0)
                                                   {
-                                                      $ville .= '<option data-id="'.$zone_geo['code'].'" value="'.$zone_geo['code'].'@'.$zone_geo['price'].'">'.$zone_geo['name'].'</option>';
+                                                      $ville .= '<option data-id="'.$zone_geo['code'].'" value="'.$zone_geo['code'].'@'.$zone_geo['price'].'">'.$zone_geo['label'].'</option>';
                                                   }
                                               else
                                                   {
-                                                      $ville .= '<option data-id="'.$zone_geo['code'].'" value="'.$zone_geo['code'].'@'.$zone_geo['price'].'">'.$zone_geo['name'].' (+'.$zone_geo['price'].' €)</option>';
+                                                      $ville .= '<option data-id="'.$zone_geo['code'].'" value="'.$zone_geo['code'].'@'.$zone_geo['price'].'">'.$zone_geo['label'].' (+'.$zone_geo['price'].' €)</option>';
                                                   }
 
                                               }
@@ -168,8 +171,7 @@
                                 <div class="mb-4">
 
                                     <button @click="toggleUrgency" :class="{'btn-selected': isUrgent}" class="px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none bg-gray-100  min-h-[230px] w-full">
-                                        <div x-show="!isUrgent"><span class="block text-md font-bold text-white bg-gray-600 rounded-lg p-2 m-3">Option urgence</span><span class="text-sm">(traitement & envoi du dossier sous 24h) 79 euro *
-l'envoi et le traitement de votre dosiser sera traité sous 24 heures. La réception de celui-ci au tribunal se fera selon les délai habituels d'expedition de courier en traitement express.</span></div>
+                                        <div x-show="!isUrgent"><span class="block text-md font-bold text-white bg-gray-600 rounded-lg p-2 m-3">Option urgence</span><span class="text-sm">{{ $optionsExtra[1]->description }}</span></div>
                                         <div x-show="isUrgent" class="text-sm"><span class="block text-md font-bold text-gray-700">Option urgence ajoutée</span>Pour un traitement de votre dossier en haute priorité sous 24h prêt à être expédié</div>
                                     </button>
                                 </div>
@@ -205,23 +207,23 @@ l'envoi et le traitement de votre dosiser sera traité sous 24 heures. La récep
                             @php
                                 $impression="";
                                   foreach($typeImpressions as $typeImpression)
-                                      $impression .= "{ id: '". $typeImpression['code']."', title:'".$typeImpression['libelle']."', description: '".$typeImpression['price']." € HT/ page ', price:".$typeImpression['price']." },";
+                                      $impression .= "{ id: '". $typeImpression['code']."', title:'".addslashes($typeImpression['label'])."', description: '".$typeImpression['price']." € HT/ page ', price:".$typeImpression['price']." },";
 
                                   $reliure="";
                                   foreach($typeReliures as $typeReliure)
-                                      $reliure .= "{ id: '". $typeReliure['code']."', title:'".$typeReliure['libelle']."', description: '".$typeReliure['price']." € HT / page ', price:".$typeReliure['price']." },";
+                                      $reliure .= "{ id: '". $typeReliure['code']."', title:'".addslashes($typeReliure['label'])."', description: '".$typeReliure['price']." € HT / page ', price:".$typeReliure['price']." },";
 
                                    $plaidoirie="";
 
 
                                   foreach($typePlaidoiries as $typePlaidoirie)
-                                       $plaidoirie .= "{ id: '". $typePlaidoirie['code']."', title:'".$typePlaidoirie['libelle']."', description:'".addslashes($typePlaidoirie['description'])."', price:".$typePlaidoirie['price']." },";
+                                       $plaidoirie .= "{ id: '". $typePlaidoirie['code']."', title:'".addslashes($typePlaidoirie['label'])."', description:'".addslashes($typePlaidoirie['description'])."', price:".$typePlaidoirie['price']." },";
 
 
                                   $juridiction="";
 
                                   foreach($typeJuridictions as $typeJuridiction)
-                                       $juridiction .= "{ id: '". $typeJuridiction['code']."', title:'".$typeJuridiction['libelle']."', description:'".addslashes($typeJuridiction['description'])."', price:".$typeJuridiction['price']." },";
+                                       $juridiction .= "{ id: '". $typeJuridiction['code']."', title:'".addslashes($typeJuridiction['label'])."', description:'".addslashes($typeJuridiction['description'])."', price:".$typeJuridiction['price']." },";
 
 
                             @endphp
@@ -233,7 +235,7 @@ l'envoi et le traitement de votre dosiser sera traité sous 24 heures. La récep
                                     <input type="hidden" name="total_price" id="totalTTC" :value="totalTTC">
                                     <input type="hidden" name="selected_city" :value="selectedCity">
                                     <input type="hidden" name="cityCode" id="cityCode" :value="cityCode">
-                                    <input type="hidden" name="baseFee" id="baseFee" value="{{ $baseFeePrice }}">
+                                    <input type="hidden" name="baseFee" id="baseFee" value="{{ $optionsExtra[0]->price}}">
                                     <input type="hidden" name="number_of_pages" :value="numberOfPages">
                                     <input type="hidden" name="print_type" :value="selectedPrint.id">
                                     <input type="hidden" name="print_type_price" :value="selectedPrint.price">
@@ -550,7 +552,7 @@ l'envoi et le traitement de votre dosiser sera traité sous 24 heures. La récep
                                         const abonnementPrice = this.isSubscribed ? {{ $baseAboPrice }} : 0;
                                         const plaidoiriePrice = parseFloat(this.selectedPlaidoirie.price);
                                         const juridictionPrice = parseFloat(this.selectedJuridiction.price);
-                                        const urgencyPrice = this.isUrgent ? {{ $baseUrgentPrice }} : 0;
+                                        const urgencyPrice = this.isUrgent ? {{ $optionsExtra[1]->price }} : 0;
 
 
                                         document.getElementById('urgencyPrice').value=urgencyPrice;

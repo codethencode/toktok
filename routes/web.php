@@ -5,6 +5,7 @@ use App\Http\Controllers\DossierCustomerController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderSummary;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\TemporaryFileController;
@@ -32,6 +33,8 @@ use App\Http\Controllers\PondUploadController;
 
 //ENVOI ID DIRECTORY
 Route::get('/uploadfile', function () { return redirect('account'); });
+
+
 
 Route::get('/uploadfile/{directory}', function ($directory) { $isEditable = DossierCustomer::where('directory_id',$directory)->first();
     $canEdit = (!$isEditable) ? 'yes' : ($isEditable->validSend === 'validSent' ? 'no' : 'yes');
@@ -63,6 +66,12 @@ Route::post('/uploadfile', function (Request $request) {
 
 //TELECHARGER ARCHIVE DOSSIER CLIENT ZIP
 Route::get('/download-files/{folder}', [FileController::class, 'downloadAllFiles'])->name('download.all.files');
+
+
+//VOIR DETAIL DE LA COMMANDE
+Route::get('/account/orders/{orderId}', [OrderSummary::class, 'show'])->name('account.orders.detail')->middleware('auth');
+//VOIR PDF DE LA COMMANDE
+Route::get('/account/orders/{orderId}/invoice', [OrderSummary::class, 'downloadInvoicePdf'])->name('account.orders.invoice')->middleware('auth');
 
 //SUBMIT ADDRESS ET TRIBUNAL
 
@@ -134,6 +143,7 @@ Route::post('/enterInfoAddress', function (Request $request) { return view('acco
 //COMPTE CLIENT
 Route::get('account', [\App\Http\Controllers\OrderSummary::class, 'index'])->name('account');
 
+
 //PASSWORD
 Route::get('password/forgot', [PasswordResetController::class, 'showForgotForm'])->name('password.request');
 Route::post('password/forgot', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
@@ -184,6 +194,9 @@ Route::get('ls', function () {
 
 Route::post('/payment', function (Request $request) {
 
+
+ 
+
     $series1 = mt_rand(100, 999);
     $series2 = mt_rand(100, 999);
     $series3 = mt_rand(100, 999);
@@ -194,7 +207,7 @@ Route::post('/payment', function (Request $request) {
 
     list($cityCode, $cityCodePrice) = explode('@', $selectedCity);
 
-
+   
     $date = new DateTime();
 
 // Ajoute 3 mois à la date actuelle

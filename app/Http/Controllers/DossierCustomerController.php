@@ -227,12 +227,24 @@ class DossierCustomerController extends Controller
             'adresse' => ['required', 'string', 'max:250'],
             'code_postal' => ['required', 'string', 'max:30'],
             'ville' => ['required', 'string', 'max:165'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-            'tel' => ['required', 'min:8', 'max:25'],
+            
         ]);
 
 
         $verif = Tribunal::where('order_id',$order_id)->first();
+
+        if (empty($request->telephone)) {
+            $telephone = 'n.c';
+        } else {
+            $telephone = $request->telephone;
+        }
+
+        if (empty($request->email)) {
+            $email = 'n.c';
+        } else {
+            $email = $request->email;
+        }
+        
 
         if(!$verif) {
             //dd($request->all());
@@ -245,8 +257,8 @@ class DossierCustomerController extends Controller
                 'adresse' => $request->adresse,
                 'code_postal' => $request->code_postal,
                 'ville' => $request->ville,
-                'email' => $request->email,
-                'telephone' => $request->tel,
+                'email' => $email,
+                'telephone' => $telephone,
             ]);
         }
         else
@@ -259,8 +271,8 @@ class DossierCustomerController extends Controller
                     'adresse' => $request->adresse,  // Correction du champ email
                     'code_postal' => $request->code_postal,
                     'ville' => $request->ville,  // Correction du champ email
-                    'email' => $request->email,
-                    'telephone' => $request->tel,
+                    'email' => $email,
+                    'telephone' => $telephone,
                 ]);
             }
         }

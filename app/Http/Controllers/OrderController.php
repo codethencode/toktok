@@ -10,6 +10,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Models\ZoneGeo;
 use App\Models\BaseFee;
+use App\Models\OptionPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use Stripe\Subscription;
@@ -45,23 +46,41 @@ class OrderController extends Controller
         $baseUrgentDesc = $baseFees[2]->description;
 
 
+
+        //JE VIENS DE RASSEMBLER TTES LES OPTIONS DANS UNE SEULE TABLE : options_prices
+
+        //RECUP PRICES
+        $getOptions = OptionPrice::all();
+
+        //dd($typeImpressions);
+        //dd($getOptions);
+
         //dd($baseAboPrice);
         //$baseFeePrice = $baseFees->first()->price;
         //dd($typePlaidoiries);
 
+
+        //$priceExpress = OptionPrice::where('code', 'extra_02')->value('price');
+        //$descExpress = OptionPrice::where('code', 'extra_02')->value('price');
+       
+        //$priceFraisService = OptionPrice::where('code', 'extra_01')->value('price');
+        //$descFraisService = OptionPrice::where('code', 'extra_02')->value('price');
+
         return view('/order-init', [
-            'typeImpressions' => $typeImpressions,
-            'typeReliures'   => $typeReliures,
-            'typeExpeditions' => $typeExpeditions,
-            'typePlaidoiries'   => $typePlaidoiries,
-            'typeJuridictions'   => $typeJuridictions,
-            'zone_geos'   => $zone_geos,
-            'baseFeePrice'   => $baseFeePrice,
-            'baseFeeDesc'   => $baseFeeDesc,
+            //'typeImpressions' => $typeImpressions,
+            'typeImpressions' => OptionPrice::where('categorie', 'type_impression')->get(),
+            'typeReliures'   => OptionPrice::where('categorie', 'type_reliure')->get(),
+            //'typeExpeditions' => $typeExpeditions,
+            'typePlaidoiries'   => OptionPrice::where('categorie', 'type_plaidoirie')->get(),
+            'typeJuridictions'   => OptionPrice::where('categorie', 'type_juri')->get(),
+            'zone_geos'   => OptionPrice::where('categorie', 'zone_geo')->get(),
+           // 'baseFeePrice'   => $baseFeePrice,
+           // 'baseFeeDesc'   => $baseFeeDesc,
             'baseAboPrice'   => $baseAboPrice,
             'baseAboDesc' => $baseAboDesc,
-            'baseUrgentPrice'   => $baseUrgentPrice,
-            'baseUrgentDesc' => $baseUrgentDesc,
+           // 'baseUrgentPrice'   => $baseUrgentPrice,
+            //'baseUrgentDesc' => $baseUrgentDesc,
+            'optionsExtra' => OptionPrice::where('categorie', 'type_extra')->get(), 
             'aboState' => $aboState,
         ]);
     }
@@ -101,7 +120,6 @@ class OrderController extends Controller
     public function cancelSubscription(Request $request)
     {
 
-        return redirect()->back()->with('status', 'Votre abonnement mensuel est désormais annulé.');
 
 
         // Suppose que vous avez l'ID de l'utilisateur passé dans la requête ou obtenu autrement
@@ -116,12 +134,13 @@ class OrderController extends Controller
 
             $order = Subscription::where('user_id', $request->user_id)->first();
             if ($order) {
-                $order->stripe_status = 'inactive';
+                $order->stripe_status = 'canceled';
                 $order->save();
             }
 
         }
 
+        return redirect()->back()->with('status', 'Votre abonnement mensuel est désormais annulé.');
 
     }
 
