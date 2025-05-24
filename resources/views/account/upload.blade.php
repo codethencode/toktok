@@ -39,7 +39,7 @@
                     @endif
                 </div>
 
-                <h1 class="mb-5">Télécharger les fichiers de mon dossier Etape 1/3 {{ $directory }} // Can Edit : {{ $canEdit }}</h1>
+                <h1 class="mb-5">Télécharger les fichiers de mon dossier Etape 1/3 {{ substr($directory,-11) }} // Référence <button class="bg-blue-200 pl-3 pr-3 pt-1 pb-1 rounded-md text-sm">{{ $order_name }}</button></h1>
 
 
 

@@ -175,6 +175,7 @@
                                         <form method="post" action="uploadfile">
                                             @csrf
                                             <input type="hidden" name="directory" value="{{ str_replace('cus_', '', $order->stripe_customer_id).'-'.$order->order_id }}">
+                                            <input type="hidden" name="order_name" value="{{ $order->order_name }}">
                                             <button type="submit" class="custom-button text-xs text-white bg-purple-700 rounded-lg p-2 w-full">
                                                 Instruire mon Dossier
                                             </button>

@@ -29,11 +29,18 @@ class StripeWebhookController extends Controller
 
     public function webhook()
     {
+
+        
+
         $endpoint_secret = $this->stripeWebhookSecret;
        // $endpoint_secret = 'whsec_1d3657a80cc26449372d4274f1d8cc09bc477d5869875b460238d1661129fa7e';
 
         $payload = @file_get_contents('php://input');
         $event = null;
+
+        Log::info('🔔 Webhook Stripe reçu', [
+            'raw_payload' => $payload,
+        ]);
 
         try {
             $event = \Stripe\Event::constructFrom(
@@ -65,7 +72,7 @@ class StripeWebhookController extends Controller
       //  Log::info('stripeReceived', ['triggerOrder' => $event->type]);
 
 
-// Handle the event
+        // Handle the event
         switch ($event->type) {
             case 'payment_intent.succeeded':
                 $paymentIntent = $event->data->object; // contains a \Stripe\PaymentIntent
@@ -96,9 +103,17 @@ class StripeWebhookController extends Controller
                 return $this->handlePaymentSucceeded($event);
                 break;
 
+            case 'invoice.payment_succeeded':
+             
+                Log::info('✅ Paiement d’abonnement réussi');
+                 // Appelle un handler si tu veux en faire un
+                 return response('OK', 200);    
+
+
             default:
                 // Unexpected event type
-                error_log('Received unknown event type');
+                Log::warning('📦 Événement Stripe non géré reçu', ['type' => $event->type]);
+                return response('OK', 200);
         }
 
         return  http_response_code(200);
@@ -106,11 +121,74 @@ class StripeWebhookController extends Controller
     }
 
 
+    protected function handlePaymentSucceeded($event)
+{
+    try {
+        $invoice = $event->data->object;
 
+        Log::info('▶️ handlePaymentSucceeded() appelé');
+
+        $orderId = $invoice->metadata->order_number ?? null;
+        $customerMail = $invoice->metadata->mail ?? null;
+        $subscriptionId = $invoice->subscription ?? null;
+        $amountPaid = $invoice->amount_received / 100;
+        $customerEmail = $invoice->customer_email;
+
+        Log::info('ℹ️ Données extraites', [
+            'order_id' => $orderId,
+            'mail' => $customerMail,
+            'subscription_id' => $subscriptionId,
+            'amount_paid' => $amountPaid
+        ]);
+
+        $order = Basket::where('order_id', $orderId)->first();
+        if (!$order) {
+            Log::warning("⚠️ Aucun panier trouvé pour order_id: $orderId");
+            return response('OK', 200);
+        }
+
+        $order->isPaid = 'ok';
+        $order->save();
+
+        if ($subscriptionId) {
+            $subscription = Subscription::where('stripe_subscription_id', $subscriptionId)->first();
+            if ($subscription) {
+                $subscription->isActive = 'active';
+                $subscription->save();
+            }
+        }
+
+        if ($order->sendMail === 'ko') {
+            if ($customerMail) {
+                Mail::to($customerMail)->send(new PaymentConfirmation($amountPaid, $orderId));
+            }
+
+            $adminEmail = config('mail.admin_email');
+            Mail::to($adminEmail)->send(new AdminNotification($amountPaid, $orderId, $subscriptionId));
+
+            $order->sendMail = 'ok';
+            $order->save();
+        }
+
+        return response('OK', 200);
+
+    } catch (\Throwable $e) {
+        Log::error('💥 Erreur dans handlePaymentSucceeded : ' . $e->getMessage(), [
+            'trace' => $e->getTraceAsString()
+        ]);
+        return response('Erreur webhook', 500);
+    }
+}
+
+
+
+    /*
     protected function handlePaymentSucceeded($event)
     {
         //Log::info('Stripe Webhook Received:', ['triggerEvent' => $event]);
         $invoice = $event->data->object; // L'objet invoice
+
+        
 
         if($invoice==='subscription')
         {
@@ -167,10 +245,11 @@ class StripeWebhookController extends Controller
             $order->save();
         }
     }
-
+*/
     protected function handlePaymentFailed($event)
     {
         $invoice = $event->data->object;
+        $amountPaid = $invoice->amount_received / 100;
 
         // Récupérer les metadata
         $orderId = $invoice->metadata->order_number ?? null;
@@ -180,7 +259,7 @@ class StripeWebhookController extends Controller
 
         // Envoyer l'e-mail de notification d'échec au client
         if ($customerEmail) {
-            Mail::to($customerEmail)->send(new PaymentFailed($orderId));
+            Mail::to($customerEmail)->send(new PaymentFailed($amountPaid, $orderId));
         }
 
         // Vous pouvez également envoyer une notification à l'administrateur si nécessaire

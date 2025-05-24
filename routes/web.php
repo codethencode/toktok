@@ -39,6 +39,8 @@ Route::get('/uploadfile', function () { return redirect('account'); });
 Route::get('/uploadfile/{directory}', function ($directory) { $isEditable = DossierCustomer::where('directory_id',$directory)->first();
     $canEdit = (!$isEditable) ? 'yes' : ($isEditable->validSend === 'validSent' ? 'no' : 'yes');
 
+
+
     return view('account.upload', ['directory'=> $directory, 'canEdit'=> $canEdit]); });
 
 Route::post('/uploadfile', function (Request $request) {
@@ -59,8 +61,9 @@ Route::post('/uploadfile', function (Request $request) {
         $isAdmin = "isNotAdmin";
     }
 
+    
     //dd($isAdmin);
-        return view('account.upload', ['directory' => $directory, 'canEdit' => $canEdit, 'isAdmin' => $isAdmin]);
+        return view('account.upload', ['directory' => $directory, 'canEdit' => $canEdit, 'isAdmin' => $isAdmin, 'order_name'=> $request->input('order_name')]);
 
 });
 
