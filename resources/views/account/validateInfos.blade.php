@@ -15,9 +15,17 @@
 
     {{--    <h1>{{ $dossier->exists ? 'Modifier le dossier' : 'Créer un dossier' }}</h1>--}}
 
+
+   
+
     <div class="rounded-lg p-6 mx-auto">
 
-        <div class="bg-gray-900 text-white p-3 rounded-lg mb-8">Information sur le {{ $tribTxt }}</div>
+        Constitution de votre dossier : Etape 4/4
+        <div class="w-full bg-gray-200 rounded-md h-4 mb-4 mt-4">
+            <div class="bg-blue-500 h-4 rounded-md" style="width: 90%;"></div>
+        </div>
+
+        <div class="bg-gray-900 text-white p-3 rounded-lg mb-8">Récapitulatif des informations transmises</div>
 
 
             <div class="grid grid-cols-2 gap-4">

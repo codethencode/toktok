@@ -1,11 +1,6 @@
 <x-layout>
 
     <main class="space-y-40 mb-40">
-
-        @auth
-            Logged ! {{ Auth::user()->email; }}
-        @endauth
-
         <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
             <div class="relative sm:pt-3 md:pt-36 ml-auto">
                 <div class="lg:w-3/4 text-center mx-auto">
@@ -62,7 +57,7 @@
                             <!-- Email Address -->
                             <form method="POST" action="/login">
                                 @csrf
-                                {{ $action }}
+                                
                             <input type="hidden" name="action" value="{{ $action }}">
                             <div class="mt-4">
                                 <x-input-label for="login-email" :value="__('Email')" />

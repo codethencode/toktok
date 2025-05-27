@@ -8,6 +8,7 @@ use App\Models\TypeImpression;
 use App\Models\TypeReliure;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Models\DossierCustomer;
 use App\Models\ZoneGeo;
 use App\Models\BaseFee;
 use App\Models\OptionPrice;
@@ -114,6 +115,22 @@ class OrderController extends Controller
             "reliureQuality" => $reliureQuality,
             "expeType" => $expeType,
         ]);
+    }
+
+
+
+    public function resetDossier(Request $request)
+    {
+        $order_id = $request->order_id;
+
+        //dd($order_id);
+
+        $updateOrder =  DossierCustomer::where('order_id', $order_id)->update([
+            'validSend' => 'notSent', // ou 1
+            'step' => 'envoiFichier-01',         // par exemple
+        ]);
+
+        return redirect()->route('account')->with('success', 'Le dossier a bien été réinitialisé.');
     }
 
 

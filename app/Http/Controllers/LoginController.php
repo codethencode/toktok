@@ -9,24 +9,32 @@ use Stripe\Climate\Order;
 
 class LoginController extends Controller
 {
-    //
+    
     public function create(Request $request)
     {
-
+        // 💣 Vire les redirections automatiques Laravel
+        $request->session()->forget('_previous');
+        $request->session()->forget('url.intended');
+    
+        // ✅ Authentification
         $credentials = [
             'email' => $request['login-email'],
             'password' => $request['login-password'],
         ];
-
+    
         if (Auth::attempt($credentials)) {
-
-            if($request->action==='account') {
-                return redirect()->action([OrderSummary::class, 'index'])->with('success', 'Vous êtes connecté');
+            $request->session()->regenerate();
+    
+            // ✅ Redirection personnalisée selon action (si besoin)
+            if ($request->input('action') === 'account') {
+                return redirect('/account'); // ⚠️ Tu peux personnaliser ici si la route existe
             }
+    
             return redirect('/order-init')->with('success', 'Vous êtes connecté');
         }
-
-         return redirect()->back()->with('success', 'your message here');
+    
+        // ❌ Si échec, ne redirige surtout pas vers la racine
+        return redirect()->back()->with('error', 'Identifiants incorrects');
     }
 
     public function logout(Request $request)

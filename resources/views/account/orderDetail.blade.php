@@ -9,7 +9,7 @@
 
 
  <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-xl">
-    <h1 class="text-2xl font-bold mb-6">Détail de la commande {{ $basket->order_id }}</h1>
+    <h1 class="text-2xl font-bold mb-6">Détail de la commande {{ $basket->order_id }} - Référence dossier : {{ $basket->order_name }}</h1>
 
     <table class="w-full table-auto border border-gray-300 text-sm">
         <tbody class="divide-y divide-gray-200">

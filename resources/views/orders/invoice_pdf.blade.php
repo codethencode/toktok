@@ -8,7 +8,7 @@
             font-family: DejaVu Sans, sans-serif;
             font-size: 12px;
             color: #333;
-            margin: 40px;
+            margin: 30px;
         }
 
         .header {
@@ -39,13 +39,13 @@
 
         h1 {
             font-size: 22px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .container {
             max-width: 700px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
             background-color: #fff;
         }
@@ -97,24 +97,29 @@
         <!-- En-tête -->
         <div class="header">
             <div class="client-block">
-                <h2>Client</h2>
-                <p>{{ $company->name ?? 'Nom du client' }}</p>
-                <p>{{ $company->adresse ?? 'Adresse du client' }}</p>
-                <p>{{ $company->code_postal ?? '' }} {{ $company->ville ?? '' }}</p>
+                <h3>Facture N°{{ $basket->order_id }}</h3>
+
+                <p><strong>Client : </strong>
+                {{ $company->name ?? 'Nom du client' }}</p>
+                <p>{{ $company->adresse ?? 'Adresse du client' }} - 
+                {{ $company->code_postal ?? '' }} {{ $company->ville ?? '' }}</p>
                 <p>{{ $company->email ?? '' }} - Tél. {{ $company->telephone ?? '' }}</p>
+                <p>Date do commande {{ $basket->created_at->translatedFormat('d F Y') }}
             </div>
         
             <div class="company-block">
-                <h2>Entreprise</h2>
-                <p>{{ $companyName ?? 'Nom de l\'entreprise' }}</p>
+                <p><strong>TokTok : </strong>
+                {{ $companyName ?? 'Nom de l\'entreprise' }}</p>
                 <p>{{ $companyAddress ?? 'Adresse de l\'entreprise' }}</p>
                 <p>{{ $companyZip ?? '' }} {{ $companyCity ?? '' }}</p>
                 <p>{{ $companyCountry ?? 'France' }}</p>
+                
             </div>
         </div>
 
         <!-- Titre -->
-        <h1>Facture – Commande #{{ $basket->order_id }}</h1>
+        <h2>Facture – Commande #{{ $basket->order_id }}</h2>
+        <h4>Votre Référence : {{ $basket->order_name }}</h4>
 
         <!-- Tableau de la commande -->
         <table>
@@ -130,7 +135,7 @@
                 <tr>
                     <td class="font-bold">Type d'impression</td>
                     <td class="text-right">
-                        {{ $typeImpression->label ?? 'N/A' }} ({{ number_format($typeImpression->price ?? 0, 2) }} € x {{ $basket->numberOfPages }})<br>
+                        {{ $typeImpression->label ?? 'N/A' }} ({{ number_format($typeImpression->price ?? 0, 2) }} € x {{ $basket->numberOfPages }})
                         = {{ number_format($basket->numberOfPages * ($typeImpression->price ?? 0), 2) }} €
                     </td>
                 </tr>
@@ -142,14 +147,14 @@
                     <td class="font-bold">Plaidoirie</td>
                     <td class="text-right">
                         <div class="font-bold mb-2">{{ $plaidoirie->label ?? 'N/A' }} - {{ number_format($plaidoirie->price ?? 0, 2) }} €</div>
-                        <div class="text-gray italic">{{ $plaidoirie->description ?? '' }}</div>
+                        <div class="text-gray text-xs italic">{{ $plaidoirie->description ?? '' }}</div>
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold">Juridiction</td>
                     <td class="text-right">
                         <div class="font-bold mb-2">{{ $juridiction->label ?? 'N/A' }} - {{ number_format($juridiction->price ?? 0, 2) }} €</div>
-                        <div class="text-gray italic">{{ $juridiction->description ?? '' }}</div>
+                        <div class="text-gray text-xs italic">{{ $juridiction->description ?? '' }}</div>
                     </td>
                 </tr>
                 <tr>

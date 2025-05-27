@@ -39,7 +39,7 @@
                     @endif
                 </div>
 
-                <h1 class="mb-5">Télécharger les fichiers de mon dossier Etape 1/3 {{ substr($directory,-11) }} // Référence <button class="bg-blue-200 pl-3 pr-3 pt-1 pb-1 rounded-md text-sm">{{ $order_name }}</button></h1>
+                <h1 class="mb-5">Télécharger les fichiers de mon dossier Etape 1/3 {{ substr($directory,-11) }} - <button class="bg-blue-200 pl-3 pr-3 pt-1 pb-1 rounded-md text-sm">Référence Dossier : <strong>{{ $order_name }}</strong></button></h1>
 
 
 
@@ -109,6 +109,7 @@
                                 @csrf
                                 <input type="hidden" name="directory" value="{{ $directory }}">
                                 <input type="hidden" name="hasValid" value="hasValid">
+                                <input type="hidden" name="order_name" value="{{ $order_name }}">
                                 <button :disabled="!isChecked"
                                         class="w-full px-4 mt-10 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
                                     Je valide définitivement l'envoi de mes fichiers

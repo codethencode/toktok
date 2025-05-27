@@ -12,6 +12,11 @@ class Basket extends Model
     protected $guarded = [];
 
 
+    public function user()
+    {
+    return $this->belongsTo(User::class);
+    }
+    
     public function company()
     {
     return $this->hasOne(Company::class, 'order_id', 'order_id');

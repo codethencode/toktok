@@ -16,6 +16,56 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class OrderSummary extends Controller
 {
     //
+
+
+    public function index(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+    
+        $checkAbo = Subscription::where('user_id', Auth::id())->first() ?? 'nonAbo';
+        $paginate = 10;
+        $search = $request->input('search');
+    
+        $query = Basket::with('user') // pour précharger les emails
+            ->where('isPaid', 'ok');
+    
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+            $isAdmin = false;
+        } else {
+            $isAdmin = true;
+        }
+    
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('order_id', 'like', "%$search%")
+                  ->orWhereHas('user', function ($sub) use ($search) {
+                      $sub->where('email', 'like', "%$search%");
+                  });
+            });
+        }
+    
+        $orderAlls = $query->orderByDesc('created_at')->paginate($paginate);
+    
+        foreach ($orderAlls as $orderAll) {
+            $orderAll->step = DossierCustomer::where('order_id', $orderAll->order_id)->first();
+            $orderAll->customer = $orderAll->user; // déjà chargé par with('user')
+            $orderAll->company = Company::where('order_id', $orderAll->order_id)->first();
+        }
+    
+        return view('account.index', [
+            'orderAll' => $orderAlls,
+            'checkAbo' => $checkAbo,
+            'isAdmin' => $isAdmin
+        ]);
+    }
+    
+    
+
+
+  /*
     public function index(){
 
         if(Auth::check()) {
@@ -39,6 +89,7 @@ class OrderSummary extends Controller
                     ->paginate($paginate);
 
                 $isAdmin = true;
+                
             }
             else
             {
@@ -75,7 +126,7 @@ class OrderSummary extends Controller
             return redirect('/login');
         }
     }
-
+*/
 
     public function dossier($query){
         return view('account.action-step1', ['orderId'=>$query]);

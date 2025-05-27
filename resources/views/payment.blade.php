@@ -120,7 +120,10 @@
             if (error) {
                 // Display "error.message" to the user... error.type
                 alert(error.message + ' Veuillez recommencer votre saisie');
-                window.location.reload();
+                document.getElementById('loader').classList.add("hidden");
+                document.getElementById('card-button').classList.remove("hidden");
+
+                //window.location.reload();
             } else {
                 // The card has been verified successfully...
                 const hiddenInput = document.createElement('input');
