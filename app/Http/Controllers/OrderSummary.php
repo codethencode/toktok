@@ -11,6 +11,8 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+
 
 
 class OrderSummary extends Controller
@@ -51,8 +53,45 @@ class OrderSummary extends Controller
     
         foreach ($orderAlls as $orderAll) {
             $orderAll->step = DossierCustomer::where('order_id', $orderAll->order_id)->first();
-            $orderAll->customer = $orderAll->user; // déjà chargé par with('user')
+            $orderAll->customer = $orderAll->user;
+            $orderAll->validSend = optional($orderAll->step)->validSend;
+            $orderAll->dateValidSend = optional($orderAll->step)->dateValidSend;
             $orderAll->company = Company::where('order_id', $orderAll->order_id)->first();
+        
+            $basket = Basket::where('order_id', $orderAll->order_id)->first();
+            $orderAll->isUrgent = optional($basket)->isUrgent;
+        
+            // ✅ Calcul du délai restant uniquement si dossier validé ET urgent
+            $now = Carbon::now();
+            Carbon::setLocale('fr');
+            
+            // ✅ Corrigé : condition unique + bonne valeur 'validSend'
+            if ($orderAll->isUrgent === 'true' && $orderAll->validSend === 'validSent' && $orderAll->dateValidSend) {
+                $validationDate = Carbon::parse($orderAll->dateValidSend);
+                $deadline = $validationDate->copy()->addWeekdays(1)->setHour(18)->setMinute(0);
+            
+                if ($now->lessThan($deadline)) {
+                    $diff = $now->diff($deadline);
+            
+                    $heures = $diff->h + ($diff->days * 24);
+                    $minutes = $diff->i;
+            
+                    $orderAll->remainingTime = "Il reste {$heures} heure" . ($heures !== 1 ? "s" : "") .
+                                                " et {$minutes} minute" . ($minutes !== 1 ? "s" : "") . " pour traiter le dossier.";
+                } else {
+                    $diff = $deadline->diff($now);
+                    $heures = $diff->h + ($diff->days * 24);
+                    $minutes = $diff->i;
+            
+                    $orderAll->remainingTime = "Délai dépassé de {$heures} heure" . ($heures !== 1 ? "s" : "") .
+                                            " et {$minutes} minute" . ($minutes !== 1 ? "s" : "") . ".";
+                }
+            } else {
+                $orderAll->remainingTime = null;
+            }
+            
+
+           
         }
     
         return view('account.index', [

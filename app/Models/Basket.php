@@ -16,7 +16,7 @@ class Basket extends Model
     {
     return $this->belongsTo(User::class);
     }
-    
+
     public function company()
     {
     return $this->hasOne(Company::class, 'order_id', 'order_id');
@@ -41,4 +41,9 @@ class Basket extends Model
     {
         return $this->belongsTo(OptionPrice::class, 'cityCode', 'code');
     }
+
+    public function juriTypeInfo()
+{
+    return $this->hasOne(OptionPrice::class, 'code', 'JuriType'); // Adapter si le champ est 'type'
+}
 }

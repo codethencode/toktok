@@ -131,6 +131,9 @@
 
 
         <div class="flex justify-center mb-4 bg-pink-100 p-5"> 
+
+           
+
             <a href="{{ route('download.all.files', ['folder' => $dossier]) }}" class="btn btn-primary">
                 📦 Télécharger tous les fichiers (.zip)
             </a>
@@ -141,7 +144,93 @@
         @endif
     
 
+
+
+        <div class="bg-orange-200 w-full rounded-sm p-3 mb-3">
+            @if($basket->JuriType=='juri_02')
+                <div class="bg-red-400 text-white text-xs p-2 rounded-md">Remise Mains propres Tribunal</div>
+            @endif
+            <strong>{{ $basket->juriTypeInfo->label ?? '' }}</strong>
+            {{ $basket->juriTypeInfo->description ?? '' }}
+        </div>
+
+        <div class="w-full flex justify-center bg-gray-100 p-6 rounded-xl shadow-md">
+
+
+
+            <div class="w-full max-w-md">
+                <div class="text-sm text-gray-700 mb-4 text-center">
+                    Renseigner les informations d'expédition ou simplement valider l'expédition (champs non obligatoires)
+                </div>
         
+                <form action="{{ route('orders.confirmShipping', substr($directory, -11)) }}"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      class="space-y-4">
+                    @csrf
+        
+                    {{-- Numéro de suivi --}}
+                    <div class="flex items-center justify-between">
+                        <label for="tracking_number" class="text-sm w-1/3 text-gray-600">Numéro de suivi</label>
+                        <input type="text" id="tracking_number" name="tracking_number"
+                               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    </div>
+        
+                    {{-- Transporteur --}}
+                    <div class="flex items-center justify-between">
+                        <label for="carrier" class="text-sm w-1/3 text-gray-600">Transporteur</label>
+                        <input type="text" id="carrier" name="carrier"
+                               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    </div>
+        
+                    {{-- Fichier de preuve --}}
+                    <div class="flex items-center justify-between">
+                        <label for="proof" class="text-sm w-1/3 text-gray-600">Preuve de dépôt</label>
+                        <input type="file" id="proof" name="proof"
+                               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm file:border-0 file:bg-gray-200 file:rounded file:px-2 file:py-1 file:text-sm">
+                    </div>
+        
+                    {{-- Bouton --}}
+                    <div class="text-center pt-2">
+                        <button type="submit"
+                                class="custom-button bg-green-600 hover:bg-green-700 text-white  px-4 py-2 rounded-lg text-sm transition-all">
+                            Valider l'expédition
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="bg-blue-100 p-6 rounded-2xl mt-6 text-sm text-gray-800 shadow-md">
+            <h2 class="text-lg font-semibold mb-4 border-b pb-2 border-blue-300">Détails de votre dossier</h2>
+            
+            <div class="space-y-2">
+                <div class="flex justify-between">
+                    <span>Ville de dépôt :</span>
+                    <span class="font-bold">{{ strtoupper($city) }}</span>
+                </div>
+        
+                <div class="flex justify-between">
+                    <span>Nombre de pages :</span>
+                    <span class="font-bold">{{ $numberOfPages }}</span>
+                </div>
+        
+                <div class="flex justify-between">
+                    <span>Type d’impression :</span>
+                    <span class="font-bold">{{ strtoupper($getImpression) }}</span>
+                </div>
+        
+                <div class="flex justify-between">
+                    <span>Type de reliure :</span>
+                    <span class="font-bold">{{ strtoupper($getReliure) }}</span>
+                </div>
+        
+                <div class="flex justify-between">
+                    <span>Expédition :</span>
+                    <span class="font-bold">{{ strtoupper($getExpe) }}</span>
+                </div>
+            </div>
+        </div>
 
     @endif
     

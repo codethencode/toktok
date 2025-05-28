@@ -12,8 +12,14 @@ use App\Models\DossierCustomer;
 use App\Models\ZoneGeo;
 use App\Models\BaseFee;
 use App\Models\OptionPrice;
+use App\Models\Basket;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ShippingConfirmedMail;
+use Illuminate\Support\Facades\Storage;
 //use Stripe\Subscription;
 
 class OrderController extends Controller
@@ -161,5 +167,52 @@ class OrderController extends Controller
 
     }
 
+
+
+    public function confirmShipping(Request $request, $orderId)
+{
+    $data = $request->validate([
+        'tracking_number' => 'nullable|string|max:255',
+        'carrier' => 'nullable|string|max:255',
+        'proof' => 'nullable|file|max:5120', // 5 Mo max
+    ]);
+
+    // ✅ On récupère le panier
+    $basket = Basket::with('user')->where('order_id', $orderId)->firstOrFail();
+
+    // ✅ On gère l'upload si nécessaire
+    if ($request->hasFile('proof')) {
+        $data['proof_path'] = $request->file('proof')->store('proofs', 'public');
+    }
+
+    // ✅ On met à jour le dossier client
+    $dossier = DossierCustomer::where('order_id', $orderId)->first();
+    if ($dossier) {
+        $dossier->trackingShip = $data['tracking_number'] ?? 'n.c';
+        $dossier->carrier = $data['carrier'] ?? null;
+        $dossier->proof_path = $data['proof_path'] ?? null;
+        $dossier->shipDate = Carbon::now();
+
+        $info = [];
+        if (!empty($data['carrier'])) {
+            $info[] = "Transporteur : " . $data['carrier'];
+        }
+        if (!empty($data['tracking_number'])) {
+            $info[] = "N° suivi : " . $data['tracking_number'];
+        }
+        if (!empty($data['proof_path'])) {
+            $info[] = "Preuve de dépôt fournie";
+        }
+
+        $dossier->infoDossier = !empty($info) ? implode(' | ', $info) : 'n.c';
+        $dossier->save();
+    }
+
+    // ✅ On envoie l’email au client depuis la relation Basket → User
+    $email = $basket->user->email;
+    Mail::to($email)->send(new ShippingConfirmedMail($basket, $data));
+
+    return back()->with('success', 'Expédition confirmée et mail envoyé au client.');
+}
 
 }

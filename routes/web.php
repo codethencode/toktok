@@ -63,6 +63,8 @@ Route::get('/order-resume', fn() => view('order-init'))->middleware('auth')->nam
 Route::post('/resetDossier/{order_id}', [OrderController::class, 'resetDossier'])->name('dossier.reset');
 Route::post('/cancelSubs', [OrderController::class, 'cancelSubscription'])->name('cancelSubs');
 Route::get('/dossier/{id}', [OrderSummary::class, 'dossier'])->name('dossier');
+Route::post('/orders/{order_id}/confirm-shipping', [OrderController::class, 'confirmShipping'])->name('orders.confirmShipping');
+
 
 // ================= ABONNEMENTS & STRIPE =================
 Route::controller(PaymentController::class)->group(function () {

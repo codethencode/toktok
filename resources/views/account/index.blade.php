@@ -138,7 +138,27 @@
 {{--                                </div>--}}
 {{--                            </td>--}}
 {{--                        </tr>--}}
-                        <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-blue-100' : 'bg-white' }} hover:bg-green-200 cursor-pointer">
+                            <tr><td colspan='9'>&nbsp;</td></tr>
+                            @if($order->isUrgent == 'true' && $order->remainingTime)
+                            <tr><td colspan='9' class='bg-red-400'><div class="text-sm  {{ Str::contains($order->remainingTime, 'dépassé') ? 'text-white font-bold' : 'text-white' }}">
+                                DOSSIER URGENT ! 
+                                
+                                @if($isAdmin === true) {{ $order->remainingTime }} @endif
+                                
+                                Validé le : {{ \Carbon\Carbon::parse($order->dateValidSend)->translatedFormat('d F Y à H\hi') }}
+                            </div></td>
+                            </tr>
+                            @else
+                                @if($order->validSend=='validSent')
+                                <tr><td colspan='9' class='bg-green-100'><div class="text-sm text-green-700 font-bold">
+                                DOSSIER Validé le : {{ \Carbon\Carbon::parse($order->dateValidSend)->translatedFormat('d F Y à H\hi') }}
+                                </div></td>
+                                </tr>
+                                @endif
+                            
+                            @endif
+
+                        <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-blue-100' : 'bg-white' }} hover:bg-gray-200 cursor-pointer">
                             <td class="py-4 px-4 border-b">{{ $loop->iteration }}</td>
                             <td class="py-4 px-4 border-b">{{ $order->order_id }}
                             @if($isAdmin === true)
@@ -161,19 +181,30 @@
                             @endif
                             </td>
                             <td class="py-4 px-4 border-b">
-                                <div class="text-xs text-white bg-gray-900 rounded-lg p-2">{{ strtoupper($order->order_name) }}</div>
-                                @if($isAdmin === true)
+                                <div class="flex items-start gap-2 flex-wrap">
+                                    <div class="text-xs text-white bg-gray-900 hover:bg-gray-500 rounded-lg p-2 w-32 text-center">
+                                        {{ strtoupper($order->order_name) }}
+                                    </div>
                                 
-
-
-
-                                <div x-data="{ showConfirm: false }" class="relative">
-                                    <!-- Bouton pour afficher la modale -->
-                                    <button @click="showConfirm = true"
-                                        class="bg-yellow-500 text-gray-900 rounded-lg p-2 mt-2 text-xs">
-                                        Reset Dossier
-                                    </button>
+                                    @if($isAdmin === true)
+                                        <div x-data="{ showConfirm: false }" class="relative">
+                                            <button @click="showConfirm = true"
+                                                class="bg-yellow-500 text-gray-900 hover:bg-yellow-300 rounded-lg p-2 text-xs w-32">
+                                                Reset Dossier
+                                            </button>
+                                        </div>
                                 
+                                        @if($order->validSend == "validSent")
+                                            <div>
+                                                <a href="{{ route('account.enterAddress', ['order_id'=> $order->order_id, 'uid'=> Auth::user() ]) }}">
+                                                <button class="bg-orange-400 hover:bg-orange-200 text-gray-900 rounded-lg p-2 text-xs w-32">
+                                                    À traiter
+                                                </button>
+                                                </a>
+                                            </div>
+                                        @endif
+                                    
+                                </div>
                                     <!-- Modale de confirmation -->
                                     <div x-show="showConfirm"
                                          class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -242,7 +273,7 @@
                                             @csrf
                                             <input type="hidden" name="directory" value="{{ str_replace('cus_', '', $order->stripe_customer_id).'-'.$order->order_id }}">
                                             <input type="hidden" name="order_name" value="{{ $order->order_name }}">
-                                            <button type="submit" class="custom-button text-xs text-white bg-purple-700 rounded-lg p-2 w-full">
+                                            <button type="submit" class="custom-button text-xs text-white hover:bg-purple-400 bg-purple-700 rounded-lg p-2 w-full">
                                                 Instruire mon Dossier
                                             </button>
                                         </form>
@@ -250,7 +281,7 @@
                                 
                                     @if($step == 4)
                                         <a href="{{ route('account.enterAddress', ['order_id'=> $order->order_id, 'uid'=> Auth::user() ]) }}">
-                                            <button class="bg-gray-900 text-white py-2 px-4 rounded w-full">
+                                            <button class="bg-gray-900 text-white py-2 px-4 rounded-lg text-xs hover:bg-gray-600 w-full">
                                                 Suivant
                                             </button>
                                         </a>
@@ -276,6 +307,9 @@
 
 
                         </tr>
+
+                       
+
                     @endforeach
                             </tbody>
                         </table>

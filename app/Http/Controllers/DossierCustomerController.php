@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
+use App\Services\OrderService;
+
 class DossierCustomerController extends Controller
 {
     //
@@ -349,23 +351,48 @@ class DossierCustomerController extends Controller
     }
 
 
-    public function validateInfosTrib($tribTxt) {
+    public function validateInfosTrib($tribTxt)
+{
+    $directory = session('directory');
+    $order_id = substr($directory, -11);
 
-        $directory = session('directory');
+    // 🔁 On récupère toutes les infos de commande via le service
+    $orderData = OrderService::getDetailOrderData($order_id);
 
-        //dd($directory);
+    // 🔁 Données complémentaires
+    $tribunal = \App\Models\Tribunal::where('order_id', $order_id)->first();
+    $step = \App\Models\DossierCustomer::where('order_id', $order_id)->first();
+    $etat = $step->step ?? null;
 
-        $order_id = substr($directory, -11);
+    // 🔁 Variables utilisées dans la vue (notamment pour payment-summary.blade.php)
+    $city = strtoupper($orderData['zoneGeo']->label ?? '');
+    $numberOfPages = $orderData['nbPages'];
+    $getImpression = $orderData['typeImpression']->label ?? '';
+    $getReliure = $orderData['typeReliure']->label ?? '';
+    $getExpe = $orderData['plaidoirie']->label ?? '';
+    $member = $orderData['isAbo'] ? 'on' : 'off';
+    $totalPrice = $orderData['total'];
+    $printType = $orderData['basket']->printType ?? '';
+    $reliureQuality = $orderData['basket']->reliureType ?? '';  
+    $expeType = $orderData['basket']->plaideType ?? '';
 
-        $company = Company::where('order_id',$order_id)->first();
-        $tribunal = Tribunal::where('order_id', $order_id)->first();
-
-        $step = DossierCustomer::where('order_id', $order_id)->first();
-        $etat = $step->step;
-
-        return view('account.validateInfos',  compact('company', 'tribTxt', 'etat', 'tribunal', 'directory'));
-
-
+    // 🔁 Envoi de toutes les données à la vue
+    return view('account.validateInfos', array_merge($orderData, [
+        'tribunal' => $tribunal,
+        'tribTxt' => $tribTxt,
+        'directory' => $directory,
+        'etat' => $etat,
+        'city' => $city,
+        'numberOfPages' => $numberOfPages,
+        'getImpression' => $getImpression,
+        'getReliure' => $getReliure,
+        'getExpe' => $getExpe,
+        'member' => $member,
+        'totalPrice' => $totalPrice,
+        'printType' => $printType,
+        'reliureQuality' => $reliureQuality,
+        'expeType' => $expeType,
+    ]));
 }
 
 
