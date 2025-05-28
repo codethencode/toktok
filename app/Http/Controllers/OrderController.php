@@ -170,7 +170,7 @@ class OrderController extends Controller
 
 
     public function confirmShipping(Request $request, $orderId)
-{
+    {
     $data = $request->validate([
         'tracking_number' => 'nullable|string|max:255',
         'carrier' => 'nullable|string|max:255',
@@ -180,6 +180,7 @@ class OrderController extends Controller
     // ✅ On récupère le panier
     $basket = Basket::with('user')->where('order_id', $orderId)->firstOrFail();
 
+
     // ✅ On gère l'upload si nécessaire
     if ($request->hasFile('proof')) {
         $data['proof_path'] = $request->file('proof')->store('proofs', 'public');
@@ -187,6 +188,9 @@ class OrderController extends Controller
 
     // ✅ On met à jour le dossier client
     $dossier = DossierCustomer::where('order_id', $orderId)->first();
+    $dossier->step = 'completed';
+    $dossier->save();
+
     if ($dossier) {
         $dossier->trackingShip = $data['tracking_number'] ?? 'n.c';
         $dossier->carrier = $data['carrier'] ?? null;

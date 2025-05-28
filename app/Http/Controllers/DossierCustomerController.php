@@ -382,6 +382,7 @@ class DossierCustomerController extends Controller
         'tribTxt' => $tribTxt,
         'directory' => $directory,
         'etat' => $etat,
+        'step' => $step,
         'city' => $city,
         'numberOfPages' => $numberOfPages,
         'getImpression' => $getImpression,

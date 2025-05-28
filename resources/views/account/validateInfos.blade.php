@@ -67,20 +67,20 @@
                 </div>
             </div>
 
-        @if($etat==='envoiFichier-04')
+            @if($etat === 'envoiFichier-04' || $etat === 'completed')
 
 
        
         
         @if (Auth::check() && Auth::user()->role === 'admin')
 
-        <div class="flex justify-center mt-5 mb-4 bg-blue-100 p-5">
+        <div class="flex justify-center mt-5 mb-4 bg-blue-100 p-5 rounded-md">
 
         Voici les fichier pour le dossier&nbsp;<strong>{{ substr($directory, -11) }}</strong>
 
         </div>
 
-        <div class="flex justify-center mb-4 bg-gray-100 p-5">
+        <div class="flex justify-center mb-4 bg-gray-100 rounded-md p-5">
            
        @php
             
@@ -98,7 +98,7 @@
      
     
         @if (count($files) > 0)
-            <table class="table-auto w-full border border-gray-300 border-collapse" cellpadding="8" cellspacing="0">
+            <table class="table-auto w-full border border-gray-300 border-collapse text-sm" cellpadding="8" cellspacing="0">
                 <thead>
                     <tr>
                         <th class="w-[30%] border border-gray-300 px-4 py-2">Nom</th>
@@ -130,11 +130,9 @@
         </div>
 
 
-        <div class="flex justify-center mb-4 bg-pink-100 p-5"> 
+        <div class="flex justify-center mb-5 bg-gray-200 rounded-md p-3"> 
 
-           
-
-            <a href="{{ route('download.all.files', ['folder' => $dossier]) }}" class="btn btn-primary">
+            <a href="{{ route('download.all.files', ['folder' => $dossier]) }}" class="btn btn-primary text-sm">
                 📦 Télécharger tous les fichiers (.zip)
             </a>
         
@@ -146,63 +144,99 @@
 
 
 
-        <div class="bg-orange-200 w-full rounded-sm p-3 mb-3">
+        <div class="bg-green-100 w-full rounded-md p-5 mb-5">
             @if($basket->JuriType=='juri_02')
-                <div class="bg-red-400 text-white text-xs p-2 rounded-md">Remise Mains propres Tribunal</div>
+                <div class="bg-red-400 text-white text-sm p-4 mb-4 rounded-md">Remise Mains propres Tribunal</div>
             @endif
-            <strong>{{ $basket->juriTypeInfo->label ?? '' }}</strong>
-            {{ $basket->juriTypeInfo->description ?? '' }}
+            <div class="text-sm"><strong>{{ $basket->juriTypeInfo->label ?? '' }}</strong><br>
+            {{ $basket->juriTypeInfo->description ?? '' }}</div>
         </div>
 
-        <div class="w-full flex justify-center bg-gray-100 p-6 rounded-xl shadow-md">
 
+
+
+        @if($etat === 'completed')
+        <div class="w-full p-2 bg-gray-600 text-white mb-4 p-3 text-sm rounded-md">
+            Le dossier a déjà été marqué comme validé et expédié le : <strong>{{ \Carbon\Carbon::parse($step->shipDate)->translatedFormat('d F Y à H\hi') }}</strong>
+            <br>si une erreur a été commise dans les informatioons d'envois il est possible de les mettre à jour et de cliquer à nouveau sur valider l'expédition
+        </div>
+    @endif
+
+        <div class="w-full flex justify-center bg-gray-100 p-6 rounded-md">
+
+        
 
 
             <div class="w-full max-w-md">
+
+           
                 <div class="text-sm text-gray-700 mb-4 text-center">
                     Renseigner les informations d'expédition ou simplement valider l'expédition (champs non obligatoires)
                 </div>
+
+                
         
                 <form action="{{ route('orders.confirmShipping', substr($directory, -11)) }}"
-                      method="POST"
-                      enctype="multipart/form-data"
-                      class="space-y-4">
-                    @csrf
-        
-                    {{-- Numéro de suivi --}}
-                    <div class="flex items-center justify-between">
-                        <label for="tracking_number" class="text-sm w-1/3 text-gray-600">Numéro de suivi</label>
-                        <input type="text" id="tracking_number" name="tracking_number"
-                               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    </div>
-        
-                    {{-- Transporteur --}}
-                    <div class="flex items-center justify-between">
-                        <label for="carrier" class="text-sm w-1/3 text-gray-600">Transporteur</label>
-                        <input type="text" id="carrier" name="carrier"
-                               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    </div>
-        
-                    {{-- Fichier de preuve --}}
-                    <div class="flex items-center justify-between">
-                        <label for="proof" class="text-sm w-1/3 text-gray-600">Preuve de dépôt</label>
-                        <input type="file" id="proof" name="proof"
-                               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm file:border-0 file:bg-gray-200 file:rounded file:px-2 file:py-1 file:text-sm">
-                    </div>
-        
-                    {{-- Bouton --}}
-                    <div class="text-center pt-2">
-                        <button type="submit"
-                                class="custom-button bg-green-600 hover:bg-green-700 text-white  px-4 py-2 rounded-lg text-sm transition-all">
-                            Valider l'expédition
-                        </button>
-                    </div>
-                </form>
+      method="POST"
+      enctype="multipart/form-data"
+      class="space-y-4">
+    @csrf
+
+    {{-- Numéro de suivi --}}
+    <div class="flex items-center justify-between">
+        <label for="tracking_number" class="text-sm w-1/3 text-gray-600">Numéro de suivi</label>
+        <input type="text"
+               id="tracking_number"
+               name="tracking_number"
+               value="{{ old('tracking_number', $step->trackingShip ?? '') }}"
+               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+
+    {{-- Transporteur --}}
+    <div class="flex items-center justify-between">
+        <label for="carrier" class="text-sm w-1/3 text-gray-600">Transporteur</label>
+        <input type="text"
+               id="carrier"
+               name="carrier"
+               value="{{ old('carrier', $step->carrier ?? '') }}"
+               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+
+    {{-- Fichier de preuve --}}
+    <div class="flex items-center justify-between">
+        <label for="proof" class="text-sm w-1/3 text-gray-600">Preuve de dépôt</label>
+        <input type="file"
+               id="proof"
+               name="proof"
+               class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm file:border-0 file:bg-gray-200 file:rounded file:px-2 file:py-1 file:text-sm">
+    </div>
+
+    @if(!empty($step->proof_path))
+    <div class="flex justify-center mt-2">
+        <a href="{{ asset('storage/' . $step->proof_path) }}"
+           target="_blank"
+           class="text-blue-600 underline text-sm">
+            Voir la preuve de dépôt transmise
+        </a>
+    </div>
+    @endif
+
+    {{-- Bouton --}}
+    <div class="text-center pt-2">
+        <button type="submit"
+                class="custom-button bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm transition-all">
+            Valider l'expédition
+        </button>
+    </div>
+</form>
             </div>
         </div>
+
+
         
-        <div class="bg-blue-100 p-6 rounded-2xl mt-6 text-sm text-gray-800 shadow-md">
-            <h2 class="text-lg font-semibold mb-4 border-b pb-2 border-blue-300">Détails de votre dossier</h2>
+        
+        <div class="bg-blue-100 p-6 rounded-2xl mt-6 text-sm text-gray-800">
+            <h3 class="text-lg font-semibold mb-4 border-b pb-2 border-blue-300">Détails de la commande</h3><a href="/account/orders/{{ substr($directory, -11) }}" target="_blank">(voir le détail complet de la commande)</a>
             
             <div class="space-y-2">
                 <div class="flex justify-between">
@@ -235,7 +269,7 @@
     @endif
     
 
-            <div class="bg-green-200 text-green-700 p-6 rounded-lg mt-10">
+            <div class="bg-green-200 text-green-700 p-6 rounded-lg mt-5">
                 Vous avez déjà validé l'envoi de vos informations celles ci ne peuvent plus être modifiées
 
             </div>
