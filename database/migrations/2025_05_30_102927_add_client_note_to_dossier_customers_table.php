@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::table('dossier_customers', function (Blueprint $table) {
             //
-            $table->string('carrier')->nullable();
-            $table->string('proof_path')->nullable();
-                        
+            $table->text('client_note')->nullable();
         });
     }
 
@@ -26,9 +24,7 @@ return new class extends Migration
     {
         Schema::table('dossier_customers', function (Blueprint $table) {
             //
-            $table->dropColumn('carrier');
-            $table->dropColumn('proof_path');
-            
+            $table->dropColumn('client_note');
         });
     }
 };

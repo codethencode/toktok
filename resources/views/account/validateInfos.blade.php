@@ -25,6 +25,11 @@
             <div class="bg-blue-500 h-4 rounded-md" style="width: 90%;"></div>
         </div>
 
+
+        <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
+        Réf. Dossier : {{ strtoupper($basket->order_name) }}
+        </div>
+
         <div class="bg-gray-900 text-white p-3 rounded-lg mb-8">Récapitulatif des informations transmises</div>
 
 
@@ -152,7 +157,11 @@
             {{ $basket->juriTypeInfo->description ?? '' }}</div>
         </div>
 
-
+    @if($step->client_note != '')
+        <div class="w-full p-2 bg-pink-400 text-white mb-5 p-3 text-sm rounded-md">
+            INDICATIONS CLIENT : {{ $step->client_note }}
+        </div>
+    @endif
 
 
         @if($etat === 'completed')
@@ -235,7 +244,7 @@
 
         
         
-        <div class="bg-blue-100 p-6 rounded-2xl mt-6 text-sm text-gray-800">
+        <div class="bg-blue-100 p-6 rounded-lg mt-6 text-sm text-gray-800">
             <h3 class="text-lg font-semibold mb-4 border-b pb-2 border-blue-300">Détails de la commande</h3><a href="/account/orders/{{ substr($directory, -11) }}" target="_blank">(voir le détail complet de la commande)</a>
             
             <div class="space-y-2">
@@ -282,36 +291,51 @@
 
 
 
+
             <div x-data="{ isChecked: false }" class="bg-white p-6">
-                <!-- Toggle Switch -->
-                <div class="flex justify-center mb-4">
-                    <div @click="isChecked = !isChecked"
-                         :class="isChecked ? 'bg-green-500' : 'bg-gray-300'"
-                         class="relative w-14 h-8 rounded-full cursor-pointer transition-colors duration-300 ease-in-out">
-                        <div :class="isChecked ? 'translate-x-6' : 'translate-x-0'"
-                             class="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ease-in-out"></div>
-                    </div>
-                </div>
-
-                <!-- Text explaining the switch -->
-                <div class="mb-4 text-gray-600">
-                    <span> Je confirme avoir transmis la totalité de mes fichiers et désire à présent lancer la procédure d'envoi de mon dossier au tribunal. [ ATTENTION ] Je ne pourrai plus apporter aucune modification à mon dossier. Toute modification entraînera des frais supplémentaires. </span>
-                </div>
-
-                <!-- Submit Button -->
-                <form method="POST" id="validUpload" action="/validateInfos">
+                <!-- Formulaire -->
+                <form method="POST" id="validUpload" action="/validateInfos" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="directory" value="{{ $directory }}">
                     <input type="hidden" name="hasValid" value="hasValid">
+            
+                    <!-- Champ de note client -->
+                    <div class="mb-6">
+                        <label for="client_note" class="block text-sm font-medium text-gray-700 mb-1">
+                            Indication particulière pour le traitement du dossier
+                        </label>
+                        <textarea id="client_note"
+                                  name="client_note"
+                                  rows="3"
+                                  class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                  placeholder="Facultatif : Vous pouvez indiquer ici vos informations particulières si votre dossier le nécessite afin d'assurer son parfait traitement.">{{ old('client_note') }}</textarea>
+                    </div>
+            
+                    <!-- Toggle Switch -->
+                    <div class="flex justify-center mb-4">
+                        <div @click="isChecked = !isChecked"
+                             :class="isChecked ? 'bg-green-500' : 'bg-gray-300'"
+                             class="relative w-14 h-8 rounded-full cursor-pointer transition-colors duration-300 ease-in-out">
+                            <div :class="isChecked ? 'translate-x-6' : 'translate-x-0'"
+                                 class="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ease-in-out"></div>
+                        </div>
+                    </div>
+            
+                    <!-- Texte explicatif -->
+                    <div class="mb-4 text-gray-600 text-sm text-center">
+                        Je confirme avoir transmis la totalité de mes fichiers et désire à présent lancer la procédure d'envoi de mon dossier au tribunal.  
+                        <strong>[ ATTENTION ]</strong> Je ne pourrai plus apporter aucune modification à mon dossier.  
+                        Toute modification entraînera des frais supplémentaires.
+                    </div>
+            
+                    <!-- Bouton de validation -->
                     <button :disabled="!isChecked"
-                            class="w-full px-4 mt-10 py-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="w-full px-4 mt-4 py-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed">
                         Je valide définitivement l'envoi de mes fichiers
-
                     </button>
                 </form>
-
-
             </div>
+       
         @endif
 
 

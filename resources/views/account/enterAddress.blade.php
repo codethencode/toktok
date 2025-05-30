@@ -17,7 +17,7 @@
 
     <hr>
     <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
-        Réf. Dossier : {{ $order_name }}
+        Réf. Dossier : {{ strtoupper($order_name) }}
     </div>
 
 
@@ -72,6 +72,10 @@
 
 
             </div>
+
+
+            <input type="hidden" order_name="{{ strtoupper($order_name) }}">
+            <input type="hidden" order_id="{{ request()->query('order_id'); }}"> 
 
             @if ($errors->any())
                 <div class="alert alert-danger">

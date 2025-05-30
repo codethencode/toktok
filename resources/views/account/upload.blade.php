@@ -33,7 +33,7 @@
                         <button class="bg-blue-500 text-white py-2 px-4 rounded">Mes commandes</button>
                     </a>
                     @if($canEdit === 'no')
-                        <a href="{{ route('account.enterAddress') }}">
+                        <a href="{{ route('account.enterAddress', ['order_id'=> substr($directory,-11), 'uid'=> Auth::user() ]) }}">
                         <button class="bg-gray-900 text-white py-2 px-4 rounded">Suivant</button>
                         </a>
                     @endif
@@ -46,12 +46,12 @@
                     @isset($isAdmin)
                         @if($isAdmin==='isAdmin')
 
-                                <a href=/download-files?folder='.$directory.'>
-                                            <button class="rounded-lg p-2
+
+                        <a href="{{ route('download.all.files', ['folder' => $directory]) }}"><button class="btn btn-primary text-sm rounded-lg p-3
                                             bg-green-500 text-white m-5 pl-10 pr-10 text-sm">
-                                                [ADMIN] Télécharger tout le dossier
-                                            </button>
-                                </a>
+                            📦 Télécharger tous les fichiers (.zip) [ ADMIN ]</button>
+                        </a>
+
                             @endif
                     @endisset
 

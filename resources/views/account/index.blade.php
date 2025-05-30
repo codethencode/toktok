@@ -181,64 +181,63 @@
                             @endif
                             </td>
                             <td class="py-4 px-4 border-b">
-                                <div class="flex items-start gap-2 flex-wrap">
+                                <div x-data="{ showConfirm: false }" class="flex items-start gap-2 flex-wrap justify-center relative">
+                            
+                                    <!-- Nom du dossier -->
                                     <div class="text-xs text-white bg-gray-900 hover:bg-gray-500 rounded-lg p-2 w-32 text-center">
                                         {{ strtoupper($order->order_name) }}
                                     </div>
-                                
+                            
                                     @if($isAdmin === true)
-                                        <div x-data="{ showConfirm: false }" class="relative">
-                                            <button @click="showConfirm = true"
+                                        <!-- Bouton Reset -->
+                                        <button @click="showConfirm = true"
                                                 class="bg-yellow-500 text-gray-900 hover:bg-yellow-300 rounded-lg p-2 text-xs w-32">
-                                                Reset Dossier
-                                            </button>
-                                        </div>
-                                
+                                            Reset Dossier
+                                        </button>
+                            
+                                        <!-- Bouton À traiter -->
                                         @if($order->validSend == "validSent")
-                                            <div>
-                                                <a href="{{ route('account.enterAddress', ['order_id'=> $order->order_id, 'uid'=> Auth::user() ]) }}">
+                                            <a href="{{ route('account.enterAddress', ['order_id'=> $order->order_id, 'uid'=> Auth::user() ]) }}">
                                                 <button class="bg-orange-400 hover:bg-orange-200 text-gray-900 rounded-lg p-2 text-xs w-32">
                                                     À traiter
                                                 </button>
-                                                </a>
-                                            </div>
+                                            </a>
                                         @endif
-                                    
-                                </div>
-                                    <!-- Modale de confirmation -->
-                                    <div x-show="showConfirm"
-                                         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-                                         x-transition
-                                         style="display: none;">
-                                
-                                        <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
-                                            <h2 class="text-lg font-semibold mb-4">Confirmation</h2>
-                                            <p class="text-sm text-gray-700 mb-6">
-                                                Réinitialiser le dossier permettra de télécharger de nouveaux fichiers.<br>
-                                                Souhaitez-vous continuer ?
-                                            </p>
-                                            <div class="flex justify-end gap-3">
-                                                <!-- Annuler -->
-                                                <button @click="showConfirm = false"
-                                                    class="px-4 py-2 rounded bg-gray-300 text-gray-800 hover:bg-gray-400">
-                                                    Annuler
-                                                </button>
-                                
-                                                <!-- Confirmer : soumettre le formulaire -->
-                                                <form method="POST" action="{{ route('dossier.reset', ['order_id' => $order->order_id]) }}">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="px-4 py-2 rounded bg-yellow-500 text-gray-900 hover:bg-yellow-600 font-semibold">
-                                                        Confirmer
+                            
+                                        <!-- Modale de confirmation -->
+                                        <div x-show="showConfirm"
+                                             x-transition
+                                             class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+                                             style="display: none;">
+                                            <div class="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
+                                                <h2 class="text-lg font-semibold mb-4">Confirmation</h2>
+                                                <p class="text-sm text-gray-700 mb-6">
+                                                    Réinitialiser le dossier permettra de télécharger de nouveaux fichiers.<br>
+                                                    Souhaitez-vous continuer ?
+                                                </p>
+                                                <div class="flex justify-end gap-3">
+                                                    <!-- Annuler -->
+                                                    <button @click="showConfirm = false"
+                                                            class="px-4 py-2 rounded bg-gray-300 text-gray-800 hover:bg-gray-400">
+                                                        Annuler
                                                     </button>
-                                                </form>
+                            
+                                                    <!-- Confirmer -->
+                                                    <form method="POST" action="{{ route('dossier.reset', ['order_id' => $order->order_id]) }}">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="px-4 py-2 rounded bg-yellow-500 text-gray-900 hover:bg-yellow-600 font-semibold">
+                                                            Confirmer
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
+                            
                                 </div>
-                                
-                                @endif
                             </td>
+                            
                             <td class="py-2 px-4 border-b">{{ $order->total_price }} € TTC</td>
                             <td class="py-2 px-4 border-b">{{ $date->translatedFormat('l d F Y à H:i') }}</td>
                             <td class="py-2 px-4 border-b">{{ $order->numberOfPages }}</td>

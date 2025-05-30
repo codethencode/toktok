@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class TribunalController extends Controller
 {
     //
-    public function enterTribunal() {
+    public function enterTribunal(Request $request) {
+
+  
+
         $directory = session('directory');
         
         $dossier = Tribunal::find($directory);
 
-        
+
 
         // Extraire les 11 derniers caractères de la chaîne
         $order_id = substr($directory, -11);
@@ -26,6 +29,7 @@ class TribunalController extends Controller
 
 
         $checkTypeEnvoi = Basket::where('order_id', $order_id)->first();
+        $order_name = $checkTypeEnvoi->order_name;
 
         $typeTribunal = $checkTypeEnvoi->JuriType;
 
@@ -42,10 +46,10 @@ class TribunalController extends Controller
 
         }
 
-        return view('account.enterTribunal', compact('dossier', 'tribunal', 'typeTribunal', 'directory'));
+        return view('account.enterTribunal', compact('dossier', 'tribunal', 'typeTribunal', 'directory', 'order_name'));
 
 
-        $directory = session('directory');
-        return view('account.enterTribunal', compact('directory'));
+        //$directory = session('directory');
+        //return view('account.enterTribunal', compact('directory'));
     }
 }

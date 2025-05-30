@@ -14,6 +14,9 @@
     <div class="w-full bg-gray-200 rounded-md h-4 mb-4 mt-4">
         <div class="bg-blue-500 h-4 rounded-md" style="width: 70%;"></div>
     </div>
+<div class="bg-green-600 text-white p-3 rounded-lg mb-3">
+        Réf. Dossier : {{ strtoupper($order_name) }}
+    </div>
 
 
     <!-- Contenu principal -->

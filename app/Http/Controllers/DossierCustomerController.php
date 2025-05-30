@@ -152,13 +152,12 @@ class DossierCustomerController extends Controller
 
 
     public function submitAddress(Request $request){
+
         $directory = session('directory');
         $order_id = substr($directory, -11);
+        $order_name = $request->query('order_name');
 
-
-       
-
-
+    
         $request->validate([
             'name' => ['required', 'string', 'max:250'],
             'adresse' => ['required', 'string', 'max:250'],
@@ -207,7 +206,10 @@ class DossierCustomerController extends Controller
         $update->step = 'envoiFichier-03';
         $update->save();
 
-        return redirect()->route('account.enterTribunal');
+
+        
+
+        return redirect()->route('account.enterTribunal', compact('order_id', 'order_name'));
     }
 
 
@@ -292,6 +294,7 @@ class DossierCustomerController extends Controller
 
        // dd("ici");
 
+
         $order_id = substr($request->directory, -11);
 
         $error = 0;
@@ -330,6 +333,7 @@ class DossierCustomerController extends Controller
             $order = DossierCustomer::where('order_id', $order_id)->first();
             $order->dateValidSend = Carbon::now();
             $order->step = 'envoiFichier-04';
+            $order->client_note = $request->client_note;
 
             $order->save();
 
@@ -362,6 +366,8 @@ class DossierCustomerController extends Controller
     // 🔁 Données complémentaires
     $tribunal = \App\Models\Tribunal::where('order_id', $order_id)->first();
     $step = \App\Models\DossierCustomer::where('order_id', $order_id)->first();
+    $basket = \App\Models\Basket::where('order_id', $order_id)->first();
+
     $etat = $step->step ?? null;
 
     // 🔁 Variables utilisées dans la vue (notamment pour payment-summary.blade.php)
@@ -393,6 +399,7 @@ class DossierCustomerController extends Controller
         'printType' => $printType,
         'reliureQuality' => $reliureQuality,
         'expeType' => $expeType,
+        'basket'=> $basket,
     ]));
 }
 
