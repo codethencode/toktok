@@ -77,7 +77,7 @@
 
        
         
-        @if (Auth::check() && Auth::user()->role === 'admin')
+        
 
         <div class="flex justify-center mt-5 mb-4 bg-blue-100 p-5 rounded-md">
 
@@ -100,7 +100,7 @@
             }
         @endphp
     
-     
+
     
         @if (count($files) > 0)
             <table class="table-auto w-full border border-gray-300 border-collapse text-sm" cellpadding="8" cellspacing="0">
@@ -146,7 +146,7 @@
             <p>Aucun fichier trouvé dans le dossier.</p>
         @endif
     
-
+    
 
 
         <div class="bg-green-100 w-full rounded-md p-5 mb-5">
@@ -156,20 +156,40 @@
             <div class="text-sm"><strong>{{ $basket->juriTypeInfo->label ?? '' }}</strong><br>
             {{ $basket->juriTypeInfo->description ?? '' }}</div>
         </div>
-
-    @if($step->client_note != '')
-        <div class="w-full p-2 bg-pink-400 text-white mb-5 p-3 text-sm rounded-md">
+@if($step->client_note != '')
+    <div class="w-full p-2 bg-pink-400 text-white mb-5 p-3 text-sm rounded-md flex items-center space-x-3">
+        <div class="relative flex items-center justify-center w-4 h-4">
+            <span class="absolute inline-flex h-full w-full rounded-full bg-white opacity-75 animate-ping"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+        </div>
+        <div class="flex-1">
             INDICATIONS CLIENT : {{ $step->client_note }}
         </div>
-    @endif
+    </div>
+@endif
 
 
         @if($etat === 'completed')
         <div class="w-full p-2 bg-gray-600 text-white mb-4 p-3 text-sm rounded-md">
             Le dossier a déjà été marqué comme validé et expédié le : <strong>{{ \Carbon\Carbon::parse($step->shipDate)->translatedFormat('d F Y à H\hi') }}</strong>
+             @if (Auth::check() && Auth::user()->role === 'admin')
             <br>si une erreur a été commise dans les informatioons d'envois il est possible de les mettre à jour et de cliquer à nouveau sur valider l'expédition
+            @endif
         </div>
     @endif
+
+
+
+@php
+//completed dans dossier_customers
+@endphp
+
+<div class="w-full p-2 bg-gray-200 mb-5 p-3 text-sm rounded-md space-x-3">
+        
+Information d'expédition numéro : <strong>{{ $step->trackingShip }}</strong> - Transporteur : {{ $step->carrier }}</strong>
+        </div>
+
+ @if (Auth::check() && Auth::user()->role === 'admin')
 
         <div class="w-full flex justify-center bg-gray-100 p-6 rounded-md">
 
@@ -241,8 +261,7 @@
             </div>
         </div>
 
-
-        
+        @endif
         
         <div class="bg-blue-100 p-6 rounded-lg mt-6 text-sm text-gray-800">
             <h3 class="text-lg font-semibold mb-4 border-b pb-2 border-blue-300">Détails de la commande</h3><a href="/account/orders/{{ substr($directory, -11) }}" target="_blank">(voir le détail complet de la commande)</a>
@@ -275,8 +294,7 @@
             </div>
         </div>
 
-    @endif
-    
+  
 
             <div class="bg-green-200 text-green-700 p-6 rounded-lg mt-5">
                 Vous avez déjà validé l'envoi de vos informations celles ci ne peuvent plus être modifiées

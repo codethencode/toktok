@@ -262,8 +262,13 @@
                                 }
                           @endphp
 
-                            <td class="py-2 px-4 border-b"> <button class="text-xs text-white {{ $color }} rounded-lg p-2 h-[50px] w-[50px]">
-                                {{ $step }}/5</button></td>
+                            <td class="py-2 px-4 border-b">
+                                @if($step == 'd')
+                                <button class="text-xs text-white {{ $color }} rounded-lg p-2 h-[50px] w-[50px]">Traité</button>
+                                @else
+                                <button class="text-xs text-white {{ $color }} rounded-lg p-2 h-[50px] w-[50px]">{{ $step }}/5</button>
+                                @endif
+                            </td>
                             <td class="py-8 px-4 border-b">
 
                                 <div class="flex flex-col space-y-3 w-56">
@@ -278,10 +283,10 @@
                                         </form>
                                     @endif
                                 
-                                    @if($step == 4)
+                                    @if($step >= 4)
                                         <a href="{{ route('account.enterAddress', ['order_id'=> $order->order_id, 'uid'=> Auth::user() ]) }}">
                                             <button class="bg-gray-900 text-white py-2 px-4 rounded-lg text-xs hover:bg-gray-600 w-full">
-                                                Suivant
+                                                Mon dossier
                                             </button>
                                         </a>
                                     @endif

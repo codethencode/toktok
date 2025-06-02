@@ -109,7 +109,9 @@ class DossierCustomerController extends Controller
 
         if($tribTxt->JuriTypePrice==='TribJcp') { $tribTxtName = 'Tribunal'; } else { $tribTxtName = 'Cabinet'; }
 
-        if($isEditable->step==='envoiFichier-04')
+       //dd($isEditable->step);
+
+        if(($isEditable && $isEditable->step === 'envoiFichier-04') || ($isEditable && $isEditable->step === 'completed'))
         {
             return redirect('validateInfos/'.$tribTxtName);
         }
