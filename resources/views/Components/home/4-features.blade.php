@@ -1,96 +1,80 @@
-<div>
-    <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-        <div class="md:w-2/3 lg:w-1/2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-secondary">
-                <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd"></path>
-            </svg>
+<section class="bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <h2 class="my-8 text-2xl font-bold text-gray-700 dark:text-white md:text-4xl">
-                A technology-first approach to payments
-                and finance
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ad ipsum pariatur autem, fugit laborum in atque amet obcaecati? Nisi minima aspernatur, quidem nulla cupiditate nam consequatur eligendi magni adipisci.</p>
-        </div><div class="mt-16 grid divide-x divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-3xl border border-gray-100 text-gray-600 dark:border-gray-700 sm:grid-cols-2 lg:grid-cols-4 lg:divide-y-0 xl:grid-cols-4">
-            <div class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-                <div class="relative space-y-8 py-12 p-8">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" class="w-12" width="512" height="512" alt="burger illustration">
-
-                    <div class="space-y-2">
-                        <h5 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary">
-                            First feature
-                        </h5>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
-                        </p>
-                    </div>
-                    <a href="#" class="flex items-center justify-between group-hover:text-secondary">
-                        <span class="text-sm">Read more</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-                <div class="relative space-y-8 py-12 p-8">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4341/4341134.png" class="w-12" width="512" height="512" alt="burger illustration">
-
-                    <div class="space-y-2">
-                        <h5 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary">
-                            Second feature
-                        </h5>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
-                        </p>
-                    </div>
-                    <a href="#" class="flex items-center justify-between group-hover:text-secondary">
-                        <span class="text-sm">Read more</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="group relative bg-white dark:bg-gray-800 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-                <div class="relative space-y-8 py-12 p-8">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4341/4341160.png" class="w-12" width="512" height="512" alt="burger illustration">
-
-                    <div class="space-y-2">
-                        <h5 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary">
-                            Third feature
-                        </h5>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
-                        </p>
-                    </div>
-                    <a href="#" class="flex items-center justify-between group-hover:text-secondary">
-                        <span class="text-sm">Read more</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="group relative bg-gray-50 dark:bg-gray-900 transition hover:z-[1] hover:shadow-2xl hover:shadow-gray-600/10">
-                <div class="relative space-y-8 py-12 p-8 transition duration-300 group-hover:bg-white dark:group-hover:bg-gray-800">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png" class="w-12" width="512" height="512" alt="burger illustration">
-
-                    <div class="space-y-2">
-                        <h5 class="text-xl font-semibold text-gray-700 dark:text-white transition group-hover:text-secondary">
-                            More features
-                        </h5>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.
-                        </p>
-                    </div>
-                    <a href="#" class="flex items-center justify-between group-hover:text-secondary">
-                        <span class="text-sm">Read more</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                            <path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <!-- En-tête -->
+    <div class="text-center mb-24">
+      <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Un service juridique nouvelle génération</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Déposez vos dossiers aux tribunaux sans vous déplacer
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+        Rédaction de conclusions, dépôt au greffe, remise physique : nous nous occupons de tout, pour vous faire gagner du temps et vous concentrer sur l’essentiel.
+      </p>
     </div>
-</div>
+
+    <!-- Logos clients 
+    <div class="flex justify-center gap-10 items-center flex-wrap mb-16 opacity-80">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="h-8">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg" alt="Airbnb" class="h-8">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-8">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/GE_logo.svg" alt="GE" class="h-8">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" class="h-8">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Google_Cloud_logo.svg" alt="Google Cloud" class="h-8">
+    </div>-->
+
+    <!-- Features -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
+      
+      <!-- Feature 1 -->
+      <div class="bg-gray-50 p-6 rounded-lg text-center shadow hover:shadow-md transition">
+        <div class="mx-auto mb-4 text-indigo-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16h8M8 12h8m-5-8h5a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V7l5-5z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Dépôt au tribunal</h3>
+        <p class="text-gray-600 text-sm">Nous déposons physiquement vos dossiers au bon service du tribunal, dans les délais.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="bg-gray-50 p-6 rounded-lg text-center shadow hover:shadow-md transition">
+        <div class="mx-auto mb-4 text-indigo-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 3.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zM4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Rédaction de conclusions</h3>
+        <p class="text-gray-600 text-sm">Nos juristes rédigent vos conclusions selon vos instructions, dans les règles de l’art.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="bg-gray-50 p-6 rounded-lg text-center shadow hover:shadow-md transition">
+        <div class="mx-auto mb-4 text-indigo-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m4 0a2 2 0 002-2v-2a2 2 0 00-2-2h-2.586a1 1 0 01-.707-.293l-1.414-1.414A2 2 0 0012.586 8H11a2 2 0 00-2 2v1H7a2 2 0 00-2 2v2a2 2 0 002 2h10z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Service 100 % en ligne</h3>
+        <p class="text-gray-600 text-sm">Téléversez vos pièces, suivez le traitement et recevez confirmation sans quitter votre cabinet.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="bg-gray-50 p-6 rounded-lg text-center shadow hover:shadow-md transition">
+        <div class="mx-auto mb-4 text-indigo-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 .556-.444 1-1 1s-1-.444-1-1 .444-1 1-1 1 .444 1 1zm0 0v4m0 0h.01M6 10a6 6 0 1112 0c0 2.917-2.5 5.25-4.5 6.5S6 12.917 6 10z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Sécurité & confidentialité</h3>
+        <p class="text-gray-600 text-sm">Vos données sont chiffrées, protégées et traitées avec la plus grande rigueur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+

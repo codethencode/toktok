@@ -9,8 +9,14 @@ use Stripe\{Stripe, SetupIntent, PaymentIntent, PaymentMethod};
 
 class PaymentController extends Controller
 {
+
+
     public function create(Request $request)
     {
+
+
+
+
         $series1 = mt_rand(100, 999);
         $series2 = mt_rand(100, 999);
         $series3 = mt_rand(100, 999);
@@ -18,6 +24,9 @@ class PaymentController extends Controller
 
         $selectedCity = $request->input('selected_city');
         list($cityCode, $cityCodePrice) = explode('@', $selectedCity);
+
+        //dd($selectedCity.'-'.$cityCode);
+
 
         $date = new \DateTime();
         $date->modify('+3 months');

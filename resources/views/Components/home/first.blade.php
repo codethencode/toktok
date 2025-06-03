@@ -29,10 +29,20 @@
 
                  <div class="grid sm:grid-col-1 md:grid-cols-2 gap-1">
                      <div class="flex-1 text-left items-left break-words">
-                         <h1 class="text-left pt-20 text-gray-900 dark:text-white font-bold text-3xl md:text-4xl xl:text-5xl mt-4">Nous déposons vos dossiers juridiques <span class="text-blue-500 dark:text-white">sous 72h auprès des tribunaux français !</span>
-                         </h1>
+                         {{-- <h1 class="text-left pt-20 text-gray-900 dark:text-white font-bold text-3xl md:text-4xl xl:text-5xl mt-4">Nous déposons vos dossiers juridiques <span class="text-blue-500 dark:text-white">sous 72h auprès des tribunaux français !</span>
+                         </h1> --}}
+                         <h1 class="text-left pt-20 text-gray-900 dark:text-white font-extrabold text-4xl md:text-4xl xl:text-5xl leading-tight">
+    Nous déposons vos dossiers juridiques<br>
+    <span class="text-blue-600 dark:text-white">sous <span class="text-6xl text-blue-700 font-black">72h</span> auprès des tribunaux français !</span>
+</h1>
                          <div class="pr-3">
-                             <a href="/register"><button class="mt-12 bg-blue-500 w-full rounded-full text-white p-4 mt-auto">Déposer mon dossier à partir de 129€ HT</button></a>
+                            <a href="/register">
+    <button class="mt-10 bg-blue-600 hover:bg-blue-700 w-full rounded-full text-white text-lg font-semibold py-4 px-6 shadow-lg transition-all duration-300">
+        Déposer mon dossier à partir de 129€ HT
+    </button>
+</a>
+                            
+                            {{-- <a href="/register"><button class="mt-12 bg-blue-500 w-full rounded-full text-white p-4 mt-auto">Déposer mon dossier à partir de 129€ HT</button></a> --}}
                          </div>
                      </div>
                      <!-- ... -->
@@ -47,7 +57,25 @@
                 </div>
 
 
-                <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-1 mb-20 pl-10 pr-10 mt-20 bg-black rounded-2xl rounded-br-2xl p-3 text-white">
+
+                <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-4 mb-20 mt-20 bg-purple-400 text-white rounded-3xl p-6 shadow-xl">
+    <div class="flex items-start gap-4 hover:scale-105 transition">
+        <img src="{{url('/images/icon-card.png')}}" class="w-12 h-12 object-contain">
+        <div><strong class="text-purple-100">01 - COMMANDEZ</strong><br><span>la prestation par CB</span></div>
+    </div>
+    <div class="flex items-start gap-4 hover:scale-105 transition">
+        <img src="{{url('/images/icon-dossier.png')}}" class="w-12 h-12 object-contain">
+        <div><strong class="text-purple-100">02 - TRANSMETTEZ</strong><br><span>nous votre dossier</span></div>
+    </div>
+    <div class="flex items-start gap-4 hover:scale-105 transition">
+        <img src="{{url('/images/icon-coursier.png')}}" class="w-12 h-12 object-contain">
+        <div><strong class="text-purple-100">03 - Votre dossier est DEPOSÉ</strong><br><span>dans la juridiction sous 72h</span></div>
+    </div>
+</div>
+
+
+
+                {{-- <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-1 mb-20 pl-10 pr-10 mt-20 bg-black rounded-2xl rounded-br-2xl p-3 text-white">
 
                     <div class="flex text-left justify-left items-center">
                         <img src="{{url('/images/icon-card.png')}}" class="w-1/4 pl-2 pr-2 items-start">
@@ -61,20 +89,30 @@
                         <img src="{{url('/images/icon-coursier.png')}}" class="w-1/4 pl-2 pr-2">
                         <span class=""><strong class="">03 - Votre dossier est DEPOSE</strong> dans la juridiction sous 72h</span>
                     </div>
-                </div>
+                </div> --}}
 
                 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
                 <p class="mt-10 text-black dark:text-gray-900">Notre service unique vous permet de nous misisonner pour déposer vos dossiers auprès des juridiction de France Métropolitaines sans vous déplacer. Le paiement est 100% sécurisé et la procédure totalement confidentielle.</p>
+
                 <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
+    <a href="/register" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-blue-600 before:transition before:duration-300 hover:before:scale-105 active:before:scale-95 sm:w-max shadow-lg">
+        <span class="relative text-base font-semibold text-white">Commander</span>
+    </a>
+    {{-- <a href="#" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:border before:border-blue-600 before:bg-blue-50 before:transition before:duration-300 hover:before:scale-105 active:before:scale-95 sm:w-max">
+        <span class="relative text-base font-semibold text-blue-700">En savoir plus</span>
+    </a> --}}
+</div>
+
+                {{-- <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
                     <a href="#" class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-blue-500 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
                         <span class="relative text-base font-semibold text-white">Commander</span>
                     </a>
                     <a href="#" class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-blue-100 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max">
                         <span class="relative text-base font-semibold text-blue-600 dark:text-white">En savoir plus</span>
                     </a>
-                </div>
-                <div class="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
+                </div> --}}
+                {{-- <div class="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
                     <div class="text-left">
                         <h6 class="text-lg font-semibold text-gray-700 dark:text-white">Un service unique</h6>
                         <p class="mt-2 text-gray-500">Créé pour les avocats</p>
@@ -87,9 +125,29 @@
                         <h6 class="text-lg font-semibold text-gray-700 dark:text-white">Sécurisé & confidentiel</h6>
                         <p class="mt-2 text-gray-500">Nous protégeons et sécurisons vos dossiers</p>
                     </div>
-                </div>
+                </div> --}}
+
+
+
+                <div class="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
+    <div class="text-left">
+        <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Un service unique</h6>
+        <p class="mt-2 text-gray-500">Créé pour les avocats</p>
+    </div>
+    <div class="text-left">
+        <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Gagnez du temps</h6>
+        <p class="mt-2 text-gray-500">Transmettez depuis votre cabinet</p>
+    </div>
+    <div class="text-left">
+        <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Sécurisé & confidentiel</h6>
+        <p class="mt-2 text-gray-500">Nous protégeons et sécurisons vos dossiers</p>
+    </div>
+</div>
+
+
+
             </div>
-            <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
+            {{-- <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6">
                 <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
                     <img src="./images/clients/microsoft.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
                 </div>
@@ -108,7 +166,7 @@
                 <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
                     <img src="./images/clients/google-cloud.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="">
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

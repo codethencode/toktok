@@ -29,15 +29,29 @@
                                 <form method="POST" action="{{ route('account.orders.search') }}"
                                     class="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
                                     @csrf
-                                    <input type="text" name="search" value="{{ old('search') }}"
-                                        placeholder="Numéro de commande ou email"
+
+                                    @if (Auth::check() && Auth::user()->role === 'admin')
+                                     <input type="text" name="search" value="{{ old('search') }}"
+                                        placeholder="Num cde ou Email ou Réf."
                                         class="border border-gray-200 rounded-md p-2 text-sm w-full sm:w-64">
-                    
+                                    @else
+                                    <input type="text" name="search" value="{{ old('search') }}"
+                                        placeholder="Num. commande ou Réf. dossier"
+                                        class="border border-gray-200 rounded-md p-2 text-sm w-full sm:w-64">
+                                    @endif
+
                                     <button type="submit"
                                         class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-md hover:bg-yellow-600 transition"
                                         style="background-color:rgb(218, 191, 71)">
                                         Rechercher
                                     </button>
+
+                                      <a href="/account"><button 
+                                        class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-md hover:bg-yellow-600 transition"
+                                        style="background-color:rgb(242, 232, 189)">
+                                        Réinitialiser
+                                    </button></a>
+
                                 </form>
                             </div>
                         @endauth

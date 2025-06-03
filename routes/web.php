@@ -64,6 +64,7 @@ Route::post('/resetDossier/{order_id}', [OrderController::class, 'resetDossier']
 Route::post('/cancelSubs', [OrderController::class, 'cancelSubscription'])->name('cancelSubs');
 Route::get('/dossier/{id}', [OrderSummary::class, 'dossier'])->name('dossier');
 Route::post('/orders/{order_id}/confirm-shipping', [OrderController::class, 'confirmShipping'])->name('orders.confirmShipping');
+Route::post('/apply-discount', [DiscountController::class, 'applyDiscount'])->name('apply.discount');
 
 
 // ================= ABONNEMENTS & STRIPE =================

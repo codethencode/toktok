@@ -43,6 +43,7 @@ class OrderSummary extends Controller
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('order_id', 'like', "%$search%")
+                 ->orWhere('order_name', 'like', "%$search%")
                   ->orWhereHas('user', function ($sub) use ($search) {
                       $sub->where('email', 'like', "%$search%");
                   });
