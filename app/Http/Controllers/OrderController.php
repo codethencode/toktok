@@ -28,12 +28,13 @@ class OrderController extends Controller
     public function index(){
 
         //GET PRICES
-        $typeImpressions = TypeImpression::all();
-        $typeReliures   = TypeReliure::all();
-        $typeExpeditions = TypeExpedition::all();
-        $typePlaidoiries = Plaidoirie::take(6)->get();
-        $typeJuridictions = Plaidoirie::skip(6)->take(3)->get();
-        $zone_geos = ZoneGeo::all();
+        // $typeImpressions = TypeImpression::all();
+        // $typeReliures   = TypeReliure::all();
+        // $typeExpeditions = TypeExpedition::all();
+        // $typePlaidoiries = Plaidoirie::take(6)->get();
+        // $typeJuridictions = Plaidoirie::skip(6)->take(3)->get();
+        // $zone_geos = ZoneGeo::all();
+        
         $baseFees = BaseFee::all();
         $aboStateQuery = Subscription::where('user_id', Auth::id())->first();
 

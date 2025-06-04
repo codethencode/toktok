@@ -3,12 +3,16 @@
         <div class="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative astro-UY3JLCBK">
             <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav" class="hidden peer astro-UY3JLCBK">
             <div class="relative z-20 w-full flex justify-between lg:w-max md:px-0 astro-UY3JLCBK">
-                <a href="/" aria-label="logo" class="flex space-x-2 items-center astro-UY3JLCBK">
+                {{-- <a href="/" aria-label="logo" class="flex space-x-2 items-center astro-UY3JLCBK">
                     <div aria-hidden="true" class="flex space-x-1 astro-UY3JLCBK">
                         <div class="h-4 w-4 rounded-full bg-gray-900 dark:bg-white astro-UY3JLCBK"></div>
                         <div class="h-6 w-2 bg-primary astro-UY3JLCBK"></div>
                     </div>
                     <span class="text-2xl font-bold text-gray-900 dark:text-white astro-UY3JLCBK">faciliplaide.fr</span>
+                </a> --}}
+
+                <a href="/" aria-label="logo" class="flex space-x-3 items-center">
+                <img src="{{ asset('images/toque-avocat.png') }}" alt="Logo Faciliplaide" class="h-14 w-auto">
                 </a>
 
                 <div class="relative flex items-center lg:hidden max-h-10 astro-UY3JLCBK">
@@ -27,18 +31,18 @@
                 <div class="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0 astro-UY3JLCBK">
                     <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 astro-UY3JLCBK">
                         <li class="astro-UY3JLCBK">
-                            <a href="#" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                <span class="astro-UY3JLCBK">Notre solutions</span>
+                            <a href="/register" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
+                                <span class="astro-UY3JLCBK">Déposez votre dossier</span>
                             </a>
                         </li>
                              <li class="astro-UY3JLCBK">
-                            <a href="#" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                <span class="astro-UY3JLCBK">Sécurité & fonctionnalité</span>
+                            <a href="/contact" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
+                                <span class="astro-UY3JLCBK">Nous contacter</span>
                             </a>
                         </li>
                         <li class="astro-UY3JLCBK">
-                            <a href="#" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                <span class="astro-UY3JLCBK">Blog</span>
+                            <a href="/devenir-partenaire" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
+                                <span class="astro-UY3JLCBK">Devenir avocat partenaire</span>
                             </a>
                         </li>
 

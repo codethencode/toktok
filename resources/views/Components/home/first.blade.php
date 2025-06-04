@@ -58,7 +58,97 @@
 
 
 
-                <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-4 mb-20 mt-20 bg-purple-400 text-white rounded-3xl p-6 shadow-xl">
+
+
+<div class="w-screen relative left-1/2 right-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-300 to-purple-600 py-20 mt-16 mb-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-12 text-white text-center">
+            
+            <!-- ÉTAPE 1 -->
+            <div class="flex flex-col items-center space-y-4">
+                <div class="bg-blue-100 w-16 h-16 flex items-center justify-center rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 12h6m-6 4h6m2 4H7a2 2 0 01-2-2V6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <strong class="text-xl block mb-2">01 - COMMANDEZ</strong>
+                    <span>Paiement par CB<br>100% sécurisé</span>
+                </div>
+            </div>
+
+            <!-- ÉTAPE 2 -->
+            <div class="flex flex-col items-center space-y-4">
+                <div class="bg-green-100 w-16 h-16 flex items-center justify-center rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M4 12l1.293 1.293a1 1 0 001.414 0L10 10m0 0l2-2m-2 2l2 2m-2-2l-2-2m-2 6h.01M20 12h.01" />
+                    </svg>
+                </div>
+                <div>
+                    <strong class="text-xl block mb-2">02 - TRANSMETTEZ</strong>
+                    <span>Nous votre dossier<br>depuis votre interface dédiée</span>
+                </div>
+            </div>
+
+            <!-- ÉTAPE 3 -->
+            <div class="flex flex-col items-center space-y-4">
+                <div class="bg-purple-100 w-16 h-16 flex items-center justify-center rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 12h6m-6 4h6m-2 4a9 9 0 110-18 9 9 0 010 18z" />
+                    </svg>
+                </div>
+                <div>
+                    <strong class="text-xl block mb-2">03 - Votre dossier est DEPOSÉ</strong>
+                    <span>Dans la juridiction choisie<br>sous un délai moyen de 72h</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+                
+
+{{-- <div class="w-screen relative left-1/2 right-1/2 -translate-x-1/2 bg-purple-400 py-20 mt-10"> --}}
+    
+    {{-- <div class="w-screen relative left-1/2 right-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-400 to-purple-600 py-20 mt-16 mb-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-6 text-white">
+            <div class="flex items-start gap-4">
+                <img src="{{ url('/images/icon-card.png') }}" class="w-12 h-12">
+                <div>
+    <strong class="text-xl block mb-3">01 - COMMANDEZ</strong>
+    <span>Paiement par CB<br>100% sécurisé</span>
+</div>
+            </div>
+            <div class="flex items-start gap-4">
+                <img src="{{ url('/images/icon-dossier.png') }}" class="w-12 h-12">
+                <div>
+                    <strong class="text-xl block mb-3">02 - TRANSMETTEZ</strong>
+                    <span>nous votre dossier<br>deouis votre interface dédiée</span>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <img src="{{ url('/images/icon-coursier.png') }}" class="w-12 h-12">
+                <div>
+                    <strong class="text-xl block mb-3">03 - Votre dossier est DEPOSÉ</strong>
+                    <span>dans la juridiction choisie<br>sous un délai moyen de 72h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+
+                
+                {{-- <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-4 mb-20 mt-20 bg-purple-400 text-white rounded-3xl p-6 shadow-xl">
     <div class="flex items-start gap-4 hover:scale-105 transition">
         <img src="{{url('/images/icon-card.png')}}" class="w-12 h-12 object-contain">
         <div><strong class="text-purple-100">01 - COMMANDEZ</strong><br><span>la prestation par CB</span></div>
@@ -71,8 +161,8 @@
         <img src="{{url('/images/icon-coursier.png')}}" class="w-12 h-12 object-contain">
         <div><strong class="text-purple-100">03 - Votre dossier est DEPOSÉ</strong><br><span>dans la juridiction sous 72h</span></div>
     </div>
-</div>
-
+</div> --}}
+                
 
 
                 {{-- <div class="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-3 gap-1 mb-20 pl-10 pr-10 mt-20 bg-black rounded-2xl rounded-br-2xl p-3 text-white">
@@ -91,13 +181,13 @@
                     </div>
                 </div> --}}
 
-                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                {{-- <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"> --}}
 
                 <p class="mt-10 text-black dark:text-gray-900">Notre service unique vous permet de nous misisonner pour déposer vos dossiers auprès des juridiction de France Métropolitaines sans vous déplacer. Le paiement est 100% sécurisé et la procédure totalement confidentielle.</p>
 
                 <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
     <a href="/register" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-blue-600 before:transition before:duration-300 hover:before:scale-105 active:before:scale-95 sm:w-max shadow-lg">
-        <span class="relative text-base font-semibold text-white">Commander</span>
+        <span class="relative text-base font-semibold text-white">Commandez votre dépôt de dossier</span>
     </a>
     {{-- <a href="#" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:border before:border-blue-600 before:bg-blue-50 before:transition before:duration-300 hover:before:scale-105 active:before:scale-95 sm:w-max">
         <span class="relative text-base font-semibold text-blue-700">En savoir plus</span>
@@ -126,23 +216,24 @@
                         <p class="mt-2 text-gray-500">Nous protégeons et sécurisons vos dossiers</p>
                     </div>
                 </div> --}}
-
-
-
-                <div class="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
-    <div class="text-left">
-        <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Un service unique</h6>
-        <p class="mt-2 text-gray-500">Créé pour les avocats</p>
-    </div>
-    <div class="text-left">
-        <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Gagnez du temps</h6>
-        <p class="mt-2 text-gray-500">Transmettez depuis votre cabinet</p>
-    </div>
-    <div class="text-left">
-        <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Sécurisé & confidentiel</h6>
-        <p class="mt-2 text-gray-500">Nous protégeons et sécurisons vos dossiers</p>
+<div class="border-t border-b border-gray-100 dark:border-gray-800 py-12 mt-16">
+    <div class="max-w-5xl mx-auto flex flex-wrap justify-center gap-24 text-center">
+        <div class="w-64">
+            <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Un service unique</h6>
+            <p class="mt-2 text-gray-500">Créé pour les avocats</p>
+        </div>
+        <div class="w-64">
+            <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Gagnez du temps</h6>
+            <p class="mt-2 text-gray-500">Transmettez depuis votre cabinet</p>
+        </div>
+        <div class="w-64">
+            <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Sécurisé & confidentiel</h6>
+            <p class="mt-2 text-gray-500">Nous protégeons et sécurisons vos dossiers</p>
+        </div>
     </div>
 </div>
+
+                
 
 
 

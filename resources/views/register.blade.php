@@ -70,7 +70,7 @@
                                 <x-input-error :messages="$errors->get('login-password')" class="mt-2" />
                             </div>
                                 <div class="text-right">
-                                <a href="password/forgot"><span class="text-sm text-right">Mot de passe oublié ?</span></a>
+                                <a href="/password/forgot"><span class="text-sm text-right">Mot de passe oublié ?</span></a>
                                 </div>
                                     <div class="mt-4">
                                 <x-button class="bg-blue-500">Login</x-button>

@@ -6,7 +6,6 @@
 
         <div class="relative">
 
-
             <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
                 <div class="relative pt-20 sm:pt-20 md:pt-36 ml-auto">
                     <div class="lg:w-3/4 text-center mx-auto">
@@ -18,6 +17,23 @@
                             <button class="w-full bg-blue-500 text-white p-4 rounded-lg" onclick="submitForm()">Régler votre devis d'un montant de <span x-text="totalPrice"></span> € HT soit <span x-text="$store.myStore.value"></span> € TTC</button>
 
                             <div class="text-blue-600 mt-6">Calcul de Mon Devis</div>
+
+                            <hr class="my-10">
+
+                            <div class="flex justify-center mb-6">
+                                <div class="inline-block bg-blue-600 text-white text-sm font-semibold px-6 py-2 rounded-full shadow-md">
+                                    Zones desservies à ce jour
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap justify-center gap-3">
+                                @foreach($zone_geos as $zone_geo)
+                                    <div class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full shadow hover:scale-105 transition">
+                                        {{ $zone_geo['label'] }}
+                                    </div>
+                                @endforeach
+                            </div>
+
 
                             <hr class="border-1 mt-6 mb-0 border-gray-200">
 
@@ -137,7 +153,7 @@
                             </div>
 
 
-
+     
                             <div class="mt-6 mb-6" x-show="audience">
                                 <span class="text-md">Zone géographique de représentation à l'audience</span>
                                 <select name="printType" id="ville" x-model="selectedCity" @change="calculateTotal"  class="block mt-1 w-full h-11 p-1 pl-3 bg-blue-300 rounded-md border-gray-300">

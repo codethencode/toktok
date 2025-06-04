@@ -1,7 +1,7 @@
 <div>
     <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
         <div class="mb-12 space-y-2 text-center">
-            <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">Latest Articles</h2>
+            <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">Derniers Articles</h2>
             <p class="lg:mx-auto lg:w-6/12 text-gray-600 dark:text-gray-300">
                 Quam hic dolore cumque voluptate rerum beatae et quae, tempore sunt, debitis dolorum officia
                 aliquid explicabo? Excepturi, voluptate?
@@ -13,13 +13,13 @@
                 </div>
                 <div class="mt-6 relative">
                     <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-                        De fuga fugiat lorem ispum laboriosam expedita.
+                        Avocat suppléant une ressource hautement stratégique
                     </h3>
                     <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-                        Voluptates harum aliquam totam, doloribus eum impedit atque! Temporibus...
+                        Afin de permettre aux cabinets d'avocats et avocat de gagner en efficacité...
                     </p>
-                    <a class="inline-block" href="#">
-                        <span class="text-info dark:text-blue-300">Read more</span>
+                    <a class="inline-block" href="/articles/avocat-suppleant">
+                        <span class="text-info dark:text-blue-300">En savoir plus</span>
                     </a>
                 </div>
 
@@ -30,13 +30,13 @@
                 </div>
                 <div class="mt-6 relative">
                     <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-                        De fuga fugiat lorem ispum laboriosam expedita.
+                        L'importance de la logistique juridique
                     </h3>
                     <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-                        Voluptates harum aliquam totam, doloribus eum impedit atque! Temporibus...
+                        Beaucoup d'avocats omettent d'optimiser cet aspect pourtant si chronophage dans leur profession
                     </p>
-                    <a class="inline-block" href="#">
-                        <span class="text-info dark:text-blue-300">Read more</span>
+                    <a class="inline-block" href="articles/logistique-juridique">
+                        <span class="text-info dark:text-blue-300">En savoir plus</span>
                     </a>
                 </div>
 
@@ -47,13 +47,13 @@
                 </div>
                 <div class="mt-6 relative">
                     <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">
-                        De fuga fugiat lorem ispum laboriosam expedita.
+                        Le rôle de l’avocat suppléant : un partenaire clé 
                     </h3>
                     <p class="mt-6 mb-8 text-gray-600 dark:text-gray-300">
-                        Voluptates harum aliquam totam, doloribus eum impedit atque! Temporibus...
+                        Un atout de grande taille qui permet de se concentrer sur sa propre valeur ajoutée le conseil juridique
                     </p>
-                    <a class="inline-block" href="#">
-                        <span class="text-info dark:text-blue-300">Read more</span>
+                    <a class="inline-block" href="articles/externaliser-depot-dossier">
+                        <span class="text-info dark:text-blue-300">En savoir plus</span>
                     </a>
                 </div>
 

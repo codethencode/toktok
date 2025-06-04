@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" class="astro-FLTEP2YP">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="generator" content="Astro v1.1.5">
-    <meta name="description" content="Template built with tailwindcss using Tailus blocks v2">
-    @vite(['resources/css/app.css','resources/css/devis.css'])
-    <title>FaciliPlaide.fr - COnfiez vos dossiers de plaidoieries à une éaquipe d'experts avocats répartis en France</title>
+
+    {{-- Styles & Scripts --}}
+    @vite(['resources/css/app.css', 'resources/css/devis.css'])
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
-{{--    <link rel="stylesheet" href="/assets/index.350e2433.css" />--}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
+    {{-- SEO META --}}
+    @stack('meta')
+    @if (! View::hasSection('meta'))
+        <title>ToqueToque.net – Confiez votre constitution et dépôt de dossiers à des avocats suppléants experts en France</title>
+        <meta name="description" content="Plateforme de dépôt judiciaire rapide, sécurisée et gérée par des avocats professionnels dans toute la France.">
+        <link rel="canonical" href="{{ url()->current() }}" />
+    @endif
 
+    {{-- Styles locaux --}}
     <style>
         .selected {
             border-color: blue;
@@ -30,9 +37,10 @@
             border-color: blue;
             background-color: rgba(0, 0, 255, 0.1);
         }
-
     </style>
 </head>
+
+
 
 {{--<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 

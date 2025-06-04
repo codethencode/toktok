@@ -14,7 +14,10 @@ use App\Http\Controllers\{
     StripeWebhookController,
     TribunalController,
     RegisterController,
-    PaymentController
+    PaymentController,
+    ContactController,
+    AdminContactController,
+    PartenaireController
 };
 
 use App\Models\{
@@ -49,6 +52,26 @@ Route::get('/account/orders/{orderId}/invoice', [OrderSummary::class, 'downloadI
 Route::get('/account/orders/search', function () {
     return redirect('/order-init'); // ou ce que tu veux
 });
+
+
+// ================== FORM CONTACT ===========
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/admin/messages', [AdminContactController::class, 'index'])->name('admin.messages');
+
+// ================== PARTENAIRE ===============
+Route::get('/devenir-partenaire', [PartenaireController::class, 'show'])->name('partenaire.show');
+Route::post('/devenir-partenaire', [PartenaireController::class, 'submit'])->name('partenaire.submit');
+
+// ================= ARTICLES ==================
+Route::get('/articles/avocat-suppleant', function () { return view('articles.avocat-suppleant');
+})->name('articles.avocat-suppleant');
+
+Route::get('articles/externaliser-depot-dossier', function () { return view('articles.externaliser-depot-dossier');
+})->name('articles.externaliser-depot-dossier');
+
+Route::get('articles/logistique-juridique', function () { return view('articles.logistique-juridique');
+})->name('articles.logistique-juridique');
 
 // ================= PASSWORD RESET =================
 Route::get('password/forgot', [PasswordResetController::class, 'showForgotForm'])->name('password.request');
