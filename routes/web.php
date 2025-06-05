@@ -52,7 +52,11 @@ Route::get('/account/orders/{orderId}/invoice', [OrderSummary::class, 'downloadI
 Route::get('/account/orders/search', function () {
     return redirect('/order-init'); // ou ce que tu veux
 });
-
+// =================== CGV MENTIONS ==========
+Route::get('/cgv', function () { return view('cgv');
+})->name('cgv');
+Route::get('/mentions-legales', function () { return view('mentions-legales');
+})->name('mentions-legales');
 
 // ================== FORM CONTACT ===========
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');

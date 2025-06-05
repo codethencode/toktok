@@ -1,4 +1,4 @@
-<div class="relative py-16">
+<div class="relative py-0">
     <!-- Dégradé diffus -->
     <div aria-hidden="true" class="absolute inset-0 h-max w-full m-auto grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
         <div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
@@ -50,7 +50,7 @@
 
             <!-- CTA -->
             <div class="h-6"></div> <!-- espace vertical supplémentaire de 96px -->
-            <div class="flex flex-wrap justify-center gap-6 mt-20">
+            <div class="flex flex-wrap justify-center gap-6 mt-0">
                 <a href="{{ route('order-init') }}" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
                     <span class="relative text-base font-semibold text-white dark:text-dark">Démarrer maintenant</span>
                 </a>
