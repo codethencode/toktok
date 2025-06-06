@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
 
 
 
@@ -19,8 +21,98 @@ class OrderSummary extends Controller
 {
     //
 
-
     public function index(Request $request)
+{
+    if (!Auth::check()) {
+        return redirect('/login');
+    }
+
+    $checkAbo = Subscription::where('user_id', Auth::id())->first() ?? 'nonAbo';
+    $paginate = 10;
+    $search = $request->input('search');
+
+    $query = Basket::with('user')
+        ->where('isPaid', 'ok');
+
+    if (Auth::user()->role !== 'admin') {
+        $query->where('user_id', Auth::id());
+        $isAdmin = false;
+    } else {
+        $isAdmin = true;
+    }
+
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('order_id', 'like', "%$search%")
+              ->orWhere('order_name', 'like', "%$search%")
+              ->orWhereHas('user', function ($sub) use ($search) {
+                  $sub->where('email', 'like', "%$search%");
+              });
+        });
+    }
+
+    $orderAlls = $query->orderByDesc('created_at')->paginate($paginate);
+
+    foreach ($orderAlls as $orderAll) {
+        // ✅ NE PAS écraser la colonne 'step' => stocker dans un autre champ
+        $orderAll->dossierCustomer = DossierCustomer::where('order_id', $orderAll->order_id)->first();
+
+        $orderAll->customer = $orderAll->user;
+        $orderAll->validSend = optional($orderAll->dossierCustomer)->validSend;
+        $orderAll->stepFromDossier = optional($orderAll->dossierCustomer)->step;
+        $orderAll->dateValidSend = optional($orderAll->dossierCustomer)->dateValidSend;
+
+        $orderAll->company = Company::where('order_id', $orderAll->order_id)->first();
+        $orderAll->basket = Basket::where('order_id', $orderAll->order_id)->first();
+        $orderAll->isUrgent = optional($orderAll->basket)->isUrgent;
+
+        if ($orderAll->dossierCustomer && $orderAll->dossierCustomer->directory_id) {
+            $dir = $orderAll->dossierCustomer->directory_id;
+
+            if ($dir && Storage::disk('public')->exists($dir)) {
+                $orderAll->hasFiles = count(Storage::disk('public')->files($dir)) > 0;
+            } else {
+                $orderAll->hasFiles = false;
+            }
+        } else {
+            $orderAll->hasFiles = false;
+        }
+
+        // ✅ Calcul délai urgent
+        $now = Carbon::now();
+        Carbon::setLocale('fr');
+
+        if ($orderAll->isUrgent === 'true' && $orderAll->validSend === 'validSent' && $orderAll->dateValidSend) {
+            $validationDate = Carbon::parse($orderAll->dateValidSend);
+            $deadline = $validationDate->copy()->addWeekdays(1)->setHour(18)->setMinute(0);
+
+            if ($now->lessThan($deadline)) {
+                $diff = $now->diff($deadline);
+                $heures = $diff->h + ($diff->days * 24);
+                $minutes = $diff->i;
+                $orderAll->remainingTime = "Il reste {$heures} heure" . ($heures !== 1 ? "s" : "") .
+                                           " et {$minutes} minute" . ($minutes !== 1 ? "s" : "") . " pour traiter le dossier.";
+            } else {
+                $diff = $deadline->diff($now);
+                $heures = $diff->h + ($diff->days * 24);
+                $minutes = $diff->i;
+                $orderAll->remainingTime = "Délai dépassé de {$heures} heure" . ($heures !== 1 ? "s" : "") .
+                                           " et {$minutes} minute" . ($minutes !== 1 ? "s" : "") . ".";
+            }
+        } else {
+            $orderAll->remainingTime = null;
+        }
+    }
+
+    return view('account.index', [
+        'orderAll' => $orderAlls,
+        'checkAbo' => $checkAbo,
+        'isAdmin' => $isAdmin
+    ]);
+}
+
+
+    public function indexOld(Request $request)
     {
         if (!Auth::check()) {
             return redirect('/login');
@@ -59,9 +151,24 @@ class OrderSummary extends Controller
             $orderAll->dateValidSend = optional($orderAll->step)->dateValidSend;
             $orderAll->company = Company::where('order_id', $orderAll->order_id)->first();
         
-            $basket = Basket::where('order_id', $orderAll->order_id)->first();
-            $orderAll->isUrgent = optional($basket)->isUrgent;
-        
+            //$basket = Basket::where('order_id', $orderAll->order_id)->first();
+            $orderAll->basket = Basket::where('order_id', $orderAll->order_id)->first();
+            $orderAll->isUrgent = optional($orderAll->basket)->isUrgent;
+
+            
+            if ($orderAll->step && $orderAll->step->directory_id) {
+                    $dir = $orderAll->step->directory_id;
+
+                    if ($dir && Storage::disk('public')->exists($dir)) {
+                        $orderAll->hasFiles = count(Storage::disk('public')->files($dir)) > 0;
+                    } else {
+                        $orderAll->hasFiles = false;
+                    }
+
+                } else {
+                    $orderAll->hasFiles = false;
+            }
+
             // ✅ Calcul du délai restant uniquement si dossier validé ET urgent
             $now = Carbon::now();
             Carbon::setLocale('fr');
@@ -94,6 +201,7 @@ class OrderSummary extends Controller
 
            
         }
+        
     
         return view('account.index', [
             'orderAll' => $orderAlls,

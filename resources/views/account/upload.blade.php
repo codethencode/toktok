@@ -45,13 +45,13 @@
 
                     @isset($isAdmin)
                         @if($isAdmin==='isAdmin')
-
-
-                        <a href="{{ route('download.all.files', ['folder' => $directory]) }}"><button class="btn btn-primary text-sm rounded-lg p-3
+                            @if($hasFiles)
+                      
+                        <a href="/download-files/{{$directory}}"><button class="btn btn-primary text-sm rounded-lg p-3
                                             bg-green-500 text-white m-5 pl-10 pr-10 text-sm">
                             📦 Télécharger tous les fichiers (.zip) [ ADMIN ]</button>
                         </a>
-
+                               @endif
                             @endif
                     @endisset
 
@@ -61,14 +61,27 @@
                     <div class="bg-blue-500 h-4 rounded-md" style="width: 30%;"></div>
                 </div>
 
-    <div class="bg-red-200 rounded-lg text-red-800 p-3 mb-3 text-sm">
-        ATTENTION ! <br> <strong>Afin de traiter au mieux votre dossier nous aimerions idéalement recevoir celui en un seul fichier .pdf</strong> afin de respecter votre organisation. S'il vous est impossible de nous envoyer un seul fichier mais plusieurs, <strong>veillez à nommer le début de chacun de vos fichiers de la façon suivante afin de comprendre l'organisation hiérarchique de votre dossier : 1-nom du fichier.pdf, 2-nom-du fichier.pdf, 3-nom-du fichier.pdf... etc</strong> cela nous permettra de classer correctement celui ci lors de sa confection.
-    </div>
+
+
+
+
+ 
 
 
                 <div class="bg-purple-200 rounded-lg text-purple-800 p-3 mb-3">
                     Vos fichiers transférés (<span id="countFiles"></span>)
                 </div>
+
+                 @if($canEdit != 'no')
+                
+                <div class="flex flex-col items-center mt-4 animate-bounce">
+    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v8.586l3.293-3.293a1 1 0 011.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L9 12.586V4a1 1 0 011-1z" clip-rule="evenodd" />
+    </svg>
+    <span class="text-sm mt-1 text-blue-700 font-semibold">Ajoutez vos fichiers ci-dessous</span>
+</div>                
+
+                @endif
 
                 @if($canEdit === 'no')
                     <div class="bg-green-200 text-green-900 rounded-lg p-3 mb-3">

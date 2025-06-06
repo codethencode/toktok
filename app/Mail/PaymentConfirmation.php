@@ -31,7 +31,7 @@ class PaymentConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[CoursierJuridique] - Confirmation du paiement de votre commande',
+            subject: '['.config('app.domain').'] - Confirmation du paiement de votre commande',
         );
     }
 

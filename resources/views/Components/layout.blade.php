@@ -37,6 +37,7 @@
             border-color: blue;
             background-color: rgba(0, 0, 255, 0.1);
         }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 
@@ -50,6 +51,8 @@
 <header class="astro-UY3JLCBK">
     <x-nav />
 </header>
+
+<x-alert-success />
 
 {{ $slot }}
 

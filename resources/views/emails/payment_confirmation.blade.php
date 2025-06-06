@@ -14,7 +14,7 @@ if ($currentHour >= 6 && $currentHour < 17) {
 <p>Vous trouverez ci dessous les informations de votre commande.<br><br>Numéro de commande : <b>{{ $orderId }}</b></p>
 <x-order-summary :orderId="$orderId" />
 <p>Afin de nous transmettre votre dossier, veuiller vous connecter sur notre interface :<br>
-<a href="#">https://coursierjuridique.com/login</a></p>
+<a href="#">https://toquetoque.net/login</a></p>
 Bien cordialement,
-<a href="#">https://coursierjuridique.com</a>
+<a href="#">https://toquetoque.net</a>
 

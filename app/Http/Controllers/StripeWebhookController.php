@@ -159,12 +159,27 @@ class StripeWebhookController extends Controller
         }
 
         if ($order->sendMail === 'ko') {
+
+
+             $adminEmails = \App\Models\User::where('role', 'admin')->pluck('email')->filter()->toArray();
+
+
             if ($customerMail) {
-                Mail::to($customerMail)->send(new PaymentConfirmation($amountPaid, $orderId));
+
+                Log::info('➡️ Envoi mail à client + copie à admin', [
+        'client' => $customerMail,
+        'admins' => $adminEmails
+    ]);
+
+                Mail::to($customerMail)
+                ->cc($adminEmails)
+                ->send(new PaymentConfirmation($amountPaid, $orderId));
             }
 
-            $adminEmail = config('mail.admin_email');
-            Mail::to($adminEmail)->send(new AdminNotification($amountPaid, $orderId, $subscriptionId));
+           
+
+            
+            //Mail::to($adminEmail)->send(new AdminNotification($amountPaid, $orderId, $subscriptionId));
 
             $order->sendMail = 'ok';
             $order->save();

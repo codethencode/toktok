@@ -31,6 +31,7 @@ use App\Models\{
 use Stripe\{PaymentIntent, PaymentMethod, SetupIntent, Stripe};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 // ================= HOME =================
 Route::view('/', 'home')->name('home');
@@ -107,13 +108,18 @@ Route::post('/stripe/webhook', [StripeWebhookController::class, 'webhook']);
 // ================= UPLOAD / FICHIERS =================
 Route::get('/uploadfile', fn() => redirect('account'));
 Route::post('/uploadfile', function (Request $request) {
+    
     $directory = $request->input('directory');
     $order_name = $request->input('order_name');
     $isEditable = DossierCustomer::where('directory_id', $directory)->first();
     $canEdit = (!$isEditable || $isEditable->validSend !== 'validSent') ? 'yes' : 'no';
     $isAdmin = Auth::check() && Auth::user()->role === 'admin' ? 'isAdmin' : 'isNotAdmin';
+    $hasFiles = Storage::disk('public')->exists($directory) 
+        && count(Storage::disk('public')->files($directory)) > 0;
 
-    return view('account.upload', compact('directory', 'canEdit', 'isAdmin', 'order_name'));
+    //dd($hasFiles);
+
+    return view('account.upload', compact('directory', 'canEdit', 'isAdmin', 'order_name', 'hasFiles'));
 });
 
 Route::get('/uploadfile/{directory}', function ($directory) {

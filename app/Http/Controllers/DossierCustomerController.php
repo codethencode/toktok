@@ -228,8 +228,8 @@ class DossierCustomerController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:250'],
-            'chambre' => ['required', 'string', 'max:250'],
-            'service' => ['required', 'string', 'max:250'],
+            //'chambre' => ['required', 'string', 'max:250'],
+            //'service' => ['required', 'string', 'max:250'],
             'adresse' => ['required', 'string', 'max:250'],
             'code_postal' => ['required', 'string', 'max:30'],
             'ville' => ['required', 'string', 'max:165'],
@@ -253,13 +253,20 @@ class DossierCustomerController extends Controller
         
 
         if(!$verif) {
+
+            $chambre = $request->input('chambre'); // $chambre == ""
+            $chambre = empty($chambre) ? 'n.c' : $chambre;
+
+            $service = $request->input('service'); // $chambre == ""
+            $service = empty($service) ? 'n.c' : $service;
+
             //dd($request->all());
             $tribunal = Tribunal::create([
                 'user_id' => Auth::id(),
                 'order_id' => $order_id,
                 'name' => $request->name,
-                'chambre' => $request->chambre,
-                'service' => $request->service,
+                'chambre' => $chambre,
+                'service' => $service,
                 'adresse' => $request->adresse,
                 'code_postal' => $request->code_postal,
                 'ville' => $request->ville,

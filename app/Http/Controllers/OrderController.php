@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ShippingConfirmedMail;
 use Illuminate\Support\Facades\Storage;
 //use Stripe\Subscription;
+use App\Mail\DossierResetNotification;
 
 class OrderController extends Controller
 {
@@ -128,16 +129,46 @@ class OrderController extends Controller
 
     public function resetDossier(Request $request)
     {
-        $order_id = $request->order_id;
 
-        //dd($order_id);
+    
 
-        $updateOrder =  DossierCustomer::where('order_id', $order_id)->update([
-            'validSend' => 'notSent', // ou 1
-            'step' => 'envoiFichier-01',         // par exemple
-        ]);
+    $order_id = $request->order_id;
 
-        return redirect()->route('account')->with('success', 'Le dossier a bien été réinitialisé.');
+        
+    $dossier = DossierCustomer::where('order_id', $order_id)->first();
+
+        
+
+
+    if (!$dossier) {
+        return redirect()->route('account')->with('error', 'Dossier introuvable.');
+    }
+
+    $dossier->update([
+        'validSend' => 'notSent',
+        'step' => 'envoiFichier-01',
+    ]);
+
+    // Relations
+    $user = $dossier->user;
+    $order = Basket::where('order_id', $order_id)->first();
+
+
+    
+    if (!$user || !$order) {
+        return redirect()->route('account')->with('error', 'Utilisateur ou commande introuvable.');
+    }
+
+    $clientEmail = $user->email;
+    $adminEmails = User::where('role', 'admin')->pluck('email')->toArray();
+
+    
+
+    Mail::to($clientEmail)
+        ->cc($adminEmails)
+        ->send(new DossierResetNotification($user, $order));
+
+    return redirect()->route('account')->with('success', 'Le dossier a bien été réinitialisé.');
     }
 
 

@@ -62,7 +62,7 @@
                         @endif
 
 
-                        Service : {{ $tribunal->service }}
+                        Service : {{ $tribunal->service }}<br>
                         {{ $tribunal->adresse }}<br>
                         {{ $tribunal->code_postal }} {{ $tribunal->ville }}
                         <br><br>

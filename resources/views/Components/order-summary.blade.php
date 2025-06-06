@@ -53,8 +53,8 @@
                        $resumePlaide = "<b>Vous n'avez pas encore décidé si vous désirez nous confier la plaidoirie</b>";
                    }
                    else {
-                       $resumePlaide = "Type de plaidoirie : <b>".$basket->plaidoirie->libelle."</b><br>";
-                       $resumePlaide .= "Zone géographique de représentation : <b>".$basket->zoneGeo->code." - ".$basket->zoneGeo->name."</b><br>";
+                       $resumePlaide = "Type de plaidoirie : <b>".$basket->plaidoirie->label."</b><br>";
+                       $resumePlaide .= "Zone géographique de représentation : <b>".$basket->zoneGeo->label."</b><br>";
                        $resumePlaide .= "Détail de la prestation de plaidoirie : <b>".$basket->plaidoirie->description."</b><br>";
                        $resumePlaide .= "Prix de la prestation : <b>". $basket->plaidoirie->price." € HT</b><br>";
                    }

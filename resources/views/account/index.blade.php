@@ -1,8 +1,8 @@
 <x-layout>
    
     <main class="space-y-40 mb-40">
-
-       
+        
+          
         <div class="max-w-screen-xl mx-auto px-6 md:px-12 xl:px-6">
 
                     <div class="relative sm:pt-3 md:pt-36 ml-auto">
@@ -163,7 +163,7 @@
                             </div></td>
                             </tr>
                             @else
-                                @if($order->validSend=='validSent')
+                                @if(($order->validSend=='validSent')&&($order->step=='envoiFichier-04'))
                                 <tr><td colspan='9' class='bg-green-100'><div class="text-sm text-green-700 font-bold">
                                 DOSSIER Validé le : {{ \Carbon\Carbon::parse($order->dateValidSend)->translatedFormat('d F Y à H\hi') }}
                                 </div></td>
@@ -175,6 +175,8 @@
                         <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-blue-100' : 'bg-white' }} hover:bg-gray-200 cursor-pointer">
                             <td class="py-4 px-4 border-b">{{ $loop->iteration }}</td>
                             <td class="py-4 px-4 border-b">{{ $order->order_id }}
+
+                                
                             @if($isAdmin === true)
                                 <hr>
                                 <br>{{ $order->customer->name }}
@@ -202,15 +204,19 @@
                                         {{ strtoupper($order->order_name) }}
                                     </div>
                             
-                                    @if($isAdmin === true)
+                                    @if(($isAdmin === true) && ($order->hasFiles))
                                         <!-- Bouton Reset -->
+                                        @if(optional($order->dossierCustomer)->step === 'envoiFichier-04')
                                         <button @click="showConfirm = true"
                                                 class="bg-yellow-500 text-gray-900 hover:bg-yellow-300 rounded-lg p-2 text-xs w-32">
                                             Reset Dossier
                                         </button>
+                                        @endif
                             
                                         <!-- Bouton À traiter -->
-                                        @if($order->validSend == "validSent")
+                                        
+
+                                       @if($order->validSend === 'validSent' && $order->stepFromDossier === 'envoiFichier-04')
                                             <a href="{{ route('account.enterAddress', ['order_id'=> $order->order_id, 'uid'=> Auth::user() ]) }}">
                                                 <button class="bg-orange-400 hover:bg-orange-200 text-gray-900 rounded-lg p-2 text-xs w-32">
                                                     À traiter

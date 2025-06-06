@@ -39,29 +39,25 @@
             </div>
 
 
-            @php
-                if($tribTxt === "Cabinet")
-                    {
-                    echo "<input type='hidden' name='chambre' value='cabinet'>";
-                    }
-                 else
-                    {
-            @endphp
+            
+                @if($tribTxt === "Cabinet")
+                
+                    <input type='hidden' name='chambre' value='cabinet'>";
+                   
+                 @else
+                  
+                    <div class="mt-4">
+                    <x-input-label for="chambre" :value="__('Chambre '. $tribTxt)" />
+                    <x-text-input placeholder="Entrez la chambre" id="chambre" class="block mt-1 w-full" type="text" name="chambre" :value="old('chambre', $tribunal->chambre ?? '')"  autocomplete="chambre" />
+                    <x-input-error :messages="$errors->get('chambre')" class="mt-2" />
+                    </div>
 
-            <div class="mt-4">
-                <x-input-label for="chambre" :value="__('Chambre '. $tribTxt. '*')" />
-                <x-text-input placeholder="Entrez la chambre" id="chambre" class="block mt-1 w-full" type="text" name="chambre" :value="old('chambre', $tribunal->chambre ?? '')" required autocomplete="chambre" />
-                <x-input-error :messages="$errors->get('chambre')" class="mt-2" />
-            </div>
-
-            @php
-                }
-            @endphp
+                @endif
 
 
             <div class="mt-4">
-                <x-input-label for="service" :value="__('Service '. $tribTxt. '*')" />
-                <x-text-input placeholder="Entrez le nom" id="service" class="block mt-1 w-full" type="text" name="service" :value="old('service', $tribunal->service ?? '')" required autocomplete="service" />
+                <x-input-label for="service" :value="__('Service '. $tribTxt)" />
+                <x-text-input placeholder="Entrez le nom" id="service" class="block mt-1 w-full" type="text" name="service" :value="old('service', $tribunal->service ?? '')"  autocomplete="service" />
                 <x-input-error :messages="$errors->get('service')" class="mt-2" />
             </div>
 
