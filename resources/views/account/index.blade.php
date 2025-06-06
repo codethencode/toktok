@@ -163,9 +163,9 @@
                             </div></td>
                             </tr>
                             @else
-                                @if(($order->validSend=='validSent')&&($order->step=='envoiFichier-04'))
+                                @if(($order->validSend=='validSent')&&(optional($order->dossierCustomer)->step === 'envoiFichier-04'))
                                 <tr><td colspan='9' class='bg-green-100'><div class="text-sm text-green-700 font-bold">
-                                DOSSIER Validé le : {{ \Carbon\Carbon::parse($order->dateValidSend)->translatedFormat('d F Y à H\hi') }}
+                                Vous avez validé votre DOSSIER pour envoi le : {{ \Carbon\Carbon::parse($order->dateValidSend)->translatedFormat('d F Y à H\hi') }}
                                 </div></td>
                                 </tr>
                                 @endif
@@ -263,10 +263,11 @@
                             <td class="py-2 px-4 border-b">{{ $order->numberOfPages }}</td>
                             <td class="py-2 px-4 border-b">{{ $order->plaidoirie->label }}</td>
 
+                            
                             @php
-                                if($order->step === null) { $step = 'envoiFichier-01'; }
+                                if($order->dossierCustomer === null) { $step = 'envoiFichier-01'; }
                             else
-                                { $step =  $order->step->step; }
+                                { $step =  $order->dossierCustomer->step; }
                                $step = substr($step,-1);
 
                                 if($step == 1) {

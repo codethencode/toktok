@@ -203,6 +203,9 @@ class OrderController extends Controller
 
     public function confirmShipping(Request $request, $orderId)
     {
+
+    
+
     $data = $request->validate([
         'tracking_number' => 'nullable|string|max:255',
         'carrier' => 'nullable|string|max:255',
@@ -224,14 +227,23 @@ class OrderController extends Controller
     $dossier->save();
 
     if ($dossier) {
+
+        if ($request->has('manuel')) {
+        // La checkbox est cochée
+        $carrier='manuel';
+        } else {
+        // La checkbox n'était pas cochée
+        $carrier=$data['carrier'];
+        }
+
         $dossier->trackingShip = $data['tracking_number'] ?? 'n.c';
-        $dossier->carrier = $data['carrier'] ?? null;
+        $dossier->carrier = $carrier ?? null;
         $dossier->proof_path = $data['proof_path'] ?? null;
         $dossier->shipDate = Carbon::now();
 
         $info = [];
         if (!empty($data['carrier'])) {
-            $info[] = "Transporteur : " . $data['carrier'];
+            $info[] = "Transporteur : " . $carrier;
         }
         if (!empty($data['tracking_number'])) {
             $info[] = "N° suivi : " . $data['tracking_number'];
@@ -239,6 +251,8 @@ class OrderController extends Controller
         if (!empty($data['proof_path'])) {
             $info[] = "Preuve de dépôt fournie";
         }
+
+        //dd($carrier);
 
         $dossier->infoDossier = !empty($info) ? implode(' | ', $info) : 'n.c';
         $dossier->save();

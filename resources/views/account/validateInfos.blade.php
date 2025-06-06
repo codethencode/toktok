@@ -20,10 +20,21 @@
 
     <div class="rounded-lg p-6 mx-auto">
 
-        Constitution de votre dossier : Etape 4/4
+        @if(!empty($dossierCustomer->shipDate))
+            
+                Constitution de votre dossier : Etape 5/5
         <div class="w-full bg-gray-200 rounded-md h-4 mb-4 mt-4">
-            <div class="bg-blue-500 h-4 rounded-md" style="width: 90%;"></div>
+            <div class="bg-blue-500 h-4 rounded-md" style="width: 100%;"></div>
         </div>
+
+        @else
+
+               Constitution de votre dossier : Etape 4/5
+        <div class="w-full bg-gray-200 rounded-md h-4 mb-4 mt-4">
+            <div class="bg-blue-500 h-4 rounded-md" style="width: 85%;"></div>
+        </div>
+
+        @endif
 
 
         <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
@@ -156,14 +167,14 @@
             <div class="text-sm"><strong>{{ $basket->juriTypeInfo->label ?? '' }}</strong><br>
             {{ $basket->juriTypeInfo->description ?? '' }}</div>
         </div>
-@if($step->client_note != '')
+@if($dossierCustomer->client_note != '')
     <div class="w-full p-2 bg-pink-400 text-white mb-5 p-3 text-sm rounded-md flex items-center space-x-3">
         <div class="relative flex items-center justify-center w-4 h-4">
             <span class="absolute inline-flex h-full w-full rounded-full bg-white opacity-75 animate-ping"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
         </div>
         <div class="flex-1">
-            INDICATIONS CLIENT : {{ $step->client_note }}
+            INDICATIONS CLIENT : {{ $dossierCustomer->client_note }}
         </div>
     </div>
 @endif
@@ -171,7 +182,7 @@
 
         @if($etat === 'completed')
         <div class="w-full p-2 bg-gray-600 text-white mb-4 p-3 text-sm rounded-md">
-            Le dossier a déjà été marqué comme validé et expédié le : <strong>{{ \Carbon\Carbon::parse($step->shipDate)->translatedFormat('d F Y à H\hi') }}</strong>
+            Le dossier a déjà été marqué comme validé et expédié le : <strong>{{ \Carbon\Carbon::parse($dossierCustomer->shipDate)->translatedFormat('d F Y à H\hi') }}</strong>
              @if (Auth::check() && Auth::user()->role === 'admin')
             <br>si une erreur a été commise dans les informatioons d'envois il est possible de les mettre à jour et de cliquer à nouveau sur valider l'expédition
             @endif
@@ -185,8 +196,27 @@
 @endphp
 
 <div class="w-full p-2 bg-gray-200 mb-5 p-3 text-sm rounded-md space-x-3">
-        
-Information d'expédition numéro : <strong>{{ $step->trackingShip }}</strong> - Transporteur : {{ $step->carrier }}</strong>
+    
+     <div class="flex justify-center">
+    <div class="flex items-center space-x-2 bg-green-200 p-3 rounded-md">
+        <div class="inline-flex items-center justify-center w-6 h-6 bg-green-500 rounded-full">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586l-3.293-3.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clip-rule="evenodd" />
+            </svg>
+        </div>
+
+        @if($dossierCustomer->carrier == 'manuel')
+            <span class="text-sm text-gray-800 font-semibold">Dossier remis en mains propres</span>
+        @else
+            <span class="text-sm text-gray-800">
+                Expédition n° <strong>{{ $dossierCustomer->trackingShip }}</strong> – Transporteur : <strong>{{ strtoupper($dossierCustomer->carrier) }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+
+
         </div>
 
  @if (Auth::check() && Auth::user()->role === 'admin')
@@ -238,6 +268,14 @@ Information d'expédition numéro : <strong>{{ $step->trackingShip }}</strong> -
                id="proof"
                name="proof"
                class="w-2/3 border border-gray-300 rounded px-2 py-1 text-sm file:border-0 file:bg-gray-200 file:rounded file:px-2 file:py-1 file:text-sm">
+    </div>
+
+     <div class="flex items-center space-x-2 justify-start">
+        <label for="manuel" class="text-sm w-1/3 text-gray-600">Remis en mains propres</label>
+        <input type="checkbox"
+           id="manuel"
+           name="manuel"
+           class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
     </div>
 
     @if(!empty($step->proof_path))

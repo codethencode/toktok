@@ -374,10 +374,10 @@ class DossierCustomerController extends Controller
 
     // 🔁 Données complémentaires
     $tribunal = \App\Models\Tribunal::where('order_id', $order_id)->first();
-    $step = \App\Models\DossierCustomer::where('order_id', $order_id)->first();
+    $dossierCustomer = \App\Models\DossierCustomer::where('order_id', $order_id)->first();
     $basket = \App\Models\Basket::where('order_id', $order_id)->first();
 
-    $etat = $step->step ?? null;
+    $etat = $dossierCustomer->step ?? null;
 
     // 🔁 Variables utilisées dans la vue (notamment pour payment-summary.blade.php)
     $city = strtoupper($orderData['zoneGeo']->label ?? '');
@@ -397,7 +397,7 @@ class DossierCustomerController extends Controller
         'tribTxt' => $tribTxt,
         'directory' => $directory,
         'etat' => $etat,
-        'step' => $step,
+        'dossierCustomer' => $dossierCustomer,
         'city' => $city,
         'numberOfPages' => $numberOfPages,
         'getImpression' => $getImpression,
