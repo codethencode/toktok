@@ -119,7 +119,7 @@
                                 <label class="block text-lg font-medium text-gray-700 pb-2">Choix de la plaidoirie</label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                     <template x-for="option in plaidoirieOptions" :key="option.id">
-                                        <div @click="selectPlaidoirie(option)" :class="{'selected': selectedPlaidoirie && selectedPlaidoirie.id === option.id}" class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer flex justify-between items-center">
+                                        <div @click="selectPlaidoirie(option)" :class="{'selected': selectedPlaidoirie && selectedPlaidoirie.id === option.id}" class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer text-center">
                                             <div class="relative min-h-48">
                                                 <h2 class="text-md font-bold" x-text="option.title"></h2>
                                                 <p class="text-gray-700 text-sm" x-text="option.description"></p>
@@ -312,7 +312,13 @@
 
                             function submitForm()
                             {
-                                document.getElementById('devisForm').submit();
+                                const form = document.getElementById('devisForm');
+                                if (form.checkValidity()) {
+                                    form.submit();
+                                } else {
+                                    form.reportValidity(); // pour afficher les erreurs natives du navigateur
+                                    alert('Vous devez attribuer un nom à votre devis (champ en bas du formulaire)')
+                                }
                             }
 
                             function priceCalculator() {
