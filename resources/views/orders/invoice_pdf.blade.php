@@ -108,7 +108,7 @@
             </div>
         
             <div class="company-block">
-                <p><strong>TokTok : </strong>
+                <p><strong>ToqueToque.net</strong><br>
                 {{ $companyName ?? 'Nom de l\'entreprise' }}</p>
                 <p>{{ $companyAddress ?? 'Adresse de l\'entreprise' }}</p>
                 <p>{{ $companyZip ?? '' }} {{ $companyCity ?? '' }}</p>

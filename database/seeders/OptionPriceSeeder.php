@@ -106,14 +106,14 @@ class OptionPriceSeeder extends Seeder
                 'categorie' => 'type_plaidoirie',
                 'label' => 'Représentation sur Devis',
                 'description' => 'Dossier supérieur à 50 pages de conclusions chiffrage de la plaidoirie sur devis',
-                'price' => 0.02
+                'price' => 0.00
             ],
             [
                 'code' => 'plaid_06',
                 'categorie' => 'type_plaidoirie',
                 'label' => 'Ne sais pas',
                 'description' => 'Je ne sais pas encore ou je ne suis pas intéressé',
-                'price' => 0.02
+                'price' => 0.00
             ],
             //TYPE JURIDICTION
             [

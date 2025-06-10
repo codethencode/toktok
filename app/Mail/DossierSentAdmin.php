@@ -32,7 +32,7 @@ class DossierSentAdmin extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Dossier Envoyé par client ID : '. $this->order_id,
+            subject: '['.config('app.domain').'] Dossier Envoyé par client ID : '. $this->order_id,
         );
     }
 

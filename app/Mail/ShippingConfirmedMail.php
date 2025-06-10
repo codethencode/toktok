@@ -31,7 +31,7 @@ class ShippingConfirmedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Votre dossier ref: ' . $this->basket->order_name . ' a été expédiée'
+            subject: '['.config('app.domain').'] Votre dossier ref: ' . $this->basket->order_name . ' a été expédiée'
         );
     }
 

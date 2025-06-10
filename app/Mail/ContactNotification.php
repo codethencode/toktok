@@ -18,7 +18,7 @@ class ContactNotificationMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Nouvelle demande de contact')
+        return $this->subject('[ ToqueToque.net ] - Nouvelle demande de contact')
                     ->view('emails.contact_notification');
     }
 }

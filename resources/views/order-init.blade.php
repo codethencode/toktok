@@ -324,7 +324,7 @@
                             function priceCalculator() {
 
                                 return {
-                                    selectedCity: localStorage.getItem('selectedCity') || 'zone_01@0-zone_01',
+                                    selectedCity: localStorage.getItem('selectedCity') || 'zone_01@0.00',
                                     numberOfPages: localStorage.getItem('numberOfPages') || 1,
                                     selectedPrint: null,
                                     selectedReliure: null,

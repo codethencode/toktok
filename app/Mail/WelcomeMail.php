@@ -9,18 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DossierSent extends Mailable
+class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $order_id;
+    public string $name; 
     /**
      * Create a new message instance.
      */
-    public function __construct($order_id)
+    public function __construct(string $name)
     {
         //
-        $this->order_id = $order_id;
+        $this->name = $name;
     }
 
     /**
@@ -29,7 +29,7 @@ class DossierSent extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '['.config('app.domain').'] Procédure d\'envoi de votre dossier Dossier démarrée '. $this->order_id,
+            subject: '['.config('app.domain').'] - Confirmation de votre inscription',
         );
     }
 
@@ -39,11 +39,9 @@ class DossierSent extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.dossier_sent',
+            view: 'emails.welcome',
             with: [
-                // 'amountPaid' => $this->amountPaid,
-                'orderId' => $this->order_id,
-                // 'messageMail' => $this->messageMail,
+                'name' => $this->name,
             ],
         );
     }

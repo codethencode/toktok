@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+
 class RegisterController extends Controller
 {
 
@@ -50,6 +53,8 @@ class RegisterController extends Controller
 
 
         Auth::login($user);
+
+        Mail::to($request->email)->send(new WelcomeMail($request->name));
 
         return redirect()->route('home')->with('success', 'Votre compte a bien été créé vous pouvez à présent commander une prestation.');
     }

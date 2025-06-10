@@ -169,9 +169,9 @@ class PondUploadController extends Controller
                 'directory_id' => $directory,
                 'numberOfFiles' => $fileCount,
                 'validSend' => 'notSent',
-                'dateValidSend' => '',
+                'dateValidSend' => null,
                 'trackingShip' => '',
-                'shipDate' => '',
+                'shipDate' => null,
                 'infoDossier' => '',
             ]);
         }
