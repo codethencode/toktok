@@ -1,1 +1,4 @@
----
+deployment:
+  tasks:
+    - rsync -av --exclude=".git" --exclude=".env" --exclude="deploy.sh" ./ /home/scbk7413/toquetoque.net/
+    - cd /home/scbk7413/toquetoque.net && composer install --no-dev --optimize-autoloader
