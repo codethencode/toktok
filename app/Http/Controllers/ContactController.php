@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\ContactMessage;
 use App\Models\User;
+use App\Mail\ContactNotification;
 
 class ContactController extends Controller
 {
@@ -14,7 +15,7 @@ class ContactController extends Controller
         return view('contact');
     }
 
-    public function submit(Request $request)
+   public function submit(Request $request)
 {
     $request->validate([
         'nom' => 'required|string|max:100',
@@ -34,21 +35,18 @@ class ContactController extends Controller
     $admin = User::where('role', 'admin')->first();
 
     if ($admin) {
+        $data = [
+            'nom' => $request->nom,
+            'email' => $request->email,
+            'telephone' => $request->telephone,
+            'message' => $request->message,
+        ];
 
-    $message = 
-    "Nom : {$request->nom}\n" .
-    "Email : {$request->email}\n" .
-    "Téléphone : " . ($request->telephone ?: 'Non renseigné') . "\n\n" .
-    "Message :\n{$request->message}";
-
-    Mail::raw($message, function ($msg) use ($request, $admin) {
-    $msg->to($admin->email)
-        ->subject('[TokTok] Nouveau message depuis le formulaire de contact')
-        ->replyTo($request->email)
-        ->from('noreply@tonsite.com', $request->nom);
-    });
+        Mail::to($admin->email)
+            ->send(new ContactNotification($data));
     }
 
     return redirect()->back()->with('success', 'Votre message a bien été envoyé.');
-    }
+}
+
 }

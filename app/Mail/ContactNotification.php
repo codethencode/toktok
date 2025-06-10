@@ -1,24 +1,28 @@
 <?php
+
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Content;
 
-class ContactNotificationMail extends Mailable
+class ContactNotification extends Mailable
 {
-    use Queueable, SerializesModels;
-
-    public $data;
-
-    public function __construct(array $data)
+    public function __construct(public array $data)
     {
-        $this->data = $data;
     }
 
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this->subject('[ ToqueToque.net ] - Nouvelle demande de contact')
-                    ->view('emails.contact_notification');
+        return new Envelope(
+            subject: '[ ToqueToque.net ] - Nouvelle demande de contact',
+        );
+    }
+
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.contact_notification',
+        );
     }
 }
