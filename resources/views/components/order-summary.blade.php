@@ -21,7 +21,6 @@
 {{--            <p>isPaid = {{ $basket->isPaid }}</p>--}}
 {{--            <p>sendMail = {{ $basket->sendMail }}</p>--}}
 
-
             @php
                     $resumeContent = "";
 
