@@ -2,5 +2,6 @@ deployment:
   tasks:
     - rsync -av --exclude=".git" --exclude=".env" --exclude="deploy.sh" ./ /home/scbk7413/toquetoque.net/
     - cd /home/scbk7413/toquetoque.net && composer install --no-dev --optimize-autoloader
-    - chmod 755 public
-    - bash ./post_deploy.sh
+    - chmod 755 /home/scbk7413/toquetoque.net/public
+    - chmod 755 /home/scbk7413/toquetoque.net
+    - bash /home/scbk7413/toquetoque.net/post_deploy.sh
