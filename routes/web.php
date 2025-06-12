@@ -109,6 +109,8 @@ Route::post('/stripe/webhook', [StripeWebhookController::class, 'webhook']);
 Route::get('/uploadfile', fn() => redirect('account'));
 Route::post('/uploadfile', function (Request $request) {
     
+    session()->forget(['directory', 'order_name']);
+
     $directory = $request->input('directory');
     $order_name = $request->input('order_name');
     $isEditable = DossierCustomer::where('directory_id', $directory)->first();
@@ -118,6 +120,11 @@ Route::post('/uploadfile', function (Request $request) {
         && count(Storage::disk('public')->files($directory)) > 0;
 
     //dd($hasFiles);
+
+    session([
+        'directory' => $request->input('directory'),
+        'order_name' => $request->input('order_name'),
+    ]);
 
     return view('account.upload', compact('directory', 'canEdit', 'isAdmin', 'order_name', 'hasFiles'));
 });

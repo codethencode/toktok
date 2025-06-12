@@ -4,6 +4,24 @@
         FilePond Upload
     </x-slot>
 
+    
+
+
+       <div class="flex justify-between mb-5">
+                    <form method="post" action="/uploadfile">
+    @csrf
+    <input type="hidden" name="directory" value="{{ session('directory') }}">
+    <input type="hidden" name="order_name" value="{{ session('order_name') }}">
+    <button type="submit" class="custom-button bg-blue-600 text-white p-2 rounded-md">
+        ← Retour
+    </button>
+</form>
+                     <a href="/account">
+                        <button class="bg-gray-900 text-white py-2 px-4 rounded-md">Mes commandes</button>
+                        </a>
+                </div>  
+
+   
     <!-- Section pour les fichiers CSS/JS spécifiques à cette page -->
     <x-slot name="head">
 

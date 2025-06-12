@@ -3,7 +3,7 @@
     <x-slot name="title">
         FilePond Upload
     </x-slot>
-
+<x-navtop-account />
     <!-- Section pour les fichiers CSS/JS spécifiques à cette page -->
     <x-slot name="head">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js"></script>

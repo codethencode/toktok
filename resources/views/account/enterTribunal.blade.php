@@ -4,6 +4,8 @@
         FilePond Upload
     </x-slot>
 
+   <x-navtop-account />
+
     <!-- Section pour les fichiers CSS/JS spécifiques à cette page -->
     <x-slot name="head">
 

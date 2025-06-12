@@ -204,14 +204,16 @@
                                         {{ strtoupper($order->order_name) }}
                                     </div>
                             
-                                    @if(($isAdmin === true) && ($order->hasFiles))
+                                    
+                                    @if($isAdmin && $order->validSend === 'validSent')
+                                    {{-- @if(($isAdmin === true) && ($order->hasFiles)) --}}
                                         <!-- Bouton Reset -->
-                                        @if(optional($order->dossierCustomer)->step === 'envoiFichier-04')
+                                        {{-- @if(optional($order->dossierCustomer)->step === 'envoiFichier-04') --}}
                                         <button @click="showConfirm = true"
                                                 class="bg-yellow-500 text-gray-900 hover:bg-yellow-300 rounded-lg p-2 text-xs w-32">
                                             Reset Dossier
                                         </button>
-                                        @endif
+                                        {{-- @endif --}}
                             
                                         <!-- Bouton À traiter -->
                                         
