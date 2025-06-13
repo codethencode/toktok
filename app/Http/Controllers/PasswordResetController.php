@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PasswordResetController extends Controller
 {

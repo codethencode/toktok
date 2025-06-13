@@ -272,7 +272,7 @@
 
 
                                     <div class="mt-4 mb-8">
-                                        <x-input-label for="orderName" :value="__('Attribuez un nom à votre devis* (max 30 caractères)')" />
+                                        <x-input-label class="dark:text-gray-800" for="orderName" :value="__('Attribuez un nom à votre devis* (max 30 caractères)')" />
                                         <x-text-input type="text" name="orderName" id="orderName" max="30" maxlength="30" class="mt-1 h-11 bg-blue-100 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required/>
                                     </div>
 

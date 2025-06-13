@@ -6,7 +6,7 @@
             <div class="relative sm:pt-3 md:pt-36 ml-auto">
                 <div class="lg:w-3/4 text-center mx-auto">
 
-    <div class="container">
+    <div class="container pt-10">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card max-w-2xl mx-auto">

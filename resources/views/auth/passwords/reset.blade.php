@@ -2,7 +2,7 @@
 
     <main class="space-y-40 mb-40">
 
-        <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6 pt-10">
             <div class="relative sm:pt-3 md:pt-36 ml-auto">
                 <div class="lg:w-3/4 text-center mx-auto">
 

@@ -7,7 +7,7 @@
     
 
 
-       <div class="flex justify-between mb-5">
+       <div class="flex justify-between mb-5 pt-32">
                     <form method="post" action="/uploadfile">
     @csrf
     <input type="hidden" name="directory" value="{{ session('directory') }}">

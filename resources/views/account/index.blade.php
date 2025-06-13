@@ -5,7 +5,7 @@
           
         <div class="max-w-screen-xl mx-auto px-6 md:px-12 xl:px-6">
 
-                    <div class="relative sm:pt-3 md:pt-36 ml-auto">
+            <div class="relative sm:pt-3 md:pt-36 pt-20 ml-auto">
                 <div class="text-center mx-auto">
 
                     @if(session('status'))
@@ -27,7 +27,7 @@
                     
                             <div class="flex justify-center mt-10">
                                 <form method="POST" action="{{ route('account.orders.search') }}"
-                                    class="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
+                                    class="flex flex-col-1 sm:flex-row gap-2 items-start sm:items-center">
                                     @csrf
 
                                     @if (Auth::check() && Auth::user()->role === 'admin')
@@ -122,14 +122,14 @@
                         <table class="min-w-full divide-y divide-gray-200 table-striped text-sm">
                             <thead>
                             <tr>
-                                <th class="py-2 px-4 border-b">Num</th>
-                                <th class="py-2 px-4 border-b">Num Cde.</th>
-                                <th class="py-2 px-4 border-b">Votre Référence</th>
-                                <th class="py-2 px-4 border-b">Prix TTC</th>
-                                <th class="py-2 px-4 border-b">Date Cde</th>
-                                <th class="py-2 px-4 border-b">Nb de page dossier</th>
-                                <th class="py-2 px-4 border-b">Option Plaidoirie</th>
-                                <th class="py-2 px-4 border-b">Etat d'avancement</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Num</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Num Cde.</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Votre Référence</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Prix TTC</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Date Cde</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Nb de page dossier</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Option Plaidoirie</th>
+                                <th class="py-2 px-4 border-b dark:text-white">Etat d'avancement</th>
                             <th class="py-2 px-4 border-b">Action</th>
                             </tr>
                             </thead>

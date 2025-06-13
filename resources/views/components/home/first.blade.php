@@ -20,7 +20,7 @@
 
 
 
-    <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6 pt-10">
         <div class="relative sm:pt-3 md:pt-36 ml-auto">
             <div class="lg:w-3/4 text-center mx-auto">
 
@@ -38,7 +38,7 @@
                          <div class="pr-3">
                             <a href="/register">
     <button class="mt-10 bg-blue-600 hover:bg-blue-700 w-full rounded-full text-white text-lg font-semibold py-4 px-6 shadow-lg transition-all duration-300">
-        Déposer mon dossier à partir de 129€ HT
+        Déposer mon dossier dès 129€ HT
     </button>
 </a>
                             
