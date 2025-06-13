@@ -2,8 +2,8 @@
 
     <main class="space-y-40 mb-40">
         <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-            <div class="relative sm:pt-3 md:pt-36 ml-auto">
-                <div class="lg:w-3/4 text-center mx-auto">
+            <div class="relative pt-20 sm:pt-3 md:pt-36 ml-auto">
+                <div class="lg:w-3/4 text-center mx-auto dark:text-white">
 Ce service est réservé aux avocats et cabinets d'avocats.<br>Afin de calculer très rapidement votre tarif et d'accéder à nos services merci de créer votre compte ou de vous authentifier.
                     <div class="grid sm:grid-col-1 md:grid-cols-2 gap-1 pt-10">
                         <div class="flex-1 text-left items-left break-words pl-10 md:pr-16 pt-5">

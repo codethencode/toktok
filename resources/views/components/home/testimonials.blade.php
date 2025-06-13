@@ -1,7 +1,7 @@
-<section class="bg-gray-50 ">
+<section class="bg-gray-50 py-10">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl font-bold text-gray-900">Ce que pensent nos clients</h2>
+      <h2 class="text-3xl font-bold text-gray-900 pt-6">Ce que pensent nos clients</h2>
       <p class="mt-4 text-gray-600 text-lg">Avocats, collaborateurs, juristes... tous saluent la qualité de notre accompagnement.</p>
     </div>
 
@@ -18,8 +18,8 @@
       @endphp
 
       @foreach ($testimonials as $testimonial)
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-          <div class="flex items-center justify-between mb-2">
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition pt-6 pb-10">
+          <div class="flex items-center justify-between mb-2 pb-6">
             <div class="text-sm font-medium text-indigo-600">{{ $testimonial['initials'] }}</div>
             <div class="flex items-center space-x-1">
               @for ($i = 0; $i < 5; $i++)

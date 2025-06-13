@@ -32,17 +32,17 @@
                     <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 astro-UY3JLCBK">
                         <li class="astro-UY3JLCBK">
                             <a href="/register" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                <span class="astro-UY3JLCBK">Déposez votre dossier</span>
+                                <span class="astro-UY3JLCBK dark:text-white ">Déposez votre dossier</span>
                             </a>
                         </li>
                              <li class="astro-UY3JLCBK">
                             <a href="/contact" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                <span class="astro-UY3JLCBK">Nous contacter</span>
+                                <span class="astro-UY3JLCBK dark:text-white ">Nous contacter</span>
                             </a>
                         </li>
                         <li class="astro-UY3JLCBK">
                             <a href="/devenir-partenaire" class="block md:px-4 transition hover:text-primary astro-UY3JLCBK">
-                                <span class="astro-UY3JLCBK">Devenir avocat partenaire</span>
+                                <span class="astro-UY3JLCBK dark:text-white ">Devenir avocat partenaire</span>
                             </a>
                         </li>
 

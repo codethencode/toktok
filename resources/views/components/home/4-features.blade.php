@@ -3,7 +3,7 @@
 
     <!-- En-tête -->
     <div class="text-center mb-24">
-      <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Un service juridique nouvelle génération</h2>
+      <h2 class="pt-6 mt-6 text-base text-indigo-600 font-semibold tracking-wide uppercase">Un service juridique nouvelle génération</h2>
       <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         Déposez vos dossiers aux tribunaux sans vous déplacer
       </p>

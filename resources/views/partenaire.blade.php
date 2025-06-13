@@ -6,11 +6,11 @@
         {{-- Header 2 colonnes --}}
         <div class="grid md:grid-cols-2 gap-12 items-start mb-16">
          <div class="mb-8">
-    <h2 class="text-4xl font-bold text-gray-900 mb-2">Devenez partenaire</h2>
-    <h3 class="text-lg text-gray-700">Devenez avocat suppléant, développez vos revenus</h3>
+    <h2 class="text-4xl font-bold text-gray-900 mb-2 dark:text-white ">Devenez partenaire</h2>
+    <h3 class="text-lg text-gray-700 dark:text-white ">Devenez avocat suppléant, développez vos revenus</h3>
 </div>
             <div>
-                <p class="text-gray-700 text-lg leading-relaxed">
+                <p class="text-gray-700 text-lg leading-relaxed dark:text-white ">
                     Vous êtes avocat ou membre d’un cabinet ? Rejoignez notre réseau national pour élargir votre clientèle. 
                     Ensemble, nous étendons notre service dans toute la France et la Corse. 
                     Une opportunité unique d’intégrer une plateforme moderne et en pleine croissance.
@@ -32,13 +32,13 @@
 
             <div class="grid md:grid-cols-2 gap-6">
     <div>
-        <label class="block text-sm text-gray-700 mb-1">Nom du cabinet *</label>
+        <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Nom du cabinet *</label>
         <input name="cabinet" type="text" required value="{{ old('cabinet') }}"
                class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
     </div>
 
     <div>
-        <label class="block text-sm text-gray-700 mb-1">Site internet (facultatif mais conseillé)</label>
+        <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Site internet (facultatif mais conseillé)</label>
         <input name="site" type="text" value="{{ old('site') }}"
                class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
                placeholder="https://votresite.fr">
@@ -48,7 +48,7 @@
             {{-- Ligne 1 --}}
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm text-gray-700 mb-1">Nom Prénom *</label>
+                    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Nom Prénom *</label>
                     <div class="relative">
                         <input name="nom" type="text" required value="{{ old('nom') }}"
                                class="w-full pl-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
@@ -65,7 +65,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm text-gray-700 mb-1">Téléphone *</label>
+                    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Téléphone *</label>
                     <div class="relative">
                         <input name="telephone" type="tel" required value="{{ old('telephone') }}"
                                class="w-full pl-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
@@ -82,7 +82,7 @@
 
 
             <div>
-    <label class="block text-sm text-gray-700 mb-1">Statut juridique *</label>
+    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Statut juridique *</label>
     <select name="statut" required
             class="w-full pl-5 h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
         <option value="">-- Sélectionnez --</option>
@@ -94,16 +94,16 @@
 
             {{-- Ligne 2 --}}
 
-            <div class="py-10">Merci de bien vouloir renseigner précisément les infirmations ci dessous. Celles ci nous permettront d'établir notre réseau d'avocats sur tout le territoire et ainsi d'ouvrir toujours plus de zones pour la représentaiton des dossiers de nos clients.</div>
+            <div class="py-10 dark:text-white ">Merci de bien vouloir renseigner précisément les infirmations ci dessous. Celles ci nous permettront d'établir notre réseau d'avocats sur tout le territoire et ainsi d'ouvrir toujours plus de zones pour la représentaiton des dossiers de nos clients.</div>
 
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm text-gray-700 mb-1">Branche de droit *</label>
+                    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Branche de droit *</label>
                     <input name="branche" type="text" required value="{{ old('branche') }}"
                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
                 <div>
-                    <label class="block text-sm text-gray-700 mb-1">Département principal d’exercice *</label>
+                    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Département principal d’exercice *</label>
                     <input name="zone" type="text" required value="{{ old('zone') }}"
                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
@@ -112,12 +112,12 @@
             {{-- Ligne 3 --}}
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm text-gray-700 mb-1">Région *</label>
+                    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Région *</label>
                     <input name="region" type="text" required value="{{ old('region') }}"
                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
                 <div>
-                    <label class="block text-sm text-gray-700 mb-1">Villes desservies (séparées par virgule) *</label>
+                    <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Villes desservies (séparées par virgule) *</label>
                     <input name="villes" type="text" required value="{{ old('villes') }}"
                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
@@ -125,7 +125,7 @@
 
             {{-- Message --}}
             <div>
-                <label class="block text-sm text-gray-700 mb-1">Message (facultatif)</label>
+                <label class="block text-sm text-gray-700 mb-1 dark:text-white ">Message (facultatif)</label>
                 <textarea name="message" rows="4"
                           class="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ old('message') }}</textarea>
             </div>

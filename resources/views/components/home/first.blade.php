@@ -52,7 +52,7 @@
                  {{--                    {{ $slot }}--}}
 
                 <div class="pt-10">
-                    <span class="font-bold text-2xl">Créé par des avocats pour des avocats notre service innovant et unique vous permet de déposer</span><span class="text-blue-600 font-bold text-2xl"> vos dossiers judiciaires dans les juridictions concernés sans vous déplacer !</span>
+                    <span class="font-bold text-2xl dark:text-white">Créé par des avocats pour des avocats notre service innovant et unique vous permet de déposer</span><span class="text-blue-600 font-bold text-2xl"> vos dossiers judiciaires dans les juridictions concernés sans vous déplacer !</span>
 
                 </div>
 
@@ -183,7 +183,7 @@
 
                 {{-- <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"> --}}
 
-                <p class="mt-10 text-black dark:text-gray-900">Notre service unique vous permet de nous misisonner pour déposer vos dossiers auprès des juridiction de France Métropolitaines sans vous déplacer. Le paiement est 100% sécurisé et la procédure totalement confidentielle.</p>
+                <p class="mt-10 text-black dark:text-white">Notre service unique vous permet de nous misisonner pour déposer vos dossiers auprès des juridiction de France Métropolitaines sans vous déplacer. Le paiement est 100% sécurisé et la procédure totalement confidentielle.</p>
 
                 <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
     <a href="/register" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-blue-600 before:transition before:duration-300 hover:before:scale-105 active:before:scale-95 sm:w-max shadow-lg">
@@ -220,15 +220,15 @@
     <div class="max-w-5xl mx-auto flex flex-wrap justify-center gap-24 text-center">
         <div class="w-64">
             <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Un service unique</h6>
-            <p class="mt-2 text-gray-500">Créé pour les avocats</p>
+            <p class="mt-2 text-gray-500 dark:text-white">Créé pour les avocats</p>
         </div>
         <div class="w-64">
             <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Gagnez du temps</h6>
-            <p class="mt-2 text-gray-500">Transmettez depuis votre cabinet</p>
+            <p class="mt-2 text-gray-500 dark:text-white">Transmettez depuis votre cabinet</p>
         </div>
         <div class="w-64">
             <h6 class="text-lg font-semibold text-gray-800 dark:text-white">Sécurisé & confidentiel</h6>
-            <p class="mt-2 text-gray-500">Nous protégeons et sécurisons vos dossiers</p>
+            <p class="mt-2 text-gray-500 dark:text-white">Nous protégeons et sécurisons vos dossiers</p>
         </div>
     </div>
 </div>

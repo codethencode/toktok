@@ -8,10 +8,10 @@
     <!-- Contenu -->
     <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6 relative">
         <div class="m-auto space-y-10 md:w-9/12 lg:w-8/12 text-center">
-            <h2 class="text-4xl font-bold text-gray-800 dark:text-white md:text-5xl">
+            <h2 class="text-4xl font-bold text-gray-800 dark:text-white md:text-5xl dark:text-white">
                 Comment fonctionne notre service ?
             </h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300">
+            <p class="text-lg text-gray-600 dark:text-gray-100">
                 Choisissez votre prestation, effectuez le paiement, puis accédez à votre interface sécurisée pour nous transmettre vos pièces. Nous prenons le relais pour la remise au tribunal.
             </p>
 

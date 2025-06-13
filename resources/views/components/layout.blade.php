@@ -46,7 +46,7 @@
 {{--<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 
 
-<body class="bg-white dark:bg-gray-900 astro-FLTEP2YP">
+<body class="bg-gray-900 dark:bg-gray-900 astro-FLTEP2YP">
 
 <header class="astro-UY3JLCBK">
     <x-nav />
