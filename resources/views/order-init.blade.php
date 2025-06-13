@@ -187,7 +187,7 @@
                                 <div class="mb-4">
 
                                     <button @click="toggleUrgency" :class="{'btn-selected': isUrgent}" class="px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none bg-gray-100  min-h-[230px] w-full">
-                                        <div x-show="!isUrgent"><span class="block text-md font-bold text-white bg-gray-600 rounded-lg p-2 m-3">Option urgence</span><span class="text-sm">{{ $optionsExtra[1]->description }}</span></div>
+                                        <div x-show="!isUrgent">Pour un traitement de votre dossier en haute priorité sous 24h prêt à être expédié<span class="block text-md font-bold text-white bg-gray-600 rounded-lg p-2 m-3">Option urgence</span><span class="text-sm">{{ $optionsExtra[1]->description }}</span></div>
                                         <div x-show="isUrgent" class="text-sm"><span class="block text-md font-bold text-gray-700">Option urgence ajoutée</span>Pour un traitement de votre dossier en haute priorité sous 24h prêt à être expédié</div>
                                     </button>
                                 </div>
