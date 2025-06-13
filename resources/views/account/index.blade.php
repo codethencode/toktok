@@ -15,7 +15,7 @@
                     @endif
                     <div class="mb-10 text-sm space-y-3">
                         @auth
-                            <div class="text-center mb-5">
+                            <div class="text-center mb-5 dark:text-white">
                                 Vous êtes connecté à votre compte : <strong>{{ Auth::user()->email }}</strong>
                     
                                 @if (Auth::user()->role === 'admin')
@@ -117,7 +117,7 @@
                         
                     <hr class="mt-5 mb-5">
 
-                    Mes achats ({{ $orderAll->count() }})<br>
+                    <span class="dark:text-white">Mes achats ({{ $orderAll->count() }})</span><br>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 table-striped text-sm">
                             <thead>
