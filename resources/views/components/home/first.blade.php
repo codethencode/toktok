@@ -32,7 +32,7 @@
                          {{-- <h1 class="text-left pt-20 text-gray-900 dark:text-white font-bold text-3xl md:text-4xl xl:text-5xl mt-4">Nous déposons vos dossiers juridiques <span class="text-blue-500 dark:text-white">sous 72h auprès des tribunaux français !</span>
                          </h1> --}}
                          <h1 class="text-left pt-20 text-gray-900 dark:text-white font-extrabold text-4xl md:text-4xl xl:text-5xl leading-tight">
-    Nous déposons vos dossiers jjuridiques<br>
+    Nous déposons vos dossiers juridiques<br>
     <span class="text-blue-700 dark:text-blue-700">sous <span class="text-6xl text-blue-700 font-black">72h</span> auprès des tribunaux français !</span>
 </h1>
                          <div class="pr-3">
@@ -52,7 +52,7 @@
                  {{--                    {{ $slot }}--}}
 
                 <div class="pt-10">
-                    <span class="font-bold text-2xl dark:text-white">Créé par des avocats pour des avocats notre service innovant et unique vous permet de déposer</span><span class="text-blue-600 font-bold text-2xl"> vos dossiers judiciaires dans les juridictions concernés sans vous déplacer !</span>
+                    <span class="font-bold text-2xl dark:text-white">Créé par des avocats pour des avocats notre service innovant et unique vous permet de déposer</span><span class="text-blue-600 font-bold text-2xl"> vos dossiers judiciaires dans les juridictions concernées sans vous déplacer !</span>
 
                 </div>
 
@@ -183,7 +183,7 @@
 
                 {{-- <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"> --}}
 
-                <p class="mt-10 text-black dark:text-white">Notre service unique vous permet de nous misisonner pour déposer vos dossiers auprès des juridiction de France Métropolitaines sans vous déplacer. Le paiement est 100% sécurisé et la procédure totalement confidentielle.</p>
+                <p class="mt-10 text-black dark:text-white">Notre service unique vous permet de nous misisonner pour déposer vos dossiers auprès des juridictions de France métropolitaine sans vous déplacer. Le paiement est 100% sécurisé et la procédure totalement confidentielle.</p>
 
                 <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
     <a href="/register" class="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-blue-600 before:transition before:duration-300 hover:before:scale-105 active:before:scale-95 sm:w-max shadow-lg">
