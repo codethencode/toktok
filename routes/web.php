@@ -87,7 +87,7 @@ Route::post('password/reset', [PasswordResetController::class, 'resetPassword'])
 // ================= COMMANDES / BASKET =================
 Route::get('/order-init', [OrderController::class, 'index'])->middleware('auth')->name('order-init');
 Route::post('/order-resume', [OrderController::class, 'create'])->middleware('auth')->name('order-resume');
-Route::get('/order-resume', fn() => view('order-init'))->middleware('auth')->name('order-init.view');
+//Route::get('/order-resume', fn() => view('order-init'))->middleware('auth')->name('order-init.view');
 Route::post('/resetDossier/{order_id}', [OrderController::class, 'resetDossier'])->name('dossier.reset');
 Route::post('/cancelSubs', [OrderController::class, 'cancelSubscription'])->name('cancelSubs');
 Route::get('/dossier/{id}', [OrderSummary::class, 'dossier'])->name('dossier');

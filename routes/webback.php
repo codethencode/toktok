@@ -187,7 +187,7 @@ Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'stor
 
 Route::get('/order-init', [\App\Http\Controllers\OrderController::class, 'index'])->middleware('auth')->name('order-init');
 Route::post('/order-resume', [\App\Http\Controllers\OrderController::class, 'create'])->middleware('auth')->name('order-resume');
-Route::get('/order-resume', function () { return view('order-init'); })->middleware('auth')->name('order-init');
+//Route::get('/order-resume', function () { return view('order-init'); })->middleware('auth')->name('order-init');
 
 Route::get('/page-expired', function () {
     return view('home'); // Créez une vue personnalisée pour la page expirée
