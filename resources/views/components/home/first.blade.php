@@ -32,8 +32,8 @@
                          {{-- <h1 class="text-left pt-20 text-gray-900 dark:text-white font-bold text-3xl md:text-4xl xl:text-5xl mt-4">Nous déposons vos dossiers juridiques <span class="text-blue-500 dark:text-white">sous 72h auprès des tribunaux français !</span>
                          </h1> --}}
                          <h1 class="text-left pt-20 text-gray-900 dark:text-white font-extrabold text-4xl md:text-4xl xl:text-5xl leading-tight">
-    Nous déposons vos dossiers juridiques<br>
-    <span class="text-blue-600 dark:text-white">sous <span class="text-6xl text-blue-700 font-black">72h</span> auprès des tribunaux français !</span>
+    Nous déposons vos dossiers jjuridiques<br>
+    <span class="text-blue-700 dark:text-blue-700">sous <span class="text-6xl text-blue-700 font-black">72h</span> auprès des tribunaux français !</span>
 </h1>
                          <div class="pr-3">
                             <a href="/register">
