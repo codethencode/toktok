@@ -5,7 +5,7 @@
             <div class="relative pt-20 sm:pt-3 md:pt-36 ml-auto">
                 <div class="lg:w-3/4 text-center mx-auto dark:text-white">
 Ce service est réservé aux avocats et cabinets d'avocats.<br>Afin de calculer très rapidement votre tarif et d'accéder à nos services merci de créer votre compte ou de vous authentifier.
-                    <div class="grid sm:grid-col-1 md:grid-cols-2 gap-1 pt-10 mb-10">
+                    <div class="grid sm:grid-col-1 md:grid-cols-2 gap-1 pt-10 mb-10 pl-5 pr-5">
                         <div class="flex-1 text-left items-left break-words md:pr-16 mb-10">
                             Nouveau membre ?<br>
                             <form method="POST" action="/register">
