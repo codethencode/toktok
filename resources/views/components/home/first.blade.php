@@ -46,7 +46,7 @@
                          </div>
                      </div>
                      <!-- ... -->
-                     <div class="flex flex-1 justify-center items-center"><img src="{{url('/images/femme-dossier-avocat-min.png')}}" class=""></div>
+                     <div class="flex flex-1 justify-center items-center"><img src="{{url('/images/femme-dossier-avocat-min-co.png')}}" class=""></div>
                  </div>
 
                  {{--                    {{ $slot }}--}}
