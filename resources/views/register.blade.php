@@ -11,7 +11,7 @@ Ce service est réservé aux avocats et cabinets d'avocats.<br>Afin de calculer 
 
 
                             <a href="{{ route('auth.google.redirect') }}"
-                            class="w-full dark:text-gray-800 flex items-center justify-center px-4 py-3 mb-4 border border-gray-300 rounded shadow hover:bg-gray-50">
+                            class="w-full dark:text-gray-800 flex items-center justify-center px-4 py-3 mb-4 border border-gray-300 rounded shadow">
     <img src="/images/google-com.svg" class="w-5 h-5 mr-2" alt="Google logo">
     <span>Continuer avec Google</span>
 </a>
@@ -65,7 +65,7 @@ Ce service est réservé aux avocats et cabinets d'avocats.<br>Afin de calculer 
 
                             Dejà membre ?<br><br>
 
-                            <a href="{{ route('auth.google.redirect') }}" class="w-full dark:text-gray-800 flex items-center justify-center px-4 py-3 mb-4 border border-gray-300 rounded shadow hover:bg-gray-50">
+                            <a href="{{ route('auth.google.redirect') }}" class="w-full dark:text-gray-800 flex items-center justify-center px-4 py-3 mb-4 border border-gray-300 rounded shadow">
     <img src="/images/google-com.svg" class="w-5 h-5 mr-2" alt="Google logo">
     <span>Se connecter avec Google</span>
 </a>
