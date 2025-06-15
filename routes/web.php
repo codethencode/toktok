@@ -17,7 +17,10 @@ use App\Http\Controllers\{
     PaymentController,
     ContactController,
     AdminContactController,
-    PartenaireController
+    PartenaireController,
+    GoogleController,
+    UserController,
+    AdminController,
 };
 
 use App\Models\{
@@ -77,6 +80,33 @@ Route::get('articles/externaliser-depot-dossier', function () { return view('art
 
 Route::get('articles/logistique-juridique', function () { return view('articles.logistique-juridique');
 })->name('articles.logistique-juridique');
+
+
+// ====== PROFILE ============
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profil', [UserController::class, 'edit'])->name('profile.edit');
+    Route::post('/profil', [UserController::class, 'update'])->name('profile.update');
+    Route::post('/update-phone', [UserController::class, 'updatePhone'])->name('update.phone');
+});
+
+
+
+// =========== CLIENT =========
+Route::get('/admin/clients', [AdminController::class, 'clients'])->middleware('auth'); // ajoute un middleware 'admin' plus tard
+Route::get('/admin/options', [AdminController::class, 'options'])->name('admin.options')->middleware('auth'); // ajoute un middleware 'admin' plus tard
+Route::post('/admin/options/update/{categorie}', [AdminController::class, 'updateOptions'])->name('admin.options.update');
+Route::post('/admin/zone/create', [AdminController::class, 'createZone'])->name('admin.zone.create');
+//Route::delete('/admin/zone/{id}', [AdminController::class, 'deleteZone'])->name('admin.zone.delete');
+Route::get('/admin/zone/delete/{id}', [AdminController::class, 'deleteZone'])->name('admin.zone.delete');
+
+
+
+// ================= GOOGLE ==========
+
+Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
+
 
 // ================= PASSWORD RESET =================
 Route::get('password/forgot', [PasswordResetController::class, 'showForgotForm'])->name('password.request');

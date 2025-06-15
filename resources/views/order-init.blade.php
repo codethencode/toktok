@@ -11,6 +11,21 @@
                     <div class="lg:w-3/4 text-center mx-auto">
 
 
+                            @if(Auth::user()->phone === '00000')
+                            <div class="lg:w-3/4 mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded text-center mx-auto">
+                                <p class="font-semibold mb-2">Afin de vous proposer un service de qualité, merci de renseigner votre numéro de téléphone :</p>
+
+                                <form method="POST" action="{{ route('update.phone') }}" class="flex items-center justify-center gap-2">
+                                @csrf
+                                <input type="text" name="phone" placeholder="Ex: 0601020304"
+                                    class="border border-gray-300 rounded px-3 py-1 w-60"
+                                    required pattern="\d{10}" maxlength="10">
+                                <button type="submit" class="custom-button max-w-xs w-auto bg-blue-700 text-white px-4 py-1 rounded hover:bg-blue-700 transition">Enregistrer mon téléphone</button>
+                            </form>
+                            </div>
+                            @endif
+
+
                         <div x-data="priceCalculator()" x-init="init()" class="max-w-4xl mx-auto bg-white p-6">
 
 

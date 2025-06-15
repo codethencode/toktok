@@ -16,10 +16,18 @@
                     <div class="mb-10 text-sm space-y-3">
                         @auth
                             <div class="text-center mb-5 dark:text-white">
-                                Vous êtes connecté à votre compte : <strong>{{ Auth::user()->email }}</strong>
+                                Vous êtes connecté à votre compte : 
+                                <strong>{{ Auth::user()->name }}</strong> | 
+                                <strong>{{ Auth::user()->email }}</strong> | 
+                                <strong>Tél. {{ Auth::user()->phone === '00000' ? 'Non renseigné ' : Auth::user()->phone }}</strong> | 
+                                <a href="/profil">Mettre à jour mon compte</a>
                     
                                 @if (Auth::user()->role === 'admin')
                                     <button class="ml-2 bg-red-200 pt-1 pb-1 rounded-md pl-3 pr-3 text-red-600">Administrateur</button>
+                                        @if (Auth::user()->email === 'info@jaihk.fr')
+                                        <a href="/admin/clients"><button class="ml-2 bg-gray-200 pt-1 pb-1 rounded-md pl-3 pr-3 text-gray-800">Stats Clients</button></a>
+                                        <a href="/admin/options"><button class="ml-2 bg-green-200 pt-1 pb-1 rounded-md pl-3 pr-3 text-gray-800">Tarifs Options</button></a>
+                                        @endif
                                 @endif
                             </div>
                     

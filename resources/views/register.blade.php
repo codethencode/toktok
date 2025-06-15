@@ -7,7 +7,16 @@
 Ce service est réservé aux avocats et cabinets d'avocats.<br>Afin de calculer très rapidement votre tarif et d'accéder à nos services merci de créer votre compte ou de vous authentifier.
                     <div class="grid sm:grid-col-1 md:grid-cols-2 gap-1 pt-10 mb-10 pl-5 pr-5">
                         <div class="flex-1 text-left items-left break-words md:pr-16 mb-10">
-                            Nouveau membre ?<br>
+                            Nouveau membre ?<br><br>
+
+
+                            <a href="{{ route('auth.google.redirect') }}" class="w-full flex items-center justify-center px-4 py-3 mb-4 bg-white border border-gray-300 rounded shadow hover:bg-gray-50">
+    <img src="/images/google-com.svg" class="w-5 h-5 mr-2" alt="Google logo">
+    <span>Continuer avec Google</span>
+</a>
+
+<div class="text-center text-gray-400 text-sm mb-4">ou</div>
+
                             <form method="POST" action="/register">
                                 @csrf
                                 <div class="mt-4">
@@ -53,7 +62,14 @@ Ce service est réservé aux avocats et cabinets d'avocats.<br>Afin de calculer 
                                 </div>
                             @endif
 
-                            Dejà membre ?<br>
+                            Dejà membre ?<br><br>
+
+                            <a href="{{ route('auth.google.redirect') }}" class="w-full flex items-center justify-center px-4 py-3 mb-4 bg-white border border-gray-300 rounded shadow hover:bg-gray-50">
+    <img src="/images/google-com.svg" class="w-5 h-5 mr-2" alt="Google logo">
+    <span>Se connecter avec Google</span>
+</a>
+
+<div class="text-center text-gray-400 text-sm mb-4">ou</div>
                             <!-- Email Address -->
                             <form method="POST" action="/login">
                                 @csrf
