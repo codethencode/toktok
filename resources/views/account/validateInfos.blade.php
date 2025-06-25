@@ -38,7 +38,7 @@
 
 
         <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
-        Réf. Dossier : {{ strtoupper($basket->order_name) }}
+       N° Affaire : {{ strtoupper($basket->order_name) }}
         </div>
 
         <div class="bg-gray-900 text-white p-3 rounded-lg mb-8">Récapitulatif des informations transmises</div>
