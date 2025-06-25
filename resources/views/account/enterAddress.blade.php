@@ -35,7 +35,7 @@
 
     <hr>
     <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
-        Réf. Dossier : {{ strtoupper($order_name) }}
+        N° Affaire : {{ strtoupper($order_name) }}
     </div>
 
 

@@ -17,7 +17,7 @@
         <div class="bg-blue-500 h-4 rounded-md" style="width: 70%;"></div>
     </div>
 <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
-        Réf. Dossier : {{ strtoupper($order_name) }}
+        N° Affaire : {{ strtoupper($order_name) }}
     </div>
 
 
