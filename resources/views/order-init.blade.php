@@ -287,7 +287,7 @@
 
 
                                     <div class="mt-4 mb-8">
-                                        <label class="text-gray-800" for="orderName">Attribuez un nom à votre devis* (max 30 caractères)</label>
+                                        <label class="text-gray-800" for="orderName">Référence / numéro d'affaire* (max 30 caractères)</label>
                                         <x-text-input type="text" name="orderName" id="orderName" max="30" maxlength="30" class="mt-1 h-11 bg-blue-100 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required/>
                                     </div>
 
