@@ -63,7 +63,8 @@
                 <!-- Colonne de droite -->
                 <div class="bg-green-100 p-4 rounded-md">
                     <div class="bg-green-600 text-white p-3 rounded-lg mb-3 text-left">
-                        {{ $tribTxt }} où expédier votre dossier
+                        {{-- {{ $tribTxt }} --}}
+                        Tribunal où expédier votre dossier
                     </div>
                     <div class="ml-3 text-left">
                         @if($tribTxt === "Cabinet")
