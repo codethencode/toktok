@@ -33,7 +33,7 @@
 
                             <div class="text-blue-600 mt-6">Calcul de Mon Devis</div>
 
-                            <hr class="my-10">
+                            {{-- <hr class="my-10">
 
                             <div class="flex justify-center mb-6">
                                 <div class="inline-block bg-blue-600 text-white text-sm font-semibold px-6 py-2 rounded-full shadow-md">
@@ -47,7 +47,7 @@
                                         {{ $zone_geo['label'] }}
                                     </div>
                                 @endforeach
-                            </div>
+                            </div> --}}
 
 
                             <hr class="border-1 mt-6 mb-0 border-gray-200">
