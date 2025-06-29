@@ -1,9 +1,33 @@
-<x-layoutAdmin>
+<x-layoutAdmin :title="'FilePond Upload'">
+
+@push('head')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const el = document.querySelector("#date_audience");
+        if (el) {
+            flatpickr(el, {
+                enableTime: true,
+                enableSeconds: true,
+                dateFormat: "d/m/Y H:i:S",
+                time_24hr: true,
+                locale: "fr",
+                allowInput: true,
+            });
+        } else {
+            console.error("Input #datetime introuvable !");
+        }
+    });
+</script>
+@endpush
+
     <!-- Titre personnalisé -->
     <x-slot name="title">
         FilePond Upload
     </x-slot>
-
+      
    <x-navtop-account />
 
     <!-- Section pour les fichiers CSS/JS spécifiques à cette page -->
@@ -49,7 +73,7 @@
                  @else
                   
                     <div class="mt-4">
-                    <x-input-label for="chambre" :value="__('Chambre '. $tribTxt)" />
+                    <x-input-label for="chambre" :value="__('Chambre '. $tribTxt .' / Pôle Service Tribunal*')" />
                     <x-text-input placeholder="Entrez la chambre" id="chambre" class="block mt-1 w-full" type="text" name="chambre" :value="old('chambre', $tribunal->chambre ?? '')"  autocomplete="chambre" />
                     <x-input-error :messages="$errors->get('chambre')" class="mt-2" />
                     </div>
@@ -57,10 +81,23 @@
                 @endif
 
 
+                    {{-- <div class="mb-6">
+            <label for="datetime" class="block text-sm font-medium text-gray-700">Date et heure de l'audience</label>
+            <input
+                id="datetime"
+                name="datetime"
+                type="text"
+                placeholder="JJ/MM/AAAA HH:MM:SS"
+                autocomplete="off"
+                class=""
+            />
+        </div> --}}
+
+
             <div class="mt-4">
-                <x-input-label for="service" :value="__('Service '. $tribTxt)" />
-                <x-text-input placeholder="Entrez le nom" id="service" class="block mt-1 w-full" type="text" name="service" :value="old('service', $tribunal->service ?? '')"  autocomplete="service" />
-                <x-input-error :messages="$errors->get('service')" class="mt-2" />
+                <x-input-label for="nom_juge" :value="__('Nom du Juge ou du Juge rapporteur*')" />
+                <x-text-input placeholder="Entrez le nom du juge" id="nom_juge" class="block mt-1 w-full" type="text" name="nom_juge" :value="old('nom_juge', $tribunal->nom_juge ?? '')"  autocomplete="nom_juge" />
+                <x-input-error :messages="$errors->get('nom_juge')" class="mt-2" />
             </div>
 
             <div class="mt-4">
@@ -83,16 +120,24 @@
                 <x-input-error :messages="$errors->get('ville')" class="mt-2" />
             </div>
 
+
+            @php
+            $dateValue = old('date_audience', isset($tribunal->date_audience)
+                ? \Illuminate\Support\Carbon::parse($tribunal->date_audience)->format('d/m/Y H:i:s')
+                : '');
+        @endphp
+
+
             <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input placeholder="Email" id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email', $tribunal->email ?? '')" autocomplete="Email" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-label for="date_audience" :value="__('Date et heure de l’audience*')" />
+                <x-text-input placeholder="Date et heure de l'audience" id="date_audience" class="block mt-1 w-full" type="text" name="date_audience" :value="$dateValue" autocomplete="off" />
+                <x-input-error :messages="$errors->get('date_audience')" class="mt-2" />
             </div>
 
             <div class="mt-4">
-                <x-input-label for="tel" :value="__('Téléphone')" />
-                <x-text-input placeholder="Téléphone" id="tel" class="block mt-1 w-full" type="text" name="tel" :value="old('tel', $tribunal->telephone ?? '')"  autocomplete="Téléphone" />
-                <x-input-error :messages="$errors->get('tel')" class="mt-2" />
+                <x-input-label for="parties_representees" :value="__('Nom/Prénom ou Société de/des Partie(s) représentée(s)*')" />
+                <x-text-input placeholder="Parties représentées" id="parties_representees" class="block mt-1 w-full" type="text" name="parties_representees" :value="old('parties_representees', $tribunal->parties_representees ?? '')"  autocomplete="Parties représentées" />
+                <x-input-error :messages="$errors->get('parties_representees')" class="mt-2" />
             </div>
 
             <div class="flex justify-between items-center">

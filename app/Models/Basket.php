@@ -22,6 +22,16 @@ class Basket extends Model
     return $this->hasOne(Company::class, 'order_id', 'order_id');
     }
 
+    public function tribunal()
+    {
+    return $this->hasOne(Tribunal::class, 'order_id', 'order_id');
+    }
+
+    public function dossierCustomer()
+    {
+    return $this->hasOne(DossierCustomer::class, 'order_id', 'order_id');
+    }
+    
     public function plaidoirie()
     {
         return $this->belongsTo(OptionPrice::class, 'plaideType', 'code');

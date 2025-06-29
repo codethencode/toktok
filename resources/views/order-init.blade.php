@@ -77,7 +77,7 @@
 
                                 <!-- Nombre de pages -->
                                 <div class="mt-4">
-                                    <x-input-label for="printType" :value="__('Nombre de pages du dossier*')" />
+                                    <x-input-label for="printType" :value="__('Nombre de pages du dossier* (assignation et/ou conclusions + pièces parties représentées + BCP)')" />
                                     <x-text-input type="number" id="pages" x-model.number="numberOfPages" @input="calculateTotal" min="1" class="mt-1 h-11 bg-blue-100 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                                 </div>
 
@@ -112,9 +112,10 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <template x-for="option in reliureOptions" :key="option.id">
                                         <div @click="selectReliure(option)" :class="{'selected': selectedReliure && selectedReliure.id === option.id}" class="p-4 border-2 bg-blue-50 border-gray-300 rounded-lg cursor-pointer text-center">
-                                            <div class="relative min-h-28">
+                                            <div class="relative min-h-56">
                                                 <h2 class="text-sm font-bold" x-text="option.title"></h2>
-                                                <div class="text-gray-700 text-sm font-bold bg-blue-100 p-1 rounded-lg absolute bottom-0 inset-x-0" x-text="option.description"></div>
+                                                <p class="text-gray-700 text-sm mt-4" x-text="option.description"></p>
+                                                <div class="text-gray-700 text-sm font-bold bg-blue-100 p-1 rounded-lg absolute bottom-0 inset-x-0" x-text="`${option.price} € HT`"></div>
                                                 {{--                                            <p class="text-lg font-semibold" x-text="`$${option.price}`"></p>--}}
                                             </div>
                                             {{--                                        <div x-show="selectedReliure && selectedReliure.id === option.id" class="checked-icon">--}}
@@ -137,7 +138,7 @@
                                         <div @click="selectPlaidoirie(option)" :class="{'selected': selectedPlaidoirie && selectedPlaidoirie.id === option.id}" class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer text-center">
                                             <div class="relative min-h-48">
                                                 <h2 class="text-md font-bold" x-text="option.title"></h2>
-                                                <p class="text-gray-700 text-sm" x-text="option.description"></p>
+                                                <p class="text-gray-700 text-sm mt-4" x-text="option.description"></p>
                                                 <div class="text-sm font-semibold bg-gray-200 rounded-lg p-1 absolute bottom-0 inset-x-0" x-text="`${option.price} € HT`"></div>
                                             </div>
                                             {{--                                        <div x-show="selectedPlaidoirie && selectedPlaidoirie.id === option.id" class="checked-icon">--}}
@@ -157,17 +158,15 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                     <template x-for="option in juridictionOptions" :key="option.id" x-init="resetPrices()">
                                         <div @click="selectJuridiction(option)" :class="{'selected': selectedJuridiction && selectedJuridiction.id === option.id}" class="p-4 border-2 border-gray-300 rounded-lg cursor-pointer flex justify-between items-center">
-                                            <div class="relative min-h-48">
+                                            <div class="relative min-h-80">
                                                 <h2 class="text-md font-bold" x-text="option.title"></h2>
-                                                <p class="text-gray-700 text-sm" x-text="option.description"></p>
+                                                <p class="text-gray-700 text-sm mt-4" x-text="option.description"></p>
                                                 <div class="text-sm font-semibold bg-gray-200 rounded-lg p-1 absolute bottom-0 inset-x-0" x-text="`${option.price} € HT`"></div>
                                             </div>
                                         </div>
                                     </template>
                                 </div>
                             </div>
-
-
      
                             <div class="mt-6 mb-6" x-show="audience">
                                 <span class="text-md">Zone géographique de représentation à l'audience</span>
@@ -242,8 +241,8 @@
 
                                   $reliure="";
                                   foreach($typeReliures as $typeReliure)
-                                      $reliure .= "{ id: '". $typeReliure['code']."', title:'".addslashes($typeReliure['label'])."', description: '".$typeReliure['price']." € HT / page ', price:".$typeReliure['price']." },";
-
+                                      $reliure .= "{ id: '". $typeReliure['code']."', title:'".addslashes($typeReliure['label'])."',description:'".addslashes($typeReliure['description'])."', price:".$typeReliure['price']." },";
+                                    //description: '".$typeReliure['price']." € HT unitaire '
                                    $plaidoirie="";
 
 
@@ -287,8 +286,8 @@
 
 
                                     <div class="mt-4 mb-8">
-                                        <label class="text-gray-800" for="orderName">Référence / numéro d'affaire* (max 30 caractères)</label>
-                                        <x-text-input type="text" name="orderName" id="orderName" max="30" maxlength="30" class="mt-1 h-11 bg-blue-100 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required/>
+                                        <label class="text-gray-800" for="orderName">Référence / numéro d'affaire RG* </label>
+                                        <x-text-input type="text" name="orderName" id="orderName" max="200" maxlength="200" class="mt-1 h-11 bg-blue-100 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required/>
                                     </div>
 
                                     <button class="w-full bg-black text-white p-4 rounded-lg">Régler ma commande d'un montant de <span x-text="totalPrice"></span> € HT soit <span x-text="$store.myStore.value"></span> € TTC</button>

@@ -5,7 +5,8 @@
     </x-slot>
 
     <!-- Section pour les fichiers CSS/JS spécifiques à cette page -->
-    <x-slot name="head">
+    {{-- <x-slot name="head"> --}}
+        @push('head')
         <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js"></script>
         <style>
@@ -24,7 +25,8 @@
                 height: 120px;
             }
         </style>
-    </x-slot>
+        @endpush
+    {{-- </x-slot> --}}
 
     <!-- Contenu principal -->
 
@@ -41,9 +43,9 @@
                     @endif
                 </div>
 
-                <h1 class="mb-5">Télécharger les fichiers de mon dossier Etape 1/3 {{ substr($directory,-11) }} - <button class="bg-blue-200 pl-3 pr-3 pt-1 pb-1 rounded-md text-sm">Référence Dossier : <strong>{{ $order_name }}</strong></button></h1>
+                <h1 class="mb-5 mt-5">Télécharger les fichiers de mon dossier Etape 1/3 {{ substr($directory,-11) }} - <button class="bg-blue-200 pl-3 pr-3 pt-1 pb-1 rounded-md text-sm">Référence Affaire RG : <strong>{{ $order_name }}</strong></button></h1>
 
-
+                <div class="bg-red-400 p-3 rounded-lg text-white my-5 mt-[30px]">Attention : Il est impératif de nous remettre le bordereau de pièces et la convocation pour l'audience de plaidoirie</div>
 
                     @isset($isAdmin)
                         @if($isAdmin==='isAdmin')

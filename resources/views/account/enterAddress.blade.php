@@ -46,7 +46,7 @@
 
             @csrf
             <div class="mt-4">
-                <x-input-label for="name" :value="__('Nom Cabinet*')" />
+                <x-input-label for="name" :value="__('Nom Cabinet / Avocat en charge du dossier*')" />
                 <x-text-input placeholder="Entrez le nom" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $company->name ?? '')" required autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>

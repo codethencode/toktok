@@ -80,7 +80,7 @@ class OrderController extends Controller
             'typeImpressions' => OptionPrice::where('categorie', 'type_impression')->get(),
             'typeReliures'   => OptionPrice::where('categorie', 'type_reliure')->get(),
             //'typeExpeditions' => $typeExpeditions,
-            'typePlaidoiries'   => OptionPrice::where('categorie', 'type_plaidoirie')->get(),
+            'typePlaidoiries'   => OptionPrice::where('categorie', 'type_plaidoirie')->orderBy('code', 'asc')->get(),
             'typeJuridictions'   => OptionPrice::where('categorie', 'type_juri')->get(),
             'zone_geos'   => OptionPrice::where('categorie', 'zone_geo')->where('price', 0.00)->get(),
            // 'baseFeePrice'   => $baseFeePrice,

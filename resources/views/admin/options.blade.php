@@ -61,6 +61,28 @@
                 </form>
             </div>
         @endforeach
+
+            <table class="w-full border text-sm mb-10 mt-10">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-2 border">Code</th>
+                                <th class="p-2 border">Pourcentage remise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @foreach ($allDiscounts as $discount)
+                               <tr>
+                                <td class="p-2 border"> {{ $discount->code }} </td>
+                                <td class="p-2 border"> {{ $discount->percentage }}% de remise</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+</table>
+
+
     </div>
-    <a href="/account" class="bg-gray-800 p-3 pl-5 pr-5 text-white rounded-md">Retour</a>
+
+
+    <a href="/account" class="bg-gray-800 mt-3 p-3 pl-5 pr-5 text-white rounded-md">Retour</a>
 </x-layoutAdmin>

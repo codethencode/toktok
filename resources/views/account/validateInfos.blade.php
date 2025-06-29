@@ -1,13 +1,13 @@
 <x-layoutAdmin>
     <!-- Titre personnalisé -->
     <x-slot name="title">
-        FilePond Upload
+        Validez vos informations
     </x-slot>
 <x-navtop-account />
     <!-- Section pour les fichiers CSS/JS spécifiques à cette page -->
-    <x-slot name="head">
+    @push('head')
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js"></script>
-    </x-slot>
+    @endpush
 
     <!-- Contenu principal -->
 {{--    {{ $directory }}--}}
@@ -38,7 +38,7 @@
 
 
         <div class="bg-green-600 text-white p-3 rounded-lg mb-3">
-       N° Affaire : {{ strtoupper($basket->order_name) }}
+       N° Affaire RG: {{ strtoupper($basket->order_name) }}
         </div>
 
         <div class="bg-gray-900 text-white p-3 rounded-lg mb-8">Récapitulatif des informations transmises</div>
@@ -50,7 +50,7 @@
                     <div class="bg-blue-600 text-white p-3 rounded-lg mb-3">
                         Votre cabinet
                     </div>
-                    <div class="ml-3">
+                    <div class="ml-3 p-5">
                         {{ $company->name }}<br>
                         {{ $company->adresse }}<br>
                         {{ $company->code_postal }} {{ $company->ville }}
@@ -66,20 +66,22 @@
                         {{-- {{ $tribTxt }} --}}
                         Tribunal où expédier votre dossier
                     </div>
-                    <div class="ml-3 text-left">
-                        @if($tribTxt === "Cabinet")
+                    <div class="ml-3 p-5 text-left">
+                        {{-- @if($tribTxt === "Cabinet")
                             {{ $tribunal->name }}<br>
-                        @else
-                            {{ $tribunal->name }} - Chambre : {{ $tribunal->chambre }}<br>
-                        @endif
-
-
-                        Service : {{ $tribunal->service }}<br>
-                        {{ $tribunal->adresse }}<br>
-                        {{ $tribunal->code_postal }} {{ $tribunal->ville }}
+                        @else --}}
+                           <strong>{{ $tribunal->name }}</strong><br>
+                            <strong>{{ $tribunal->chambre }}</strong><br> 
+                            <strong>{{ $tribunal->adresse }}<br>
+                        {{ $tribunal->code_postal }} {{ $tribunal->ville }}</strong>
+                        {{-- @endif --}}
                         <br><br>
-                        Email : {{ $tribunal->email }}<br>
-                        Téléphone : {{ $tribunal->telephone }}
+                        Nom juge : <strong>{{ $tribunal->nom_juge }}</strong><br>
+                        Date audience : <strong>{{ $tribunal->date_audience }}</strong><br>
+                        Parties représentées : <strong>{{ $tribunal->parties_representees }}</strong><br>
+                    
+                        {{-- Email : {{ $tribunal->email }}<br>
+                        Téléphone : {{ $tribunal->telephone }} --}}
                     </div>
                 </div>
             </div>
@@ -151,6 +153,14 @@
 
             <a href="{{ route('download.all.files', ['folder' => $dossier]) }}" class="btn btn-primary text-sm">
                 📦 Télécharger tous les fichiers (.zip)
+            </a>
+        
+        </div>
+
+         <div class="flex justify-center mb-5 bg-blue-100 rounded-md p-3"> 
+
+            <a href="{{ route('generate.word', ['orderId' => substr($directory, -11)]) }}" class="btn btn-primary text-sm">
+                📦 Télécharger l'en tête (.docx document word)
             </a>
         
         </div>
@@ -322,8 +332,8 @@
                 </div>
         
                 <div class="flex justify-between">
-                    <span>Type de reliure :</span>
-                    <span class="font-bold">{{ strtoupper($getReliure) }}</span>
+                    <span>Reliure :</span>
+                    <span class="font-bold text-right">{{ strtoupper($getReliure) }}</span>
                 </div>
         
                 <div class="flex justify-between">

@@ -32,13 +32,13 @@
                          {{-- <h1 class="text-left pt-20 text-gray-900 dark:text-white font-bold text-3xl md:text-4xl xl:text-5xl mt-4">Nous déposons vos dossiers juridiques <span class="text-blue-500 dark:text-white">sous 72h auprès des tribunaux français !</span>
                          </h1> --}}
                          <h1 class="text-left pt-20 text-gray-900 dark:text-white font-extrabold text-4xl md:text-4xl xl:text-5xl leading-tight">
-    Nous déposons vos dossiers juridiques<br>
-    <span class="text-blue-700 dark:text-blue-700">sous <span class="text-6xl text-blue-700 font-black">72h</span> auprès des tribunaux français !</span>
+    Nous déposons vos dossiers de plaidoirie<br>
+    <span class="text-blue-700 dark:text-blue-700">sous <span class="text-5xl text-blue-700 font-black">72h</span> auprès des juridictions françaises !</span>
 </h1>
                          <div class="pr-3">
                             <a href="/register">
     <button class="mt-10 bg-blue-600 hover:bg-blue-700 w-full rounded-full text-white text-lg font-semibold py-4 px-6 shadow-lg transition-all duration-300">
-        Déposer mon dossier dès 129€ HT
+        Déposer mon dossier dès 99€ HT
     </button>
 </a>
                             
@@ -52,7 +52,7 @@
                  {{--                    {{ $slot }}--}}
 
                 <div class="pt-10">
-                    <span class="font-bold text-2xl dark:text-white">Créé par des avocats pour des avocats notre service innovant et unique vous permet de déposer</span><span class="text-blue-600 font-bold text-2xl"> vos dossiers judiciaires dans les juridictions concernées sans vous déplacer !</span>
+                    <span class="font-bold text-2xl dark:text-white">Créé pour des avocats par des avocats notre service innovant et unique vous permet de nous confier</span><span class="text-blue-600 font-bold text-2xl"> l'édition et le dépôt de vos dossiers de plaidoirie depuis votre cabinet !</span>
 
                 </div>
 

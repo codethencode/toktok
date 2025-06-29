@@ -1,13 +1,14 @@
+@props(['title' => 'Admin Panel', 'head' => ''])
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Admin Panel' }}</title>
+    <title>{{ $title }}</title>
     @vite(['resources/css/app.css', 'resources/css/devis.css'])
 
-    <!-- Section personnalisée pour des styles/scripts additionnels -->
-    {{ $head ?? '' }}
+ @stack('head')
 </head>
 <body>
 
@@ -24,6 +25,6 @@
         </div>
     </div>
 </main>
-
+<x-footer />
 </body>
 </html>

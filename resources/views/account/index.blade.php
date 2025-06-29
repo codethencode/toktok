@@ -132,7 +132,7 @@
                             <tr>
                                 <th class="py-2 px-4 border-b dark:text-white">Num</th>
                                 <th class="py-2 px-4 border-b dark:text-white">Num Cde.</th>
-                                <th class="py-2 px-4 border-b dark:text-white">N° Affaire</th>
+                                <th class="py-2 px-4 border-b dark:text-white">N° Affaire RG</th>
                                 <th class="py-2 px-4 border-b dark:text-white">Prix TTC</th>
                                 <th class="py-2 px-4 border-b dark:text-white">Date Cde</th>
                                 <th class="py-2 px-4 border-b dark:text-white">Nb de page dossier</th>

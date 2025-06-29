@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\OptionPrice;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -50,7 +51,8 @@ class AdminController extends Controller
     {
         $options = OptionPrice::orderBy('categorie')->orderBy('label')->get()->groupBy('categorie');
         $allCategories = OptionPrice::select('categorie')->distinct()->pluck('categorie');
-        return view('admin.options', compact('options', 'allCategories'));
+        $allDiscounts =  Discount::orderBy('percentage', 'asc')->get();
+        return view('admin.options', compact('options', 'allCategories','allDiscounts'));
     }
 
     public function updateOptions(Request $request, $categorie)

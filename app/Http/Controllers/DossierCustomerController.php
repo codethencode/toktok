@@ -192,7 +192,10 @@ class DossierCustomerController extends Controller
 
            // dd('je update');
 
-            if($verif->isValid==0) {
+            if($verif->isValid=='ok') {
+
+                //dd($request->all());
+
                 $verif->update([
                     'name' => $request->name,
                     'adresse' => $request->adresse,  // Correction du champ email
@@ -221,10 +224,16 @@ class DossierCustomerController extends Controller
 
     public function submitTribunal(Request $request) {
 
+        //dd($request->all());
+
         $directory = session('directory');
         $order_id = substr($directory, -11);
         $tribTxt = $request->input('tribTxt');
 
+       
+
+        $dateFr = $request->date_audience;
+       $dateMysql = Carbon::createFromFormat('d/m/Y H:i:s', $dateFr)->format('Y-m-d H:i:s'); 
 
         $request->validate([
             'name' => ['required', 'string', 'max:250'],
@@ -233,6 +242,8 @@ class DossierCustomerController extends Controller
             'adresse' => ['required', 'string', 'max:250'],
             'code_postal' => ['required', 'string', 'max:30'],
             'ville' => ['required', 'string', 'max:165'],
+            'parties_representees' => ['required'],
+            'date_audience' => ['required']
             
         ]);
 
@@ -254,11 +265,13 @@ class DossierCustomerController extends Controller
 
         if(!$verif) {
 
+                
+
             $chambre = $request->input('chambre'); // $chambre == ""
             $chambre = empty($chambre) ? 'n.c' : $chambre;
 
-            $service = $request->input('service'); // $chambre == ""
-            $service = empty($service) ? 'n.c' : $service;
+           // $service = $request->input('service'); // $chambre == ""
+           // $service = empty($service) ? 'n.c' : $service;
 
             //dd($request->all());
             $tribunal = Tribunal::create([
@@ -266,30 +279,40 @@ class DossierCustomerController extends Controller
                 'order_id' => $order_id,
                 'name' => $request->name,
                 'chambre' => $chambre,
-                'service' => $service,
+                'nom_juge' => $request->nom_juge,
                 'adresse' => $request->adresse,
                 'code_postal' => $request->code_postal,
                 'ville' => $request->ville,
                 'email' => $email,
                 'telephone' => $telephone,
+                'date_audience' => $dateMysql,
+                'parties_representees' => $request->parties_representees
             ]);
         }
         else
         {
-            if($verif->isValid==0) {
+
+            //$dateMysql = Carbon::createFromFormat('d/m/Y H:i:s', $dateFr)->format('Y-m-d H:i:s');   
+           
+
+            if($verif->isValid=='ok') {
                 $verif->update([
                     'name' => $request->name,
                     'chambre' => $request->chambre,
-                    'service' => $request->service,
+                    'nom_juge' => $request->nom_juge,
                     'adresse' => $request->adresse,  // Correction du champ email
                     'code_postal' => $request->code_postal,
                     'ville' => $request->ville,  // Correction du champ email
                     'email' => $email,
                     'telephone' => $telephone,
+                    'date_audience' => $dateMysql,
+                    'parties_representees' => $request->parties_representees
                 ]);
             }
         }
 
+
+       // dd($verif);
 
         //$redirectUrl = route('validateInfos', compact('tribTxt'));
        // dd($redirectUrl);
@@ -365,12 +388,15 @@ class DossierCustomerController extends Controller
 
 
     public function validateInfosTrib($tribTxt)
-{
+    {
     $directory = session('directory');
     $order_id = substr($directory, -11);
 
     // 🔁 On récupère toutes les infos de commande via le service
     $orderData = OrderService::getDetailOrderData($order_id);
+
+
+        //dd($orderData);
 
     // 🔁 Données complémentaires
     $tribunal = \App\Models\Tribunal::where('order_id', $order_id)->first();

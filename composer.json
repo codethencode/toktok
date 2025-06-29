@@ -11,6 +11,7 @@
         "laravel/framework": "^11.9",
         "laravel/socialite": "^5.21",
         "laravel/tinker": "^2.9",
+        "phpoffice/phpword": "^1.4",
         "rahulhaque/laravel-filepond": "^11.0"
     },
     "require-dev": {

@@ -21,6 +21,7 @@ use App\Http\Controllers\{
     GoogleController,
     UserController,
     AdminController,
+    WordExportController,
 };
 
 use App\Models\{
@@ -90,6 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-phone', [UserController::class, 'updatePhone'])->name('update.phone');
 });
 
+Route::get('/export/generate-word/{orderId}', [WordExportController::class, 'generateWord'])->name('generate.word');
 
 
 // =========== CLIENT =========
