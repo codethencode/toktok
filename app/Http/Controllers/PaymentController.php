@@ -135,8 +135,11 @@ class PaymentController extends Controller
             return redirect($paymentIntent->next_action->redirect_to_url->url);
         }
 
+        $priceId = config('services.stripe.price_id');
+
+
         if ($request->input('is_subscribed') === "abo" && $request->input('aboState') != 'active') {
-            $subscription = $user->newSubscription('default', 'price_1Pn4i8CgUDmDw905fa0JrzeK')
+            $subscription = $user->newSubscription('default', $priceId)
                 ->create($paymentMethod, [
                     'email' => $user->email,
                     'return_url' => route('subscription.callback'),
