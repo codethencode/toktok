@@ -94,7 +94,8 @@ class PaymentController extends Controller
     {
         $user = $request->user();
 
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        //Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(config('services.stripe.secret'));
         $paymentMethodId = $request->input('payment_method');
 
         $user->createOrGetStripeCustomer();
