@@ -48,7 +48,7 @@ class StripeWebhookController extends Controller
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
-            echo '⚠️  Webhook error while parsing basic request.';
+            Log::error('⚠️  Webhook error while parsing basic request.' . $e->getMessage());
             http_response_code(400);
             exit();
         }
@@ -62,8 +62,8 @@ class StripeWebhookController extends Controller
                 );
             } catch (\Stripe\Exception\SignatureVerificationException $e) {
                 // Invalid signature
-                echo '⚠️  Webhook error while validating signature.';
-                http_response_code(400);
+                Log::error('⚠️  Webhook error while validating signature: ' . $e->getMessage());
+                return response('Webhook signature invalid', 400);
                 exit();
             }
         }
