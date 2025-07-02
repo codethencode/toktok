@@ -46,8 +46,8 @@ public function submit(Request $request)
             "Message :\n" . ($request->message ?: 'Aucun'),
             function ($msg) use ($admin) {
                 $msg->to($admin->email)
-                    ->subject('[TokTok] Nouvelle demande de partenariat')
-                    ->from('noreply@tonsite.com', 'Formulaire partenaire');
+                    ->subject('[ToqueToque.net] Nouvelle demande de partenariat')
+                    ->from('info@toquetoque.net', 'Formulaire partenaire');
             }
         );
     }
