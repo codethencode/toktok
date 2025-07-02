@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Expédition de votre commande</title>
+</head>
+
+<body>
 <p>Bonjour,</p>
 
 <p>Votre commande <strong>{{ $basket->order_id }}</strong> a bien été expédiée.</p>
@@ -19,3 +27,7 @@
 @endif
 
 <p>Cordialement,<br>L'équipe</p>
+<a href="https://toquetoque.net">https://toquetoque.net</a>
+
+</body>
+</html>

@@ -14,7 +14,7 @@ if ($currentHour >= 6 && $currentHour < 17) {
 <p>Il faut à présent traiter et expédier le dossier</p>
 {{--<x-order-summary :orderId="$orderId" />--}}
 <p>
-<a href="#">https://coursierjuridique.com/login</a></p>
+<a href="#">https://toquetoque.net/login</a></p>
 Bien cordialement,
-<a href="#">https://coursierjuridique.com</a>
+<a href="#">https://toquetoque.net</a>
 

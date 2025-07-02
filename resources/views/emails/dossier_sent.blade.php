@@ -14,7 +14,7 @@
 <p>Nous allons à présent traiter votre dossier et l'expédier.<br><br>Numéro de commande : <b>{{ $orderId }}</b></p>
 {{--<x-order-summary :orderId="$orderId" />--}}
 <p>Vous serez informé dès son expédition effectuée<br>
-    <a href="#">https://coursierjuridique.com/login</a></p>
+    <a href="#">https://toquetoque.net/login</a></p>
 Bien cordialement,
-<a href="#">https://coursierjuridique.com</a>
+<a href="#">https://toquetoque.net</a>
 
