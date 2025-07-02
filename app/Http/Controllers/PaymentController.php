@@ -70,6 +70,7 @@ class PaymentController extends Controller
             'aboState' => $request->input('aboState'),
             'order_id' => $randomNumber,
             'mail'=> Auth::user()->email,
+            'stripeKey' => config('services.stripe.key'), // 👈 ajoute ça
         ]);
     }
 
