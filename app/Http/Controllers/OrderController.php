@@ -22,6 +22,7 @@ use App\Mail\ShippingConfirmedMail;
 use Illuminate\Support\Facades\Storage;
 //use Stripe\Subscription;
 use App\Mail\DossierResetNotification;
+use App\Mail\UnsubscribedConfirmation;
 
 class OrderController extends Controller
 {
@@ -195,8 +196,15 @@ class OrderController extends Controller
 
         }
 
-        return redirect()->back()->with('status', 'Votre abonnement mensuel est désormais annulé.');
+        Mail::to($user->email)
+         ->bcc(env('ADMIN_EMAIL'))
+         ->send(new UnsubscribedConfirmation($user));
 
+        //return redirect()->back()->with('status', 'Votre abonnement mensuel est désormais annulé.');
+        return redirect()->back()->with([
+                'status' => 'Votre abonnement mensuel est désormais annulé.',
+                'checkAbo' => 'canceled',
+            ]);
     }
 
 

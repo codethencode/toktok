@@ -65,10 +65,6 @@
                         @endauth
                     </div>
                     
-                  
-
-
-
 
                     <div class="flex space-x-3 text-sm">
                         <!-- Bouton 1 -->
@@ -79,7 +75,7 @@
                         </a>
                     
                         <!-- Bouton 2 -->
-                        @if($checkAbo != 'nonAbo' && $checkAbo->stripe_status === 'active')
+                        @if($checkAbo != 'nonAbo' && $checkAbo === 'active')
                             <a href="order-init" class="flex-1">
                                 <div class="flex items-center justify-center h-16 w-full bg-gray-800 text-white rounded-lg text-center px-3">
                                     Statut membre : vous bénéficiez de 15% de remise sur le site
@@ -95,16 +91,26 @@
     $canCancel = false;
     $cancelDateFormatted = null;
 
-    if ($checkAbo !== 'nonAbo' && is_object($checkAbo) && $checkAbo->created_at) {
-        $dateReference = $checkAbo->created_at;
+//   echo $subscription->stripe_status;
+
+     if ($subscription && $subscription->created_at && $subscription->stripe_status !== 'canceled') {
+
+        $dateReference = $subscription->created_at;
         $dateAfterThreeMonths = $dateReference->copy()->addMonths(3);
         $cancelDateFormatted = $dateAfterThreeMonths->format('d/m/Y');
 
         $canCancel = $currentDate->greaterThanOrEqualTo($dateAfterThreeMonths);
+
     }
 @endphp
 
+
+
+
 @if($canCancel)
+    @if($checkAbo === 'canceled')
+    {{-- abonnement annulé, on ne montre pas le bouton --}}
+    @else
     <form method="POST" action="cancelSubs" class="flex-1">
         @csrf
         <input type="hidden" name="user_id" value="{{ auth()->id() }}">
@@ -112,6 +118,7 @@
             Résilier mon abonnement mensuel dès à présent et stopper mes prélèvements de 29 € / mois
         </button>
     </form>
+    @endif
 @elseif($cancelDateFormatted)
     <div class="flex items-center justify-center h-16 w-full bg-purple-600 text-white rounded-lg text-center px-3 flex-1">
         Abonn. mensuel 29 € TTC / mois résiliable à partir du {{ $cancelDateFormatted }}

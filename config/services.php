@@ -39,12 +39,18 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+        'price_id' => env('STRIPE_PRICE_ID'), // 👈 ligne manquante
     ],
   
     'google' => [
     'client_id' => env('GOOGLE_CLIENT_ID'),
     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
     'redirect' => env('GOOGLE_REDIRECT_URI'),
+    ],
+
+    'pushover' => [
+    'token' => env('PUSHOVER_TOKEN'),
+    'user_key' => env('PUSHOVER_USER_KEY'),
     ],
 
 ];

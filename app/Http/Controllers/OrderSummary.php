@@ -27,7 +27,24 @@ class OrderSummary extends Controller
         return redirect('/login');
     }
 
-    $checkAbo = Subscription::where('user_id', Auth::id())->first() ?? 'nonAbo';
+
+
+    // Controller
+$subscription = Subscription::where('user_id', Auth::id())
+    ->where('type', 'default')
+    ->latest()
+    ->first();
+
+if (!$subscription) {
+    $checkAbo = 'nonAbo'; // aucun abonnement enregistré
+} elseif ($subscription->stripe_status === 'canceled') {
+    $checkAbo = 'canceled'; // abonnement annulé
+} else {
+    $checkAbo = 'active'; // abonnement actif
+}
+
+
+//    $checkAbo = Subscription::where('user_id', Auth::id())->first() ?? 'nonAbo';
     $paginate = 10;
     $search = $request->input('search');
 
@@ -107,7 +124,8 @@ class OrderSummary extends Controller
     return view('account.index', [
         'orderAll' => $orderAlls,
         'checkAbo' => $checkAbo,
-        'isAdmin' => $isAdmin
+        'isAdmin' => $isAdmin,
+        'subscription' => $subscription,
     ]);
 }
 

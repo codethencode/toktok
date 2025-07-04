@@ -14,6 +14,8 @@ use App\Models\Subscription;  // Assurez-vous que ce modèle correspond à votre
 use Illuminate\Support\Facades\Log;
 use Stripe\Webhook as StripeWebhook;
 use Stripe\Exception\SignatureVerificationException;
+ use App\Notifications\PaiementReussiNotification;
+use Illuminate\Support\Facades\Notification;
 
 class StripeWebhookController extends Controller
 {
@@ -176,8 +178,14 @@ class StripeWebhookController extends Controller
                 ->send(new PaymentConfirmation($amountPaid, $orderId));
             }
 
-           
+          
 
+           try {
+    Notification::route('pushover', config('services.pushover.user_key'))
+        ->notify(new PaiementReussiNotification($customerEmail, $amountPaid));
+} catch (\Throwable $e) {
+    Log::error('❌ Erreur envoi pushover : ' . $e->getMessage());
+}
             
             //Mail::to($adminEmail)->send(new AdminNotification($amountPaid, $orderId, $subscriptionId));
 
