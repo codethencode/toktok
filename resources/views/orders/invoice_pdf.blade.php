@@ -109,10 +109,10 @@
         
             <div class="company-block">
                 <p><strong>ToqueToque.net</strong><br>
-                {{ $companyName ?? 'Nom de l\'entreprise' }}</p>
-                <p>{{ $companyAddress ?? 'Adresse de l\'entreprise' }}</p>
-                <p>{{ $companyZip ?? '' }} {{ $companyCity ?? '' }}</p>
-                <p>{{ $companyCountry ?? 'France' }}</p>
+                DAVID ATTALI</p>
+                <p>14 rue Pytheas</p>
+                <p>13001 Marseille</p>
+                <p>SIRET : 507 414 860 00027</p>
                 
             </div>
         </div>
