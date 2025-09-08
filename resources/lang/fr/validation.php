@@ -10,6 +10,21 @@ return [
         'name' => [
             'required' => 'Le nom est obligatoire.',
         ],
+        'ville' => [
+            'required' => 'La ville est obligatoire.',
+        ],
+        'code_postal' => [
+            'required' => 'Le code postal est obligatoire.',
+        ],
+        'chambre' => [
+            'required' => 'La chambre / pôle service tribunal est obligatoire.',
+        ],
+        'email' => [
+            'required' => 'L\'email est obligatoire.',
+        ],
+        'tel' => [
+            'required' => 'Le téléphone est obligatoire.',
+        ],
         // etc.
     ],
 
