@@ -38,7 +38,7 @@
                          <div class="pr-3">
                             <a href="/register">
     <button class="mt-10 bg-blue-600 hover:bg-blue-700 w-full rounded-full text-white text-lg font-semibold py-4 px-6 shadow-lg transition-all duration-300">
-        Déposer mon dossier dès 99€ HT
+        Déposer mon dossier dès 129€ HT
     </button>
 </a>
                             
@@ -52,7 +52,7 @@
                  {{--                    {{ $slot }}--}}
 
                 <div class="pt-10">
-                    <span class="font-bold text-2xl dark:text-white">Créé pour des avocats par des avocats notre service innovant et unique vous permet de nous confier</span><span class="text-blue-600 font-bold text-2xl"> l'édition et le dépôt de vos dossiers de plaidoirie depuis votre cabinet !</span>
+                    <span class="font-bold text-2xl dark:text-white">Créé pour des avocats par des avocats, notre service innovant et unique vous permet de nous confier</span><span class="text-blue-600 font-bold text-2xl"> l'édition et le dépôt de vos dossiers de plaidoirie depuis votre cabinet !</span>
 
                 </div>
 
