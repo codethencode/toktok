@@ -39,6 +39,7 @@ class WordExportController extends Controller
         $section->addText("Avocat au Barreau\n14 rue Pythéas - 13001 Marseille", [], ['alignment' => 'center']);
         $section->addText("Tél. : + 33 (0)9. 51.95.71.43 - Fax : + 33 (0)4.86.55.66.09", [], ['alignment' => 'center']);
         $section->addText("info@avocatattali.com", [], ['alignment' => 'center']);
+        $section->addText(" {$basket->company->name}", ['bold' => true, 'underline' => 'none', 'color' => '000']);
         $section->addTextBreak(2);
 
         // Partie(s) représentée(s)
@@ -77,7 +78,7 @@ class WordExportController extends Controller
 // Juridiction
 $textRun1 = $section->addTextRun(['alignment' => Jc::CENTER]);
 $textRun1->addText("Juridiction :", ['bold' => true, 'underline' => 'single', 'color' => '000']);
-$textRun1->addText(" Madame / Monsieur le Président du {$basket->tribunal->name}", ['bold' => true, 'underline' => 'none', 'color' => '000']);
+$textRun1->addText(" {$basket->tribunal->name}", ['bold' => true, 'underline' => 'none', 'color' => '000']);
 
 // Audience
 $textRun2 = $section->addTextRun(['alignment' => Jc::CENTER]);
