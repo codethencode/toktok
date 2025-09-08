@@ -52,7 +52,7 @@
                  {{--                    {{ $slot }}--}}
 
                 <div class="pt-10">
-                    <span class="font-bold text-2xl dark:text-white">Créé pour des avocats par des avocats, notre service innovant et unique vous permet de nous confier</span><span class="text-blue-600 font-bold text-2xl"> l'édition et le dépôt de vos dossiers de plaidoirie depuis votre cabinet !</span><br>Si vous ne pouvez pas plaider nous vous substituons à l'audience.
+                    <span class="font-bold text-2xl dark:text-white">Créé pour des avocats par des avocats, notre service innovant et unique vous permet de nous confier</span><span class="text-blue-600 font-bold text-2xl"> l'édition et le dépôt de vos dossiers de plaidoirie depuis votre cabinet !</span><br><span class="font-bold text-xl dark:text-white">Si vous ne pouvez pas plaider nous vous substituons à l'audience.</span>
 
                 </div>
 

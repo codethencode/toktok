@@ -64,7 +64,7 @@
                 <div class="bg-green-100 p-4 rounded-md">
                     <div class="bg-green-600 text-white p-3 rounded-lg mb-3 text-left">
                         {{-- {{ $tribTxt }} --}}
-                        Tribunal où expédier votre dossier
+                        Juridiction où expédier votre dossier
                     </div>
                     <div class="ml-3 p-5 text-left">
                         {{-- @if($tribTxt === "Cabinet")
@@ -390,7 +390,7 @@
             
                     <!-- Texte explicatif -->
                     <div class="mb-4 text-gray-600 text-sm text-center">
-                        Je confirme avoir transmis la totalité de mes fichiers et désire à présent lancer la procédure d'envoi de mon dossier au tribunal.  
+                        Je confirme avoir transmis la totalité de mes fichiers et désire à présent lancer la procédure d'édition de mon dossier de plaidoirie et son envoi à la juridiction concernée.  
                         <strong>[ ATTENTION ]</strong> Je ne pourrai plus apporter aucune modification à mon dossier.  
                         Toute modification entraînera des frais supplémentaires.
                     </div>

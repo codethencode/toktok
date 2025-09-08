@@ -95,7 +95,7 @@
 
 
             <div class="mt-4">
-                <x-input-label for="nom_juge" :value="__('Nom du Juge ou du Juge rapporteur*')" />
+                <x-input-label for="nom_juge" :value="__('Nom du Juge ou du Juge rapporteur')" />
                 <x-text-input placeholder="Entrez le nom du juge" id="nom_juge" class="block mt-1 w-full" type="text" name="nom_juge" :value="old('nom_juge', $tribunal->nom_juge ?? '')"  autocomplete="nom_juge" />
                 <x-input-error :messages="$errors->get('nom_juge')" class="mt-2" />
             </div>

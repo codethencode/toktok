@@ -222,63 +222,58 @@ class DossierCustomerController extends Controller
 
 
 
-    public function submitTribunal(Request $request) {
+   public function submitTribunal(Request $request)
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:250'],
+        //'chambre' => ['required', 'string', 'max:250'],
+        //'service' => ['required', 'string', 'max:250'],
+        'adresse' => ['required', 'string', 'max:250'],
+        'code_postal' => ['required', 'string', 'max:30'],
+        'ville' => ['required', 'string', 'max:165'],
+        'parties_representees' => ['required'],
+        'date_audience' => ['required'],
+    ]);
 
-        //dd($request->all());
+    // ✅ Ce code est maintenant sûr : la date est présente
+    $dateFr = $request->date_audience;
 
-        $directory = session('directory');
-        $order_id = substr($directory, -11);
-        $tribTxt = $request->input('tribTxt');
+    try {
+        $dateMysql = Carbon::createFromFormat('d/m/Y H:i:s', $dateFr)->format('Y-m-d H:i:s');
+    } catch (\Exception $e) {
+        return back()->withErrors(['date_audience' => 'Le format de la date est invalide. Utilisez jj/mm/aaaa hh:mm:ss'])->withInput();
+    }
 
-       
+    $directory = session('directory');
+    $order_id = substr($directory, -11);
+    $tribTxt = $request->input('tribTxt');
 
-        $dateFr = $request->date_audience;
-       $dateMysql = Carbon::createFromFormat('d/m/Y H:i:s', $dateFr)->format('Y-m-d H:i:s'); 
+    $verif = Tribunal::where('order_id', $order_id)->first();
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:250'],
-            //'chambre' => ['required', 'string', 'max:250'],
-            //'service' => ['required', 'string', 'max:250'],
-            'adresse' => ['required', 'string', 'max:250'],
-            'code_postal' => ['required', 'string', 'max:30'],
-            'ville' => ['required', 'string', 'max:165'],
-            'parties_representees' => ['required'],
-            'date_audience' => ['required']
-            
+    $telephone = $request->telephone ?: 'n.c';
+    $email = $request->email ?: 'n.c';
+    $chambre = $request->input('chambre') ?: 'n.c';
+
+    if (!$verif) {
+        $tribunal = Tribunal::create([
+            'user_id' => Auth::id(),
+            'order_id' => $order_id,
+            'name' => $request->name,
+            'chambre' => $chambre,
+            'nom_juge' => $request->nom_juge,
+            'adresse' => $request->adresse,
+            'code_postal' => $request->code_postal,
+            'ville' => $request->ville,
+            'email' => $email,
+            'telephone' => $telephone,
+            'date_audience' => $dateMysql,
+            'parties_representees' => $request->parties_representees
         ]);
-
-
-        $verif = Tribunal::where('order_id',$order_id)->first();
-
-        if (empty($request->telephone)) {
-            $telephone = 'n.c';
-        } else {
-            $telephone = $request->telephone;
-        }
-
-        if (empty($request->email)) {
-            $email = 'n.c';
-        } else {
-            $email = $request->email;
-        }
-        
-
-        if(!$verif) {
-
-                
-
-            $chambre = $request->input('chambre'); // $chambre == ""
-            $chambre = empty($chambre) ? 'n.c' : $chambre;
-
-           // $service = $request->input('service'); // $chambre == ""
-           // $service = empty($service) ? 'n.c' : $service;
-
-            //dd($request->all());
-            $tribunal = Tribunal::create([
-                'user_id' => Auth::id(),
-                'order_id' => $order_id,
+    } else {
+        if ($verif->isValid == 'ok') {
+            $verif->update([
                 'name' => $request->name,
-                'chambre' => $chambre,
+                'chambre' => $request->chambre,
                 'nom_juge' => $request->nom_juge,
                 'adresse' => $request->adresse,
                 'code_postal' => $request->code_postal,
@@ -289,37 +284,10 @@ class DossierCustomerController extends Controller
                 'parties_representees' => $request->parties_representees
             ]);
         }
-        else
-        {
-
-            //$dateMysql = Carbon::createFromFormat('d/m/Y H:i:s', $dateFr)->format('Y-m-d H:i:s');   
-           
-
-            if($verif->isValid=='ok') {
-                $verif->update([
-                    'name' => $request->name,
-                    'chambre' => $request->chambre,
-                    'nom_juge' => $request->nom_juge,
-                    'adresse' => $request->adresse,  // Correction du champ email
-                    'code_postal' => $request->code_postal,
-                    'ville' => $request->ville,  // Correction du champ email
-                    'email' => $email,
-                    'telephone' => $telephone,
-                    'date_audience' => $dateMysql,
-                    'parties_representees' => $request->parties_representees
-                ]);
-            }
-        }
-
-
-       // dd($verif);
-
-        //$redirectUrl = route('validateInfos', compact('tribTxt'));
-       // dd($redirectUrl);
-        return redirect()->route('validateInfosTrib', compact('tribTxt'));
-
-
     }
+
+    return redirect()->route('validateInfosTrib', compact('tribTxt'));
+}
 
 
     public function validateInfos(Request $request) {
