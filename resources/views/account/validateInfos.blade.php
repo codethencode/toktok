@@ -157,13 +157,15 @@
         
         </div>
 
-         <div class="flex justify-center mb-5 bg-blue-100 rounded-md p-3"> 
+         @if (Auth::check() && Auth::user()->role === 'admin') 
+        <div class="flex justify-center mb-5 bg-blue-100 rounded-md p-3"> 
 
             <a href="{{ route('generate.word', ['orderId' => substr($directory, -11)]) }}" class="btn btn-primary text-sm">
                 📦 Télécharger l'en tête (.docx document word)
             </a>
         
         </div>
+        @endif
             @else
             <p>Aucun fichier trouvé dans le dossier.</p>
         @endif
