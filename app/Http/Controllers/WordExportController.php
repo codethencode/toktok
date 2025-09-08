@@ -34,16 +34,14 @@ class WordExportController extends Controller
 
         // En-tête
         $section->addTextBreak();
-        $section->addText("LAWBEE-AVOCATS®", ['bold' => true, 'color' => '000'], ['alignment' => 'center']);
-        $section->addText("David ATTALI", ['italic' => true], ['alignment' => 'center']);
-        $section->addText("Avocat au Barreau\n14 rue Pythéas - 13001 Marseille", [], ['alignment' => 'center']);
-        $section->addText("Tél. : + 33 (0)9. 51.95.71.43 - Fax : + 33 (0)4.86.55.66.09", [], ['alignment' => 'center']);
-        $section->addText("info@avocatattali.com", [], ['alignment' => 'center']);
-        $section->addText(" {$basket->company->name}", ['bold' => true, 'underline' => 'none', 'color' => '000']);
+        $section->addText("{$basket->company->name}", ['bold' => true, 'underline' => 'none', 'color' => '000'], ['alignment' => 'center']);
+        $section->addText("{$basket->company->adresse} - {$basket->company->code_postal} {$basket->company->ville}", [], ['alignment' => 'center']);
+        $section->addText("{$basket->company->tel}", [], ['alignment' => 'center']);
+        $section->addText("{$basket->company->email}", [], ['alignment' => 'center']);
         $section->addTextBreak(2);
 
         // Partie(s) représentée(s)
-        $section->addText("PARTIE(S) REPRESENTEE(S) :", ['bold' => true, 'color' => '000']);
+        $section->addText("PARTIE(S) REPRESENTEE(S) : {$basket->tribunal->parties_representees}", ['bold' => true, 'color' => '000']);
 
         // Nom du client s’il existe
         if ($basket->dossierCustomer) {
@@ -83,7 +81,7 @@ $textRun1->addText(" {$basket->tribunal->name}", ['bold' => true, 'underline' =>
 // Audience
 $textRun2 = $section->addTextRun(['alignment' => Jc::CENTER]);
 $textRun2->addText("Audience :", ['bold' => true, 'underline' => 'single', 'color' => '000']);
-$textRun2->addText(" {$basket->tribunal->date_audience}", ['bold' => true, 'underline' => 'none', 'color' => '000']);
+$textRun2->addText(" {$audience}", ['bold' => true, 'underline' => 'none', 'color' => '000']);
 
 // Affaire
 $textRun3 = $section->addTextRun(['alignment' => Jc::CENTER]);
