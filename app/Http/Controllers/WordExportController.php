@@ -36,7 +36,7 @@ class WordExportController extends Controller
         $section->addTextBreak();
         $section->addText("{$basket->company->name}", ['bold' => true, 'underline' => 'none', 'color' => '000'], ['alignment' => 'center']);
         $section->addText("{$basket->company->adresse} - {$basket->company->code_postal} {$basket->company->ville}", [], ['alignment' => 'center']);
-        $section->addText("{$basket->company->tel}", [], ['alignment' => 'center']);
+        $section->addText("{$basket->company->telephone}", [], ['alignment' => 'center']);
         $section->addText("{$basket->company->email}", [], ['alignment' => 'center']);
         $section->addTextBreak(2);
 
